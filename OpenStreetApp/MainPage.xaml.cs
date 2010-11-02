@@ -21,5 +21,26 @@ namespace OpenStreetApp
         {
             InitializeComponent();
         }
+
+        public void TestTiles(Point coord, double zoom, String path)
+        {
+            this.picture.Source = new BitmapImage(path);
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            TileDownloadManager tdm = new TileDownloadManager();
+            for (int i = 0; i < 10; i++)
+            {
+                System.Threading.Thread.Sleep(5000);
+                Point p = new Point(46.8 + (i * 3), 10.1 + (i * 5));
+                tdm.fetch(p, 12, new Action<Point,double,String>(TestTiles));
+            }
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
