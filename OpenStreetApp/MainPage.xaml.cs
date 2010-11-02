@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using System.Windows.Media.Imaging;
 
 namespace OpenStreetApp
 {
@@ -22,9 +12,9 @@ namespace OpenStreetApp
             InitializeComponent();
         }
 
-        public void TestTiles(Point coord, double zoom, String path)
+        public void TestTiles(Point coord, double zoom, string path)
         {
-            this.picture.Source = new BitmapImage(new Uri(path));
+            //this.picture.Source = new BitmapImage(new Uri(path));
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -34,7 +24,7 @@ namespace OpenStreetApp
             {
                 System.Threading.Thread.Sleep(5000);
                 Point p = new Point(46.8 + (i * 3), 10.1 + (i * 5));
-                tdm.fetch(p, 12, new Action<Point,double,String>(TestTiles));
+                tdm.fetch(p, 12, new Action<Point,double,string>(TestTiles));
             }*/
         }
 

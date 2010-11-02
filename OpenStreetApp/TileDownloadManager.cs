@@ -1,23 +1,19 @@
 ﻿using System;
 using System.IO;
 using System.IO.IsolatedStorage;
-using System.Threading;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Net;
 
 namespace OpenStreetApp
 {
     public class TileDownloadManager
     {
-        private static TCollection<String> dictionary = new TCollection<String>();
+        private static TCollection<string> dictionary = new TCollection<string>();
         private static IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication();
 
         static TileDownloadManager()
         {
-            // FIND SOLUTION FOR THREADS
-            
+            //TODO: FIND SOLUTION FOR THREADS
+
             if (!isf.DirectoryExists("TileCache"))
             {
                 isf.CreateDirectory("TileCache");
@@ -32,30 +28,26 @@ namespace OpenStreetApp
         /// <param name="coord">The world coordinates</param>
         /// <param name="zoom">The zoom level</param>
         /// <param name="callback">The callback function</param>
-        public void fetch(Point coord, int zoom, Action<Point, double, String> callback)
+        public void fetch(Point coord, int zoom, Action<Point, double, string> callback)
         {
-            tdm_task task;
-            task.coord = coord;
-            task.zoom = zoom;
-            task.callback = callback;
-            ThreadPool.QueueUserWorkItem(new WaitCallback(fetch_async), task);
-        }
 
-        private void fetch_async(object obj)
-        {
-            var task = (tdm_task)obj;
-            var p = WorldToTilePos(task.coord.X, task.coord.Y, task.zoom);
-            String tileName = p.X.ToString() + p.Y.ToString() + task.zoom.ToString();
-            String path;
+            var p = WorldToTilePos(coord.X, coord.Y, zoom);
+            string tileName = p.X.ToString() + p.Y.ToString() + zoom.ToString();
+            string path = Path.Combine("TileCache", tileName + ".png");
 
             if (!dictionary.containsSynchronized(tileName))
-            {   
-                //FileDownloader.download(Path.Combine("TileCache", tileName + ".png"));
-                dictionary.addSynchronized(tileName);
+            {
+                FileDownloader.download(
+                                    new Uri("http://tile.openstreetmap.org/" + zoom + "/" + (int)p.X + "/" + p.Y + ".png"),
+                                    path,
+                                    (file) =>
+                                    {
+                                        dictionary.addSynchronized(tileName);
+                                        callback(coord, zoom, path);
+                                    });
             }
-
-            path = Path.Combine("TileCache", tileName + ".png");
-            task.callback(task.coord, task.zoom, path);
+            else
+                callback(coord, zoom, path);
         }
 
         public static Point WorldToTilePos(double lon, double lat, int zoom)
@@ -77,13 +69,6 @@ namespace OpenStreetApp
             p.Y = (float)(180.0 / Math.PI * Math.Atan(Math.Sinh(n)));
 
             return p;
-        }
-
-        private struct tdm_task
-        {
-            public Point coord;
-            public int zoom;
-            public Action<Point, double, String> callback;
         }
     }
 }
