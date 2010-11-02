@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace OpenStreetApp
 {
-    class TileDownloadManager
+    public class TileDownloadManager
     {
         /// <summary>
         /// This method downloads the image tile for the given coordinates and the given zoom level from the server 

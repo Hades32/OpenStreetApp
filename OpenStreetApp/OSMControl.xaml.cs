@@ -110,7 +110,7 @@ namespace OpenStreetApp
 
         protected virtual void OnMapViewChanged()
         {
-            this.tileDownloader.fetch(this.MapCenter, this.ZoomLevel, (ImageSource img) => { });
+            this.tileDownloader.fetch(this.MapCenter, (int)this.ZoomLevel, (ImageSource img) => { });
         }
     }
 }
