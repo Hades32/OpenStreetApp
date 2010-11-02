@@ -1,12 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.IO.IsolatedStorage;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO.IsolatedStorage;
-using System.IO;
 
 namespace OpenStreetApp
 {
@@ -34,8 +32,8 @@ namespace OpenStreetApp
         /// <param name="coord">The world coordinates</param>
         /// <param name="zoom">The zoom level</param>
         /// <param name="callback">The callback function</param>
-        public void fetch(Point coord, int zoom, Action<ImageSource> callback)
-        {       
+        public void fetch(Point coord, int zoom, Action<Point, double, ImageSource> callback)
+        {
             tdm_task task;
             task.coord = coord;
             task.zoom = zoom;
@@ -59,7 +57,7 @@ namespace OpenStreetApp
                 isf.CreateFile(Path.Combine("TileCache", p.X + "" + p.Y + "" + task.zoom + ".png"));
                 dictionary.addSynchronized(p.X + "" + p.Y + "" + task.zoom);
             }
-            task.callback(bms);
+            task.callback(task.coord, task.zoom, bms);
         }
 
         public static Point WorldToTilePos(double lon, double lat, int zoom)
@@ -87,7 +85,7 @@ namespace OpenStreetApp
         {
             public Point coord;
             public int zoom;
-            public Action<ImageSource> callback;
+            public Action<Point, double, ImageSource> callback;
         }
     }
 }

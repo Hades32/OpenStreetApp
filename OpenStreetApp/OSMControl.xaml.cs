@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace OpenStreetApp
 {
@@ -91,26 +90,25 @@ namespace OpenStreetApp
         TileDownloadManager tileDownloader;
 
         //TODO: other data structure?
-        Image[] imgs = new Image[40];
-        public OSMControl(TileDownloadManager tdm)
+        GeoImage[] imgs = new GeoImage[40];
+
+        public OSMControl()
         {
             InitializeComponent();
 
-            this.tileDownloader = tdm;
+            this.tileDownloader = new TileDownloadManager();
 
             //add Images
             for (int i = 0; i < imgs.Length; i++)
             {
-                imgs[i] = new Image();
-                imgs[i].Width = 256;
-                imgs[i].Height = 256;
-                this.LayoutRoot.Children.Add(imgs[i]);
+                imgs[i] = new GeoImage(this.tileDownloader);
+                this.LayoutRoot.Children.Add(imgs[i].Image);
             }
         }
 
         protected virtual void OnMapViewChanged()
         {
-            this.tileDownloader.fetch(this.MapCenter, (int)this.ZoomLevel, (ImageSource img) => { });
+
         }
     }
 }
