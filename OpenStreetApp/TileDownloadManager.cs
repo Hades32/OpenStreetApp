@@ -17,6 +17,9 @@ namespace OpenStreetApp
 
         static TileDownloadManager()
         {
+            // hack
+            ThreadPool.SetMaxThreads(2, 2);
+            ThreadPool.SetMinThreads(2, 2);
             if (!isf.DirectoryExists("TileCache"))
             {
                 isf.CreateDirectory("TileCache");
@@ -32,13 +35,12 @@ namespace OpenStreetApp
         /// <param name="zoom">The zoom level</param>
         /// <param name="callback">The callback function</param>
         public void fetch(Point coord, int zoom, Action<ImageSource> callback)
-        {
-            Thread t = new Thread(new ParameterizedThreadStart(fetch_async));
+        {       
             tdm_task task;
             task.coord = coord;
             task.zoom = zoom;
             task.callback = callback;
-            t.Start(task);
+            ThreadPool.QueueUserWorkItem(new WaitCallback(fetch_async), task);
         }
 
         private void fetch_async(object obj)
