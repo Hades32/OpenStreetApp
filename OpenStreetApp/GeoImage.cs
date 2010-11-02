@@ -4,6 +4,10 @@ using System.Windows.Controls;
 
 namespace OpenStreetApp
 {
+    /// <summary>
+    /// This class represent one OSM Tile and all its associated data, like
+    /// zoom-level, coordinate, and the associated Image control
+    /// </summary>
     public class GeoImage
     {
         #region zoom
