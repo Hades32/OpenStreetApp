@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace OpenStreetApp
 {
@@ -65,11 +66,11 @@ namespace OpenStreetApp
         {
             this.tdm.fetch(this.Coordinate, (int)this.Zoom,
 
-                (coord, zoom, img) =>
+                (coord, zoom, path) =>
                 {   //as this happens async it might happen that this GeoImage has changed
                     //when the download has finished
                     if (coord == this.Coordinate && zoom == this.Zoom)
-                        this.Image.Source = img;
+                        this.Image.Source = new BitmapImage(new Uri(path));
                 });
         }
 

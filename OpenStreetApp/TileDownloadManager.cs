@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Net;
 
 namespace OpenStreetApp
 {
@@ -15,9 +16,8 @@ namespace OpenStreetApp
 
         static TileDownloadManager()
         {
-            // hack
-            ThreadPool.SetMaxThreads(2, 2);
-            ThreadPool.SetMinThreads(2, 2);
+            // FIND SOLUTION FOR THREADS
+            
             if (!isf.DirectoryExists("TileCache"))
             {
                 isf.CreateDirectory("TileCache");
@@ -32,7 +32,7 @@ namespace OpenStreetApp
         /// <param name="coord">The world coordinates</param>
         /// <param name="zoom">The zoom level</param>
         /// <param name="callback">The callback function</param>
-        public void fetch(Point coord, int zoom, Action<Point, double, ImageSource> callback)
+        public void fetch(Point coord, int zoom, Action<Point, double, String> callback)
         {
             tdm_task task;
             task.coord = coord;
@@ -45,19 +45,17 @@ namespace OpenStreetApp
         {
             var task = (tdm_task)obj;
             var p = WorldToTilePos(task.coord.X, task.coord.Y, task.zoom);
-            BitmapSource bms;
+            String tileName = p.X.ToString() + p.Y.ToString() + task.zoom.ToString();
+            String path;
 
-            if (dictionary.containsSynchronized(p.X + "" + p.Y + "" + task.zoom))
-            {
-                bms = new BitmapImage(new Uri(Path.Combine("TileCache", p.X + "" + p.Y + "" + task.zoom + ".png")));
+            if (!dictionary.containsSynchronized(tileName))
+            {   
+                //FileDownloader.download(Path.Combine("TileCache", tileName + ".png"));
+                dictionary.addSynchronized(tileName);
             }
-            else
-            {
-                bms = new BitmapImage(new Uri("http://tile.openstreetmap.org/" + task.zoom + "/" + ((int)task.coord.X) + "/" + ((int)task.coord.Y) + ".png"));
-                isf.CreateFile(Path.Combine("TileCache", p.X + "" + p.Y + "" + task.zoom + ".png"));
-                dictionary.addSynchronized(p.X + "" + p.Y + "" + task.zoom);
-            }
-            task.callback(task.coord, task.zoom, bms);
+
+            path = Path.Combine("TileCache", tileName + ".png");
+            task.callback(task.coord, task.zoom, path);
         }
 
         public static Point WorldToTilePos(double lon, double lat, int zoom)
@@ -85,7 +83,7 @@ namespace OpenStreetApp
         {
             public Point coord;
             public int zoom;
-            public Action<Point, double, ImageSource> callback;
+            public Action<Point, double, String> callback;
         }
     }
 }
