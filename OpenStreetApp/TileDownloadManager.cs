@@ -50,7 +50,7 @@ namespace OpenStreetApp
 
             if (!dictionary.containsSynchronized(tileName))
             {   
-                FileDownloader.download(Path.Combine("TileCache", tileName + ".png"));
+                //FileDownloader.download(Path.Combine("TileCache", tileName + ".png"));
                 dictionary.addSynchronized(tileName);
             }
 
