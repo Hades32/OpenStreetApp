@@ -62,7 +62,7 @@ namespace OpenStreetApp
             task.callback(bms);
         }
 
-        public Point WorldToTilePos(double lon, double lat, int zoom)
+        public static Point WorldToTilePos(double lon, double lat, int zoom)
         {
             Point p = new Point();
             p.X = (float)((lon + 180.0) / 360.0 * (1 << zoom));
@@ -72,7 +72,7 @@ namespace OpenStreetApp
             return p;
         }
 
-        public Point TileToWorldPos(double tile_x, double tile_y, int zoom)
+        public static Point TileToWorldPos(double tile_x, double tile_y, int zoom)
         {
             Point p = new Point();
             double n = Math.PI - ((2.0 * Math.PI * tile_y) / Math.Pow(2.0, zoom));
