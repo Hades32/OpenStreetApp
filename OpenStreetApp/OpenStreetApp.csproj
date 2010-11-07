@@ -73,6 +73,7 @@
     <Compile Include="OSMControl.xaml.cs">
       <DependentUpon>OSMControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OSMTileSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCollection.cs" />
     <Compile Include="TileDownloadManager.cs" />

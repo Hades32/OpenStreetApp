@@ -30,7 +30,10 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <my:OSMControl ZoomLevel="12" MapCenter="48.6,10.1"/>
+            <MultiScaleImage x:Name="OSM_Map" 
+                             MouseLeftButtonDown="OSM_Map_MouseLeftButtonDown"
+                             MouseLeftButtonUp="OSM_Map_MouseLeftButtonUp"
+                             MouseMove="OSM_Map_MouseMove"/>
         </Grid>
     </Grid>
  
