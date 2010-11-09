@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
@@ -20,23 +21,16 @@ namespace OpenStreetApp
 
             this.OSM_Map.Source = new OSMTileSource();
 
-            var down = Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.OSM_Map, "MouseLeftButtonDown");
-            var up = Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.OSM_Map, "MouseLeftButtonUp");
-            var downAndUp = down.Zip(up, (handler, event_arg) => event_arg);
-
-            // das funzt noch nicht! (richtig)
-            var x = downAndUp.Timestamp().BufferWithCount(2).SubscribeOnDispatcher().Subscribe(
+            // Implement double click
+            Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.OSM_Map, "MouseLeftButtonUp")
+            .BufferWithTime(TimeSpan.FromSeconds(1))
+            .Subscribe(new Action<IList<IEvent<MouseButtonEventArgs>>>(
                 eventList =>
                 {
-                    // zoom if it was actually a double click and not just two clicks
-                    if (eventList[1].Timestamp - eventList[0].Timestamp < TimeSpan.FromSeconds(2))
-                    {
-                        var newzoom = zoom / 1.3;
-                        Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMousePos);
-                        this.OSM_Map.ZoomAboutLogicalPoint(zoom / newzoom, logicalPoint.X, logicalPoint.Y);
-                        zoom = newzoom;
-                    }
-                });
+                    if (eventList.Count >= 2)
+                        // subscribing directly on that dispatcher didn't work...
+                        this.Dispatcher.BeginInvoke(OSM_Map_OnDoubleClick);
+                }));
         }
 
         public void TestTiles(Point coord, double zoom, string path)
@@ -91,6 +85,14 @@ namespace OpenStreetApp
         {
             duringDrag = false;
             this.OSM_Map.UseSprings = true;
+        }
+
+        private void OSM_Map_OnDoubleClick()
+        {
+            var newzoom = zoom / 1.3;
+            Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMousePos);
+            this.OSM_Map.ZoomAboutLogicalPoint(zoom / newzoom, logicalPoint.X, logicalPoint.Y);
+            zoom = newzoom;
         }
 
         private void OSM_Map_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
