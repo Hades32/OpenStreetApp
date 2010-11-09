@@ -9,7 +9,6 @@ namespace OpenStreetApp
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        Point lastMousePos = new Point();
         Point lastMouseLogicalPos = new Point();
         Point lastMouseViewPort = new Point();
         bool duringDrag = false;
@@ -23,7 +22,7 @@ namespace OpenStreetApp
 
             // Implement double click
             Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.OSM_Map, "MouseLeftButtonUp")
-            .BufferWithTime(TimeSpan.FromSeconds(1))
+            .BufferWithTimeOrCount(TimeSpan.FromSeconds(1), 2)
             .Subscribe(new Action<IList<IEvent<MouseButtonEventArgs>>>(
                 eventList =>
                 {
@@ -33,20 +32,8 @@ namespace OpenStreetApp
                 }));
         }
 
-        public void TestTiles(Point coord, double zoom, string path)
-        {
-            //this.picture.Source = new BitmapImage(new Uri(path));
-        }
-
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            /*TileDownloadManager tdm = new TileDownloadManager();
-            for (int i = 0; i < 10; i++)
-            {
-                System.Threading.Thread.Sleep(5000);
-                Point p = new Point(46.8 + (i * 3), 10.1 + (i * 5));
-                tdm.fetch(p, 12, new Action<Point,double,string>(TestTiles));
-            }*/
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -89,8 +76,8 @@ namespace OpenStreetApp
 
         private void OSM_Map_OnDoubleClick()
         {
-            var newzoom = zoom / 1.3;
-            Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMousePos);
+            var newzoom = zoom / 2.0;
+            Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
             this.OSM_Map.ZoomAboutLogicalPoint(zoom / newzoom, logicalPoint.X, logicalPoint.Y);
             zoom = newzoom;
         }
