@@ -23,8 +23,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="ApplicationTitle" Margin="0,0,0,5" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
        
+        <TextBlock x:Name="ApplicationTitle" Margin="0,0,0,5" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
+        
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
@@ -33,11 +34,27 @@
         </Grid>
 
 <!--POPUP TEST CODE BEGIN -->
-        <Grid x:Name="ContentGrid" Grid.Row="1">
-            <Popup x:Name="ContextMenuPopup" Height="250" Width="300" Margin="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <TextBox x:Name="LocationInput" Margin="0,0,0,5" Text="Ort Eingeben" />
+        <Grid x:Name="PopupGrid" Grid.Row="2">
+            <Popup x:Name="ContextMenuPopup" Height="200" Width="460" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Center" Opened="ContextMenuPopup_Opened">           
+                <Grid x:Name="InnerPopupGrid">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                
+                    <TextBlock Grid.Row="0" Grid.Column="0" Height="33" HorizontalAlignment="Left" Margin="0,30,0,0" Name="textDescription" Text="Bitte Koordinaten des Zielortes eingeben:" FontSize="24" VerticalAlignment="Top" Width="474" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Height="33" HorizontalAlignment="Left" Margin="0,10,0,0" Name="textLongitude" Text="Längengrad: " VerticalAlignment="Top" Width="474" />
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="LongitudeInput" Margin="150,0,50,0" InputScope="CurrencyAmount" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Height="33" HorizontalAlignment="Left" Margin="0,10,0,0" Name="textLatitude" Text="Breitengrad: " VerticalAlignment="Top" Width="474" />
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="LatitudeInput" Margin="150,0,50,0" InputScope="CurrencyAmount" />
+                    <Button Grid.Row="3" Grid.Column="0" x:Name="buttonOK" Content="Ok" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="150,0,0,0" Click="buttonOK_Click"/>
+                    <Button Grid.Row="3" Grid.Column="1" x:Name="buttonAbort" Content="Abbrechen" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="220,0,0,0" Click="buttonAbort_Click"/>
+                </Grid>
             </Popup>
-            <TextBlock Height="33" HorizontalAlignment="Left" Margin="0,160,0,0" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" Width="474" />
+            
         </Grid>
 <!--POPUP TEST CODE END-->
 

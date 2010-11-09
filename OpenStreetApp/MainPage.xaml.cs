@@ -39,6 +39,7 @@ namespace OpenStreetApp
 
 
             this.OSM_Map.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(OSM_Map_ManipulationDelta);
+            
             // Initialize GeoLocation Listener
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 20;
@@ -75,7 +76,6 @@ namespace OpenStreetApp
             }
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             lastKnownPosition = e.Position;
@@ -159,6 +159,23 @@ namespace OpenStreetApp
             Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
             this.OSM_Map.ZoomAboutLogicalPoint(zoom / newzoom, logicalPoint.X, logicalPoint.Y);
             zoom = newzoom;
+        }
+
+        private void ContextMenuPopup_Opened(object sender, EventArgs e)
+        {
+            this.OSM_Map.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void buttonOK_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenuPopup.IsOpen = false;
+            this.OSM_Map.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void buttonAbort_Click(object sender, RoutedEventArgs e)
+        {
+            ContextMenuPopup.IsOpen = false;
+            this.OSM_Map.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }
