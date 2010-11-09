@@ -15,9 +15,10 @@ namespace OpenStreetApp
         GeoPosition<GeoCoordinate> lastKnownPosition;
         Point lastMouseLogicalPos = new Point();
         Point lastMouseViewPort = new Point();
-        bool duringDrag = false;
+        Point lastOSMPoint = new Point();
         double zoom = 1;
         double zoomCount = 1.0;
+
 
         public MainPage()
         {
@@ -36,6 +37,8 @@ namespace OpenStreetApp
                         this.Dispatcher.BeginInvoke(OSM_Map_OnDoubleClick);
                 }));
 
+
+            this.OSM_Map.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(OSM_Map_ManipulationDelta);
             // Initialize GeoLocation Listener
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 20;
@@ -47,6 +50,32 @@ namespace OpenStreetApp
             lastKnownPosition = watcher.Position;
         }
 
+        //Multi-Touch working
+        void OSM_Map_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            // Zoom
+            if (e.DeltaManipulation.Scale.X != 0 || e.DeltaManipulation.Scale.Y != 0)
+            {
+                // zoom by average of X and Y scaling
+                var zoom = (Math.Abs(e.DeltaManipulation.Scale.X) + Math.Abs(e.DeltaManipulation.Scale.Y)) / 2.0;
+
+                Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
+                this.OSM_Map.ZoomAboutLogicalPoint(zoom, logicalPoint.X, logicalPoint.Y);
+
+                if (this.OSM_Map.ViewportWidth > 1)
+                    this.OSM_Map.ViewportWidth = 1;
+            }
+            // Pinch
+            else
+            {
+                Point newPoint = lastMouseViewPort;
+                newPoint.X -= e.CumulativeManipulation.Translation.X / this.OSM_Map.ActualWidth * this.OSM_Map.ViewportWidth;
+                newPoint.Y -= e.CumulativeManipulation.Translation.Y / this.OSM_Map.ActualWidth * this.OSM_Map.ViewportWidth;
+                this.OSM_Map.ViewportOrigin = newPoint;
+            }
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             lastKnownPosition = e.Position;
@@ -118,15 +147,9 @@ namespace OpenStreetApp
 
         private void OSM_Map_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            lastMouseLogicalPos = e.GetPosition(this.OSM_Map);
-            lastMouseViewPort = this.OSM_Map.ViewportOrigin;
-            duringDrag = true;
-        }
-
-        private void OSM_Map_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            duringDrag = false;
-            this.OSM_Map.UseSprings = true;
+            this.lastMouseLogicalPos = e.GetPosition(this.OSM_Map);
+            this.lastMouseViewPort = this.OSM_Map.ViewportOrigin;
+            this.lastOSMPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
         }
 
         private void OSM_Map_OnDoubleClick()
@@ -136,18 +159,6 @@ namespace OpenStreetApp
             Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
             this.OSM_Map.ZoomAboutLogicalPoint(zoom / newzoom, logicalPoint.X, logicalPoint.Y);
             zoom = newzoom;
-        }
-
-        private void OSM_Map_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if (duringDrag)
-            {
-                Point newPoint = lastMouseViewPort;
-                Point thisMouseLogicalPos = e.GetPosition(this.OSM_Map);
-                newPoint.X += (lastMouseLogicalPos.X - thisMouseLogicalPos.X) / this.OSM_Map.ActualWidth * this.OSM_Map.ViewportWidth;
-                newPoint.Y += (lastMouseLogicalPos.Y - thisMouseLogicalPos.Y) / this.OSM_Map.ActualWidth * this.OSM_Map.ViewportWidth;
-                this.OSM_Map.ViewportOrigin = newPoint;
-            }
         }
     }
 }
