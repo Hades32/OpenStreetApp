@@ -22,24 +22,33 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MEINE ANWENDUNG" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Seitenname" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <TextBlock x:Name="ApplicationTitle" Margin="0,0,0,5" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
+       
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <MultiScaleImage x:Name="OSM_Map" 
                              MouseLeftButtonDown="OSM_Map_MouseLeftButtonDown"
                              MouseLeftButtonUp="OSM_Map_MouseLeftButtonUp"
                              MouseMove="OSM_Map_MouseMove"/>
         </Grid>
+
+<!--POPUP TEST CODE BEGIN -->
+        <Grid x:Name="ContentGrid" Grid.Row="1">
+            <Popup x:Name="ContextMenuPopup" Height="250" Width="300" Margin="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <TextBox x:Name="LocationInput" Margin="0,0,0,5" Text="Ort Eingeben" />
+            </Popup>
+            <TextBlock Height="33" HorizontalAlignment="Left" Margin="0,160,0,0" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" Width="474" />
+        </Grid>
+<!--POPUP TEST CODE END-->
+
+
     </Grid>
  
     <!--Beispielcode für die Verwendung von ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="geoLocationButton" Click="geoLocationButton_Click"  IconUri="ApplicationIcon.png" Text="Aktueller Standort"/>
             <shell:ApplicationBarIconButton x:Name="openButton" Click="openButton_Click" IconUri="ApplicationIcon.png" Text="Koordinate öffnen"/>
             <shell:ApplicationBarIconButton x:Name="favoriteButton" Click="favoriteButton_Click" IconUri="ApplicationIcon.png" Text="Favoriten hinzufügen"/>
             <shell:ApplicationBarIconButton x:Name="POIButton" Click="POIButton_Click" IconUri="ApplicationIcon.png" Text="Wichtige Punkte"/>
