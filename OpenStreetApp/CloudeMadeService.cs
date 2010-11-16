@@ -36,7 +36,8 @@ namespace OpenStreetApp
                     var len = stream.Read(buffer, 0, buffer.Length);
                     stream.Close();
                     var result = System.Text.UTF8Encoding.UTF8.GetString(buffer, 0, len);
-                    Token = result;
+                    if (string.IsNullOrEmpty(Token))
+                        Token = result;
                     callback();
                 }
             }, null);
