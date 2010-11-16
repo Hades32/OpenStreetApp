@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Phone.Reactive;
+using System.Text.RegularExpressions;
 
 namespace OpenStreetApp
 {
@@ -46,11 +47,28 @@ namespace OpenStreetApp
             System.Net.WebClient wc = new System.Net.WebClient();
             wc.DownloadStringCompleted += (sender, e) =>
             {
-                Console.WriteLine(e.Result);
+                System.Diagnostics.Debug.WriteLine(e.Result);
+                Regex reg = new Regex("coordinates\"\\s*:\\s*\\[(\\d+\\.\\d+)\\s*,\\s*(\\d+\\.\\d+)");
+                var match = reg.Match(e.Result);
+                if (match.Success)
+                {
+                    double x = Double.Parse(match.Groups[1].Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+                    double y = Double.Parse(match.Groups[2].Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+                    this.Dispatcher.BeginInvoke(() =>
+                    {
+                        navigateToCoordinate(new System.Device.Location.GeoCoordinate(x, y), 12);
+                    });
+                }
+                else
+                {
+                    //TODO ERROR HANDLING
+                    System.Diagnostics.Debugger.Break();
+                }
+
             };
             Uri adress = new Uri("http://geocoding.cloudmade.com/" + CloudeMadeService.ApiKey + "/geocoding/v2/find.js?query="
                 + encoded + "&token=" + CloudeMadeService.Token);
-            Console.WriteLine(adress);
+            System.Diagnostics.Debug.WriteLine(adress);
             wc.DownloadStringAsync(adress);
         }
 
@@ -105,14 +123,15 @@ namespace OpenStreetApp
 
             this.OSM_Map.ViewportWidth = (1.0/Math.Pow(2,zoom));
             this.OSM_Map.ViewportOrigin = new Point(xRelative, yRelative);
-            // THINK ABOUT THIS zoomCount *= 12;
+            // THINK ABOUT THIS 
+            zoomCount *= zoom;
         }
 
         public void zoomToWorldView()
         {
             // USED FOR UNZOOM 
             this.OSM_Map.ViewportOrigin = new Point(0.0, 0.0);
-            this.OSM_Map.ZoomAboutLogicalPoint(1.0 / zoomCount, 0, 0);
+            this.OSM_Map.ViewportWidth = 1;
             zoomCount = 1;
         }
     }
