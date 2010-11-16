@@ -58,10 +58,11 @@ namespace OpenStreetApp
         private void geoLocationButton_Click(object sender, EventArgs e)
         {
             // FAKE EVENT
-            watcher_PositionChanged(this, new GeoPositionChangedEventArgs<GeoCoordinate>(
+            /*watcher_PositionChanged(this, new GeoPositionChangedEventArgs<GeoCoordinate>(
                 new GeoPosition<GeoCoordinate>(new DateTimeOffset(), new GeoCoordinate(48.24, 9.59))));
 
-            this.OSM_Map.navigateToCoordinate(lastKnownPosition.Location, 12);
+            this.OSM_Map.navigateToCoordinate(lastKnownPosition.Location, 12);*/
+            this.ApplicationTitle.Text = this.OSM_Map.getCurrentPosition().ToString();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
