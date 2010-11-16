@@ -77,7 +77,7 @@ namespace OpenStreetApp
 
         private void showFavoritesButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void POIButton_Click(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace OpenStreetApp
 
         private void favoriteButton_Click(object sender, EventArgs e)
         {
-
+            this.OSM_Map.navigateToCoordinate(new GeoCoordinate(48.399833, 9.994923), 12);
         }
 
         private void ContextMenuPopup_Opened(object sender, EventArgs e)

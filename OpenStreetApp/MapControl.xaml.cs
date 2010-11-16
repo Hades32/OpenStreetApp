@@ -48,7 +48,8 @@ namespace OpenStreetApp
             {
                 Console.WriteLine(e.Result);
             };
-            Uri adress = new Uri("http://geocoding.cloudmade.com/1a8bcc813f9646519c9d2b12e92c69b2/geocoding/v2/find.js?query=" + encoded);
+            Uri adress = new Uri("http://geocoding.cloudmade.com/" + CloudeMadeService.ApiKey + "/geocoding/v2/find.js?query="
+                + encoded + "&token=" + CloudeMadeService.Token);
             Console.WriteLine(adress);
             wc.DownloadStringAsync(adress);
         }
@@ -97,12 +98,14 @@ namespace OpenStreetApp
         public void navigateToCoordinate(System.Device.Location.GeoCoordinate geoCoordinate, int zoom)
         {
             Point p = OSMHelpers.WorldToTilePos(geoCoordinate.Longitude, geoCoordinate.Latitude, zoom);
-            double xRelative = p.X / Math.Pow(2, 12);
-            double yRelative = p.Y / Math.Pow(2, 12);
-            //openButton_Click(this, null);
-            // DEBUG CODE this.ApplicationTitle.Text = "X-Tile: " + (int)p.X + "Relative: " + xRelative; 
-            this.OSM_Map.ZoomAboutLogicalPoint(12, xRelative, yRelative);
-            zoomCount *= 12;
+            double fixX = (this.OSM_Map.ActualWidth / 256.0) / 4.0;
+            double fixY = (this.OSM_Map.ActualHeight / 256.0) / 4.0;
+            double xRelative = (p.X - fixX) / Math.Pow(2, zoom);
+            double yRelative = (p.Y - fixY) / Math.Pow(2, zoom);
+
+            this.OSM_Map.ViewportWidth = (1.0/Math.Pow(2,zoom));
+            this.OSM_Map.ViewportOrigin = new Point(xRelative, yRelative);
+            // THINK ABOUT THIS zoomCount *= 12;
         }
 
         public void zoomToWorldView()
