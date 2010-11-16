@@ -112,5 +112,16 @@ namespace OpenStreetApp
             this.OSM_Map.ZoomAboutLogicalPoint(1.0 / zoomCount, 0, 0);
             zoomCount = 1;
         }
+
+        public Point getCurrentPosition()
+        {
+            var zoom = (int)Math.Log((int)(1.0 / this.OSM_Map.ViewportWidth), 2);
+            var tilecount = Math.Pow(2, zoom);
+
+            return OSMHelpers.TileToWorldPos(
+                this.OSM_Map.ViewportOrigin.X * tilecount,
+                this.OSM_Map.ViewportOrigin.Y * tilecount,
+                zoom);
+        }
     }
 }
