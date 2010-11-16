@@ -25,34 +25,24 @@
 
        
         <TextBlock x:Name="ApplicationTitle" Margin="0,0,0,5" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
-        
 
-        <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
-            <MultiScaleImage x:Name="OSM_Map" UseSprings="True" 
-                             MouseLeftButtonDown="OSM_Map_MouseLeftButtonDown"/>
-        </Grid>
+      <my:MapControl x:Name="OSM_Map" Grid.Row="1"/>
 
-<!--POPUP TEST CODE BEGIN -->
-        <Grid x:Name="PopupGrid" Grid.Row="2">
-            <Popup x:Name="ContextMenuPopup" Height="200" Width="460" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Center" Opened="ContextMenuPopup_Opened">           
-                <Grid x:Name="InnerPopupGrid">
+      <Popup Grid.Row="1" x:Name="ContextMenuPopup" Height="200" Width="460" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Center" Opened="ContextMenuPopup_Opened">           
+            <Grid x:Name="InnerPopupGrid">
                     
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Height="33" HorizontalAlignment="Left" Margin="10,30,0,0" Name="textDescription" Text="Bitte Zielort eingeben:" FontSize="24" VerticalAlignment="Top" Width="474" />
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" Margin="0,0,0,0" />
-                    <Button Grid.Row="2" Grid.Column="0" x:Name="buttonOK" Content="Ok" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="0,0,0,0" Click="buttonOK_Click"/>
-                    <Button Grid.Row="2" Grid.Column="1" x:Name="buttonAbort" Content="Abbrechen" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="70,0,0,0" Click="buttonAbort_Click"/>
-                </Grid>
-            </Popup>
-            
-        </Grid>
-<!--POPUP TEST CODE END-->
+                <TextBlock Grid.Row="0" Grid.Column="0" Height="33" HorizontalAlignment="Left" Margin="10,30,0,0" Name="textDescription" Text="Bitte Zielort eingeben:" FontSize="24" VerticalAlignment="Top" Width="474" />
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" Margin="0,0,0,0" />
+                <Button Grid.Row="2" Grid.Column="0" x:Name="buttonOK" Content="Ok" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="0,0,0,0" Click="buttonOK_Click"/>
+                <Button Grid.Row="2" Grid.Column="1" x:Name="buttonAbort" Content="Abbrechen" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="70,0,0,0" Click="buttonAbort_Click"/>
+            </Grid>
+        </Popup>
 
 
     </Grid>

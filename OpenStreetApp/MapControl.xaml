@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -10,6 +12,7 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-
+        <MultiScaleImage x:Name="OSM_Map" UseSprings="True" Margin="0"
+                                   MouseLeftButtonDown="OSM_Map_MouseLeftButtonDown"/>
     </Grid>
 </UserControl>
