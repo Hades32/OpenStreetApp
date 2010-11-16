@@ -110,7 +110,7 @@ namespace OpenStreetApp
             double xRelative = p.X / Math.Pow(2, 12);
             double yRelative = p.Y / Math.Pow(2, 12);
             openButton_Click(this, null);
-            this.ApplicationTitle.Text = "X-Tile: " + (int)p.X + "Relative: " + xRelative;
+            // DEBUG CODE this.ApplicationTitle.Text = "X-Tile: " + (int)p.X + "Relative: " + xRelative; 
             this.OSM_Map.ZoomAboutLogicalPoint(12, xRelative, yRelative);
             zoomCount *= 12;
         }
@@ -173,6 +173,10 @@ namespace OpenStreetApp
         {
             ContextMenuPopup.IsOpen = false;
             this.OSM_Map.Visibility = System.Windows.Visibility.Visible;
+            if(!String.IsNullOrEmpty(this.TargetInput.Text))
+            {
+                navigateToInputAdress(this.TargetInput.Text);
+        	}
         }
 
         private void buttonAbort_Click(object sender, RoutedEventArgs e)
@@ -180,5 +184,19 @@ namespace OpenStreetApp
             ContextMenuPopup.IsOpen = false;
             this.OSM_Map.Visibility = System.Windows.Visibility.Visible;
         }
+
+        private void navigateToInputAdress(String inputAdressString)
+        {
+            String encoded = System.Net.HttpUtility.UrlEncode(inputAdressString);
+            this.ApplicationTitle.Text = encoded;
+            System.Net.WebClient wc = new System.Net.WebClient();
+            wc.DownloadStringCompleted += (sender, e) =>
+            {
+                Console.WriteLine(e.Result);
+            };
+            Uri adress = new Uri("http://geocoding.cloudmade.com/1a8bcc813f9646519c9d2b12e92c69b2/geocoding/v2/find.js?query=" + encoded);
+            Console.WriteLine(adress);
+            wc.DownloadStringAsync(adress);
+		}
     }
 }
