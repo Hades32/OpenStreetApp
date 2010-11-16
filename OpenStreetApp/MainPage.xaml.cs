@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Reactive;
-using System.Device.Location;
-using System.Windows.Controls.Primitives;
 
 namespace OpenStreetApp
 {
@@ -24,7 +23,11 @@ namespace OpenStreetApp
         {
             InitializeComponent();
 
-            this.OSM_Map.Source = new OSMTileSource();
+            //this.OSM_Map.Source = new OSMTileSource();
+
+            CloudeMadeService.authorize(() =>
+                this.Dispatcher.BeginInvoke(() =>
+                        this.OSM_Map.Source = new CloudeMadeTileSource()));
 
             // Implement double click
             Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.OSM_Map, "MouseLeftButtonUp")
@@ -39,7 +42,7 @@ namespace OpenStreetApp
 
 
             this.OSM_Map.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(OSM_Map_ManipulationDelta);
-            
+
             // Initialize GeoLocation Listener
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 20;
@@ -83,18 +86,18 @@ namespace OpenStreetApp
 
         void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
         {
-            switch(e.Status)
+            switch (e.Status)
             {
                 case GeoPositionStatus.Disabled:
-                    // READ ARTICLE FOR POPUP - ERROR Message
+                // READ ARTICLE FOR POPUP - ERROR Message
 
                 case GeoPositionStatus.Ready:
-                   this.ApplicationTitle.Text += e.Status.ToString();
-                   break;
-                 
+                    this.ApplicationTitle.Text += e.Status.ToString();
+                    break;
+
                 default:
-                   break;
-            }    
+                    break;
+            }
         }
 
         private void geoLocationButton_Click(object sender, EventArgs e)
@@ -104,10 +107,10 @@ namespace OpenStreetApp
                 new GeoPosition<GeoCoordinate>(new DateTimeOffset(), new GeoCoordinate(48.24, 9.59))));
 
             Point p = OSMHelpers.WorldToTilePos(lastKnownPosition.Location.Longitude, lastKnownPosition.Location.Latitude, 12);
-            double xRelative = p.X / Math.Pow(2,12);
-            double yRelative = p.Y / Math.Pow(2,12);
+            double xRelative = p.X / Math.Pow(2, 12);
+            double yRelative = p.Y / Math.Pow(2, 12);
             openButton_Click(this, null);
-            this.ApplicationTitle.Text = "X-Tile: " + (int)p.X + "Relative: " + xRelative; 
+            this.ApplicationTitle.Text = "X-Tile: " + (int)p.X + "Relative: " + xRelative;
             this.OSM_Map.ZoomAboutLogicalPoint(12, xRelative, yRelative);
             zoomCount *= 12;
         }
@@ -126,7 +129,7 @@ namespace OpenStreetApp
         {
 
         }
-        
+
         private void POIButton_Click(object sender, EventArgs e)
         {
             // USED FOR UNZOOM 
@@ -143,7 +146,7 @@ namespace OpenStreetApp
         private void favoriteButton_Click(object sender, EventArgs e)
         {
 
-        }  
+        }
 
         private void OSM_Map_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -155,7 +158,7 @@ namespace OpenStreetApp
         private void OSM_Map_OnDoubleClick()
         {
             var newzoom = zoom / 2.0;
-            zoomCount*=2;
+            zoomCount *= 2;
             Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
             this.OSM_Map.ZoomAboutLogicalPoint(zoom / newzoom, logicalPoint.X, logicalPoint.Y);
             zoom = newzoom;
