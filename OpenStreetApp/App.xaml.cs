@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -35,7 +25,7 @@ namespace OpenStreetApp
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Zähler für die aktuelle Bildrate anzeigen.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                //Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Bereiche der Anwendung hervorheben, die mit jedem Bild neu gezeichnet werden.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
