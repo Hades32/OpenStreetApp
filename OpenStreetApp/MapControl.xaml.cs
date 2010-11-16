@@ -15,11 +15,20 @@ namespace OpenStreetApp
         Point lastOSMPoint = new Point();
         double zoom = 1;
         double zoomCount = 1.0;
+        double fixX, fixY;
 
         public MultiScaleTileSource Source
         {
             get { return this.OSM_Map.Source; }
             set { this.OSM_Map.Source = value; }
+        }
+
+        public double CurrentZoom
+        {
+            get
+            {
+                return Math.Log((int)(1.0 / this.OSM_Map.ViewportWidth), 2);
+            }
         }
 
         public MapControl()
@@ -38,6 +47,12 @@ namespace OpenStreetApp
                 }));
 
             this.OSM_Map.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(OSM_Map_ManipulationDelta);
+        }
+
+        private void Control_Loaded(object sender, RoutedEventArgs e)
+        {
+            fixX = (this.OSM_Map.ActualWidth / 256.0) / 4.0;
+            fixY = (this.OSM_Map.ActualHeight / 256.0) / 4.0;
         }
 
         public void navigateToInputAdress(String inputAdressString)
@@ -95,15 +110,18 @@ namespace OpenStreetApp
             }
         }
 
+        public void navigateToCoordinate(Point p, int zoom)
+        {
+            navigateToCoordinate(new System.Device.Location.GeoCoordinate(p.Y, p.X), zoom);
+        }
+
         public void navigateToCoordinate(System.Device.Location.GeoCoordinate geoCoordinate, int zoom)
         {
             Point p = OSMHelpers.WorldToTilePos(geoCoordinate.Longitude, geoCoordinate.Latitude, zoom);
-            double fixX = (this.OSM_Map.ActualWidth / 256.0) / 4.0;
-            double fixY = (this.OSM_Map.ActualHeight / 256.0) / 4.0;
             double xRelative = (p.X - fixX) / Math.Pow(2, zoom);
             double yRelative = (p.Y - fixY) / Math.Pow(2, zoom);
 
-            this.OSM_Map.ViewportWidth = (1.0/Math.Pow(2,zoom));
+            this.OSM_Map.ViewportWidth = (1.0 / Math.Pow(2, zoom));
             this.OSM_Map.ViewportOrigin = new Point(xRelative, yRelative);
             // THINK ABOUT THIS zoomCount *= 12;
         }
@@ -118,13 +136,12 @@ namespace OpenStreetApp
 
         public Point getCurrentPosition()
         {
-            var zoom = (int)Math.Log((int)(1.0 / this.OSM_Map.ViewportWidth), 2);
-            var tilecount = Math.Pow(2, zoom);
+            var tilecount = Math.Pow(2, this.CurrentZoom);
 
             return OSMHelpers.TileToWorldPos(
-                this.OSM_Map.ViewportOrigin.X * tilecount,
-                this.OSM_Map.ViewportOrigin.Y * tilecount,
-                zoom);
+                this.OSM_Map.ViewportOrigin.X * tilecount + fixX,
+                this.OSM_Map.ViewportOrigin.Y * tilecount + fixY,
+                (int)this.CurrentZoom);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace OpenStreetApp
                 new GeoPosition<GeoCoordinate>(new DateTimeOffset(), new GeoCoordinate(48.24, 9.59))));
 
             this.OSM_Map.navigateToCoordinate(lastKnownPosition.Location, 12);*/
-            this.ApplicationTitle.Text = this.OSM_Map.getCurrentPosition().ToString();
+            this.OSM_Map.navigateToCoordinate(this.OSM_Map.getCurrentPosition(), (int)this.OSM_Map.CurrentZoom);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -77,7 +77,7 @@ namespace OpenStreetApp
 
         private void showFavoritesButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void POIButton_Click(object sender, EventArgs e)
