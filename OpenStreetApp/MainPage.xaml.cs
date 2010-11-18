@@ -15,14 +15,7 @@ namespace OpenStreetApp
         {
             InitializeComponent();
 
-            //this.OSM_Map.Source = new OSMTileSource();
-
-            CloudeMadeService.authorize(() =>
-                this.Dispatcher.BeginInvoke(() =>
-                        this.OSM_Map.Source = new VEArialTileSource()//new CloudeMadeTileSource()
-                        ));
-
-
+            this.DataContext = OSA_Configuration.Instance;
 
             // Initialize GeoLocation Listener
             watcher = new GeoCoordinateWatcher();
@@ -88,7 +81,7 @@ namespace OpenStreetApp
 
         private void preferencesButton_Click(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/PreferencesPage.xaml", UriKind.Relative));
         }
 
         private void favoriteButton_Click(object sender, EventArgs e)
