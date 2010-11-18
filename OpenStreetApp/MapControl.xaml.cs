@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Phone.Reactive;
-using System.Text.RegularExpressions;
 
 namespace OpenStreetApp
 {
@@ -28,7 +28,7 @@ namespace OpenStreetApp
         {
             get
             {
-                return Math.Log((int)(1.0 / this.OSM_Map.ViewportWidth), 2);
+                return Math.Log((1.0 / this.OSM_Map.ViewportWidth), 2);
             }
         }
 
@@ -128,12 +128,12 @@ namespace OpenStreetApp
             }
         }
 
-        public void navigateToCoordinate(Point p, int zoom)
+        public void navigateToCoordinate(Point p, double zoom)
         {
             navigateToCoordinate(new System.Device.Location.GeoCoordinate(p.Y, p.X), zoom);
         }
 
-        public void navigateToCoordinate(System.Device.Location.GeoCoordinate geoCoordinate, int zoom)
+        public void navigateToCoordinate(System.Device.Location.GeoCoordinate geoCoordinate, double zoom)
         {
             Point p = OSMHelpers.WorldToTilePos(geoCoordinate.Longitude, geoCoordinate.Latitude, zoom);
             double xRelative = (p.X - fixX) / Math.Pow(2, zoom);
@@ -157,10 +157,12 @@ namespace OpenStreetApp
         {
             var tilecount = Math.Pow(2, this.CurrentZoom);
 
-            return OSMHelpers.TileToWorldPos(
-                this.OSM_Map.ViewportOrigin.X * tilecount + fixX,
-                this.OSM_Map.ViewportOrigin.Y * tilecount + fixY,
-                (int)this.CurrentZoom);
+            var xcoord = this.OSM_Map.ViewportOrigin.X * tilecount + fixX;
+            var ycoord = this.OSM_Map.ViewportOrigin.Y * tilecount + fixY;
+
+            var res = OSMHelpers.TileToWorldPos(xcoord, ycoord, this.CurrentZoom);
+
+            return res;
         }
     }
 }
