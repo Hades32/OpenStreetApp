@@ -76,6 +76,7 @@
     <Compile Include="OSMHelpers.cs" />
     <Compile Include="OSMTileSource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VETileSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

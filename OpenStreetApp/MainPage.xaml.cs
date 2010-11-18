@@ -19,7 +19,8 @@ namespace OpenStreetApp
 
             CloudeMadeService.authorize(() =>
                 this.Dispatcher.BeginInvoke(() =>
-                        this.OSM_Map.Source = new CloudeMadeTileSource()));
+                        this.OSM_Map.Source = new VEArialTileSource()//new CloudeMadeTileSource()
+                        ));
 
 
 
@@ -44,8 +45,8 @@ namespace OpenStreetApp
             switch (e.Status)
             {
                 case GeoPositionStatus.Disabled:
-                // READ ARTICLE FOR POPUP - ERROR Message
-
+                    // READ ARTICLE FOR POPUP - ERROR Message
+                    break;
                 case GeoPositionStatus.Ready:
                     this.ApplicationTitle.Text += e.Status.ToString();
                     break;
@@ -62,7 +63,7 @@ namespace OpenStreetApp
                 new GeoPosition<GeoCoordinate>(new DateTimeOffset(), new GeoCoordinate(48.24, 9.59))));
 
             this.OSM_Map.navigateToCoordinate(lastKnownPosition.Location, 12);*/
-            this.OSM_Map.navigateToCoordinate(this.OSM_Map.getCurrentPosition(), (int)this.OSM_Map.CurrentZoom);
+            this.OSM_Map.navigateToCoordinate(this.OSM_Map.getCurrentPosition(), this.OSM_Map.CurrentZoom);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
