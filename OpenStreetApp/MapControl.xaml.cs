@@ -16,13 +16,48 @@ namespace OpenStreetApp
         Point lastOSMPoint = new Point();
         double zoom = 1;
         double zoomCount = 1.0;
-        double fixX, fixY;
+        double fixX = 0, fixY = 0;
 
+        #region Source
+
+        /// <summary>
+        /// Source Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty SourceProperty =
+            DependencyProperty.Register("Source", typeof(MultiScaleTileSource), typeof(MapControl),
+                new PropertyMetadata((MultiScaleTileSource)null,
+                    new PropertyChangedCallback(OnSourceChanged)));
+
+        /// <summary>
+        /// Gets or sets the Source property. This dependency property 
+        /// indicates the currently used TileSource for the map.
+        /// </summary>
         public MultiScaleTileSource Source
         {
-            get { return this.OSM_Map.Source; }
-            set { this.OSM_Map.Source = value; }
+            get { return (MultiScaleTileSource)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
         }
+
+        /// <summary>
+        /// Handles changes to the Source property.
+        /// </summary>
+        private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MapControl target = (MapControl)d;
+            MultiScaleTileSource oldValue = (MultiScaleTileSource)e.OldValue;
+            MultiScaleTileSource newValue = target.Source;
+            target.OnSourceChanged(oldValue, newValue);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the Source property.
+        /// </summary>
+        protected virtual void OnSourceChanged(MultiScaleTileSource oldValue, MultiScaleTileSource newValue)
+        {
+            this.OSM_Map.Source = newValue;
+        }
+
+        #endregion
 
         public double CurrentZoom
         {
