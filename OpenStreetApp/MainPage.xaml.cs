@@ -15,6 +15,10 @@ namespace OpenStreetApp
         {
             InitializeComponent();
 
+            //TODO
+            //OSA_Configuration.Instance.load(stream);
+            //show loading animation while authorizing
+
             this.DataContext = OSA_Configuration.Instance;
 
             // Initialize GeoLocation Listener

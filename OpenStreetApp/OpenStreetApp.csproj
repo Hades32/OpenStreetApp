@@ -65,8 +65,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BetterProgressBar\RelativeAnimatingContentControl.cs" />
     <Compile Include="CloudeMadeService.cs" />
-    <Compile Include="CloudeMadeTileSource.cs" />
+    <Compile Include="TileSources\CloudeMadeTileSource.cs" />
     <Compile Include="ListBoxHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -76,18 +77,22 @@
     </Compile>
     <Compile Include="OSA_Configuration.cs" />
     <Compile Include="OSMHelpers.cs" />
-    <Compile Include="OSMTileSource.cs" />
+    <Compile Include="TileSources\OSMTileSource.cs" />
     <Compile Include="PreferencesPage.xaml.cs">
       <DependentUpon>PreferencesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VETileSource.cs" />
+    <Compile Include="TileSources\VETileSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="BetterProgressBar\PerfProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
