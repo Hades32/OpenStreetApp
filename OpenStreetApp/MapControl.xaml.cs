@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Phone.Reactive;
 using System.Xml.Linq;
+using Microsoft.Phone.Reactive;
 
 namespace OpenStreetApp
 {
@@ -116,7 +115,7 @@ namespace OpenStreetApp
                     resultSetRoot = xdoc.Element("ResultSet");
                     locations = resultSetRoot.Elements("Result");
                 }
-               
+
                 //// TEST CODE
                 if (!(locations.Count() > 1))
                 {
@@ -172,8 +171,10 @@ namespace OpenStreetApp
             {
                 // zoom by average of X and Y scaling
                 var zoom = (Math.Abs(e.DeltaManipulation.Scale.X) + Math.Abs(e.DeltaManipulation.Scale.Y)) / 2.0;
-
-                Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
+                System.Diagnostics.Debug.WriteLine("zoom: " + zoom);
+                //Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
+                Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(e.ManipulationOrigin);
+                var curpos = this.getCurrentPosition();
                 this.OSM_Map.ZoomAboutLogicalPoint(zoom, logicalPoint.X, logicalPoint.Y);
 
                 if (this.OSM_Map.ViewportWidth > 1)
