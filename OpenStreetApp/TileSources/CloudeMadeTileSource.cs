@@ -17,5 +17,10 @@ namespace OpenStreetApp
                 tileImageLayerSources.Add(new Uri("http://tile.cloudmade.com/" + CloudeMadeService.ApiKey + "/1/256/"
                     + zoom + "/" + tilePositionX + "/" + tilePositionY + ".png?token=" + CloudeMadeService.Token));
         }
+
+        public override string ToString()
+        {
+            return "Cloudemade Maps";
+        }
     }
 }

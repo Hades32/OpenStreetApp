@@ -17,5 +17,10 @@ namespace OpenStreetApp
             if (zoom > 0 && zoom < 18)
                 tileImageLayerSources.Add(new Uri("http://tile.openstreetmap.org/" + zoom + "/" + tilePositionX + "/" + tilePositionY + ".png"));
         }
+
+        public override string ToString()
+        {
+            return "Open Street Map";
+        }
     }
 }

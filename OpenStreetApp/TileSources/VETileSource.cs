@@ -12,6 +12,11 @@ namespace OpenStreetApp
         {
             get { return "http://h{0}.ortho.tiles.virtualearth.net/tiles/h{1}.jpeg?g=203"; }
         }
+
+        public override string ToString()
+        {
+            return "Virtual Earth Aerial";
+        }
     }
 
     public class VERoadTileSource : BaseVETileSource
@@ -19,6 +24,11 @@ namespace OpenStreetApp
         public override string UriFormat
         {
             get { return "http://r{0}.ortho.tiles.virtualearth.net/tiles/r{1}.png?g=203"; }
+        }
+
+        public override string ToString()
+        {
+            return "Virtual Earth Maps";
         }
     }
 
