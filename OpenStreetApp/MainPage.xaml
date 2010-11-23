@@ -26,7 +26,7 @@
        
         <TextBlock x:Name="ApplicationTitle" Margin="0,0,0,5" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
 
-      <my:MapControl x:Name="OSM_Map" Grid.Row="1" Source="{Binding TileSource}"/>
+      <my:MapControl x:Name="OSM_Map" Grid.Row="1" Source="{Binding Path=TileSource}"/>
 
       <Popup Grid.Row="1" x:Name="ContextMenuPopup" Height="200" Width="460" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Center" Opened="ContextMenuPopup_Opened">           
             <Grid x:Name="InnerPopupGrid">

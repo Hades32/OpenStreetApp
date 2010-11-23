@@ -26,26 +26,6 @@ namespace OpenStreetApp
                 return instance;
             }
         }
-
-        private OSA_Configuration()
-        {
-            //avoid NULL checks
-            this.PropertyChanged += (s, e) => { };
-            // set some sensible defaults
-            var defaultTS = new CloudeMadeTileSource();
-            this.AvailableTileSources = new List<MultiScaleTileSource>() 
-            {
-                defaultTS, new OSMTileSource(), new VEArialTileSource(), new VERoadTileSource() 
-            };
-            this.TileSource = defaultTS;
-
-            //this.OSM_Map.Source = new OSMTileSource();
-
-            /*CloudeMadeService.authorize(() =>
-                this.Dispatcher.BeginInvoke(() =>
-                        this.OSM_Map.Source = new VEArialTileSource()//new CloudeMadeTileSource()
-                        ));*/
-        }
         #endregion
 
         #region TileSource
@@ -65,14 +45,29 @@ namespace OpenStreetApp
             set
             {
                 if (value != this._TileSource)
+                {
+                    this._TileSource = value;
                     this.PropertyChanged(this, new PropertyChangedEventArgs("TileSource"));
-                this._TileSource = value;
+                }
             }
         }
 
         #endregion
 
         public IEnumerable<MultiScaleTileSource> AvailableTileSources { private set; get; }
+
+        private OSA_Configuration()
+        {
+            //avoid NULL checks
+            this.PropertyChanged += (s, e) => { };
+            // set some sensible defaults
+            var defaultTS = new CloudeMadeTileSource();
+            this.AvailableTileSources = new List<MultiScaleTileSource>() 
+            {
+                new OSMTileSource(), new VEArialTileSource(), new VERoadTileSource(), defaultTS
+            };
+            this.TileSource = defaultTS;
+        }
 
         public void initialize(Action callback, Dispatcher dispatcher)
         {
