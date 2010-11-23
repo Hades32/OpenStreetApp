@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -6,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.Phone.Reactive;
+using System.Xml.Linq;
 
 namespace OpenStreetApp
 {
@@ -97,13 +99,21 @@ namespace OpenStreetApp
             System.Net.WebClient wc = new System.Net.WebClient();
             wc.DownloadStringCompleted += (sender, e) =>
             {
-                System.Diagnostics.Debug.WriteLine(e.Result);
-                Regex reg = new Regex("coordinates\"\\s*:\\s*\\[(\\d+\\.\\d+)\\s*,\\s*(\\d+\\.\\d+)");
-                var match = reg.Match(e.Result);
-                if (match.Success)
+                IEnumerable<XElement> locations = null;
+                XElement resultSetRoot;
+                if (!(e.Result.Length == 0))
                 {
-                    double x = Double.Parse(match.Groups[1].Value, System.Globalization.NumberFormatInfo.InvariantInfo);
-                    double y = Double.Parse(match.Groups[2].Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+                    XDocument xdoc = XDocument.Parse(e.Result);
+                    resultSetRoot = xdoc.Element("ResultSet");
+                    locations = resultSetRoot.Elements("Result");
+                }
+               
+                //// TEST CODE
+                if (!(locations.Count() > 1))
+                {
+                    System.Diagnostics.Debug.WriteLine(locations.ElementAt(0).Element("latitude").ToString());
+                    double x = Double.Parse(locations.ElementAt(0).Element("latitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+                    double y = Double.Parse(locations.ElementAt(0).Element("longitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
                     this.Dispatcher.BeginInvoke(() =>
                     {
                         navigateToCoordinate(new System.Device.Location.GeoCoordinate(x, y), 12);
@@ -116,8 +126,8 @@ namespace OpenStreetApp
                 }
 
             };
-            Uri adress = new Uri("http://geocoding.cloudmade.com/" + CloudeMadeService.ApiKey + "/geocoding/v2/find.js?query="
-                + encoded + "&token=" + CloudeMadeService.Token);
+            Uri adress = new Uri("http://where.yahooapis.com/geocode?q="
+                + encoded + "&appid=dj0yJmk9ZWMzSjkwU1JWOHE0JmQ9WVdrOVF6RlpRWFp5TjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZ");
             System.Diagnostics.Debug.WriteLine(adress);
             wc.DownloadStringAsync(adress);
         }
