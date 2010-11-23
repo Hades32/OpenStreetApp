@@ -91,6 +91,7 @@ namespace OpenStreetApp
                 }));
 
             this.OSM_Map.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(OSM_Map_ManipulationDelta);
+            this.OSM_Map.ManipulationStarted += new EventHandler<ManipulationStartedEventArgs>(OSM_Map_ManipulationStarted);
         }
 
         private void Control_Loaded(object sender, RoutedEventArgs e)
@@ -144,6 +145,13 @@ namespace OpenStreetApp
             Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
             this.OSM_Map.ZoomAboutLogicalPoint(zoom / newzoom, logicalPoint.X, logicalPoint.Y);
             zoom = newzoom;
+        }
+
+        void OSM_Map_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            this.lastMouseLogicalPos = e.ManipulationOrigin;
+            this.lastMouseViewPort = this.OSM_Map.ViewportOrigin;
+            this.lastOSMPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
         }
 
         //Multi-Touch working
