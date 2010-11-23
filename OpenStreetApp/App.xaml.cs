@@ -38,7 +38,6 @@ namespace OpenStreetApp
             // Silverlight-Standardinitialisierung
             InitializeComponent();
 
-            // Phone-spezifische Initialisierung
             InitializePhoneApplication();
         }
 
@@ -46,7 +45,6 @@ namespace OpenStreetApp
         // Dieser Code wird beim Reaktivieren der Anwendung nicht ausgeführt
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            this.RootVisual = new LoadingPage();
         }
 
         // Code, der ausgeführt werden soll, wenn die Anwendung aktiviert wird (in den Vordergrund gebracht wird)
@@ -98,16 +96,22 @@ namespace OpenStreetApp
             if (phoneApplicationInitialized)
                 return;
 
-            // Frame erstellen, aber noch nicht als RootVisual festlegen. Dadurch kann der Begrüßungsbildschirm
-            // aktiv bleiben, bis die Anwendung bereit für das Rendern ist.
-            RootFrame = new PhoneApplicationFrame();
-            RootFrame.Navigated += CompleteInitializePhoneApplication;
+            this.RootVisual = new LoadingPage();
 
-            // Navigationsfehler behandeln
-            RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+            OSA_Configuration.Instance.initialize(() =>
+                {
+                    // Frame erstellen, aber noch nicht als RootVisual festlegen. Dadurch kann der Begrüßungsbildschirm
+                    // aktiv bleiben, bis die Anwendung bereit für das Rendern ist.
+                    RootFrame = new PhoneApplicationFrame();
+                    RootFrame.Navigated += CompleteInitializePhoneApplication;
 
-            // Sicherstellen, dass keine erneute Initialisierung erfolgt
-            phoneApplicationInitialized = true;
+                    // Navigationsfehler behandeln
+                    RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+
+                    // Sicherstellen, dass keine erneute Initialisierung erfolgt
+                    phoneApplicationInitialized = true;
+
+                }, this.RootVisual.Dispatcher);
         }
 
         // Fügen Sie keinen zusätzlichen Code zu dieser Methode hinzu
