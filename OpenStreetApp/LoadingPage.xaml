@@ -37,7 +37,7 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="2" Margin="0">
-          <ProgressBar IsIndeterminate="true" Style="{StaticResource PerformanceProgressBar}"/>
+          <ProgressBar x:Name="progress" IsIndeterminate="true" Style="{StaticResource PerformanceProgressBar}"/>
         </Grid>
       
     </Grid>

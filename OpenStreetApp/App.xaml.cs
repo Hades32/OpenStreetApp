@@ -117,6 +117,10 @@ namespace OpenStreetApp
         // Fügen Sie keinen zusätzlichen Code zu dieser Methode hinzu
         private void CompleteInitializePhoneApplication(object sender, NavigationEventArgs e)
         {
+            //disable loading animation to prevent performance problems
+            if (this.RootVisual is LoadingPage)
+                ((LoadingPage)this.RootVisual).progress.IsIndeterminate = false;
+
             // Visuelle Stammkomponente festlegen, sodass die Anwendung gerendert werden kann
             if (RootVisual != RootFrame)
                 RootVisual = RootFrame;

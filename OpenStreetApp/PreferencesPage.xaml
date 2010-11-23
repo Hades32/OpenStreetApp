@@ -29,58 +29,9 @@
         <ListBox Grid.Row="1" Margin="5" Name="listBox1" VerticalAlignment="Top">
           <StackPanel>
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox ScrollViewer.VerticalScrollBarVisibility="Disabled">
-              <TextBlock>test1</TextBlock>
-              <TextBlock>test2</TextBlock>
-              <TextBlock>test3</TextBlock>
-            </ListBox>
-          </StackPanel>
-          <StackPanel>
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox>
-              <TextBlock>test1</TextBlock>
-              <TextBlock>test2</TextBlock>
-              <TextBlock>test3</TextBlock>
-            </ListBox>
-          </StackPanel>
-          <StackPanel>
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox>
-              <TextBlock>test1</TextBlock>
-              <TextBlock>test2</TextBlock>
-              <TextBlock>test3</TextBlock>
-            </ListBox>
-          </StackPanel>
-          <StackPanel>
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox>
-              <TextBlock>test1</TextBlock>
-              <TextBlock>test2</TextBlock>
-              <TextBlock>test3</TextBlock>
-            </ListBox>
-          </StackPanel>
-          <StackPanel>
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox>
-              <TextBlock>test1</TextBlock>
-              <TextBlock>test2</TextBlock>
-              <TextBlock>test3</TextBlock>
-            </ListBox>
-          </StackPanel>
-          <StackPanel>
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox>
-              <TextBlock>test1</TextBlock>
-              <TextBlock>test2</TextBlock>
-              <TextBlock>test3</TextBlock>
-            </ListBox>
-          </StackPanel>
-          <StackPanel>
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox>
-              <TextBlock>test1</TextBlock>
-              <TextBlock>test2</TextBlock>
-              <TextBlock>test3</TextBlock>
+            <ListBox ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     ItemsSource="{Binding Path=AvailableTileSources}"
+                     SelectedItem="{Binding Path=TileSource, Mode=TwoWay}">
             </ListBox>
           </StackPanel>
         </ListBox>

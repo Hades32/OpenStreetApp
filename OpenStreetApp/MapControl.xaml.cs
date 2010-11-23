@@ -54,7 +54,15 @@ namespace OpenStreetApp
         /// </summary>
         protected virtual void OnSourceChanged(MultiScaleTileSource oldValue, MultiScaleTileSource newValue)
         {
-            this.OSM_Map.Source = newValue;
+            if (oldValue != null && newValue != null)
+            {
+                var oldpos = this.getCurrentPosition();
+                var oldzoom = this.CurrentZoom;
+                this.OSM_Map.Source = newValue;
+                this.navigateToCoordinate(oldpos, oldzoom);
+            }
+            else
+                this.OSM_Map.Source = newValue;
         }
 
         #endregion
