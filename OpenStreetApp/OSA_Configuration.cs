@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Media;
 
@@ -29,7 +30,12 @@ namespace OpenStreetApp
             //avoid NULL checks
             this.PropertyChanged += (s, e) => { };
             // set some sensible defaults
-            this.TileSource = new OSMTileSource();
+            var osm = new OSMTileSource();
+            this.AvailableTileSources = new List<MultiScaleTileSource>() 
+            {
+                osm, new CloudeMadeTileSource(), new VEArialTileSource(), new VERoadTileSource() 
+            };
+            this.TileSource = osm;
 
             //this.OSM_Map.Source = new OSMTileSource();
 
@@ -63,6 +69,8 @@ namespace OpenStreetApp
         }
 
         #endregion
+
+        public IEnumerable<MultiScaleTileSource> AvailableTileSources { private set; get; }
 
         public void save(Stream stream)
         {
