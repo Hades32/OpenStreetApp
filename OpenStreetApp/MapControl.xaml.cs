@@ -82,7 +82,7 @@ namespace OpenStreetApp
 
             // Implement double click
             Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.OSM_Map, "MouseLeftButtonUp")
-            .BufferWithTimeOrCount(TimeSpan.FromSeconds(1), 2)
+            .BufferWithTimeOrCount(TimeSpan.FromSeconds(0.5), 2)
             .Subscribe(new Action<IList<IEvent<MouseButtonEventArgs>>>(
                 eventList =>
                 {
