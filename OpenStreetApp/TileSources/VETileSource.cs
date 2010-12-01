@@ -8,9 +8,11 @@ namespace OpenStreetApp
 {
     public class VEArialTileSource : BaseVETileSource
     {
+        private static string url = "http://h{0}.ortho.tiles.virtualearth.net/tiles/h{1}.jpeg?g=203&mkt="
+                                        + System.Globalization.CultureInfo.CurrentCulture.Name;
         public override string UriFormat
         {
-            get { return "http://h{0}.ortho.tiles.virtualearth.net/tiles/h{1}.jpeg?g=203"; }
+            get { return url; }
         }
 
         public override string ToString()
@@ -21,9 +23,11 @@ namespace OpenStreetApp
 
     public class VERoadTileSource : BaseVETileSource
     {
+        private static string url = "http://r{0}.ortho.tiles.virtualearth.net/tiles/r{1}.png?g=203&mkt="
+                                        + System.Globalization.CultureInfo.CurrentCulture.Name;
         public override string UriFormat
         {
-            get { return "http://r{0}.ortho.tiles.virtualearth.net/tiles/r{1}.png?g=203"; }
+            get { return url; }
         }
 
         public override string ToString()
