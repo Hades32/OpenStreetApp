@@ -25,16 +25,18 @@ namespace OpenStreetApp
             watcher = new GeoCoordinateWatcher();
             watcher.MovementThreshold = 20;
 
-            watcher.StatusChanged += new EventHandler<GeoPositionStatusChangedEventArgs>(watcher_StatusChanged);
-            watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(watcher_PositionChanged);
+            watcher.StatusChanged += watcher_StatusChanged;
+            watcher.PositionChanged += watcher_PositionChanged;
 
             watcher.Start();
-            lastKnownPosition = watcher.Position;
+            System.Diagnostics.Debug.WriteLine("watcher started");
         }
 
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
+            System.Diagnostics.Debug.WriteLine("receive coordinate, now setting");
             lastKnownPosition = e.Position;
+            System.Diagnostics.Debug.WriteLine("new coordinate is now:" + lastKnownPosition.Location.Latitude + ", " + lastKnownPosition.Location.Longitude);
         }
 
         void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
@@ -45,6 +47,7 @@ namespace OpenStreetApp
                     // READ ARTICLE FOR POPUP - ERROR Message
                     break;
                 case GeoPositionStatus.Ready:
+                    System.Diagnostics.Debug.WriteLine("service is now ready");
                     break;
 
                 default:
@@ -55,9 +58,8 @@ namespace OpenStreetApp
         private void geoLocationButton_Click(object sender, EventArgs e)
         {
             lastKnownPosition = this.watcher.Position;
-            Point p = new Point(this.lastKnownPosition.Location.Latitude, this.lastKnownPosition.Location.Longitude);
-            this.OSM_Map.navigateToCoordinate(p, 16);
-            
+            Point p = new Point(this.lastKnownPosition.Location.Longitude, this.lastKnownPosition.Location.Latitude);
+            this.OSM_Map.navigateToCoordinate(p, 16);      
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
