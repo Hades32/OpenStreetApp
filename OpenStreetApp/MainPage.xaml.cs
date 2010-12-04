@@ -45,7 +45,6 @@ namespace OpenStreetApp
                     // READ ARTICLE FOR POPUP - ERROR Message
                     break;
                 case GeoPositionStatus.Ready:
-                    this.ApplicationTitle.Text += e.Status.ToString();
                     break;
 
                 default:
@@ -55,12 +54,10 @@ namespace OpenStreetApp
 
         private void geoLocationButton_Click(object sender, EventArgs e)
         {
-            // FAKE EVENT
-            /*watcher_PositionChanged(this, new GeoPositionChangedEventArgs<GeoCoordinate>(
-                new GeoPosition<GeoCoordinate>(new DateTimeOffset(), new GeoCoordinate(48.24, 9.59))));
-
-            this.OSM_Map.navigateToCoordinate(lastKnownPosition.Location, 12);*/
-            this.OSM_Map.navigateToCoordinate(this.OSM_Map.getCurrentPosition(), this.OSM_Map.CurrentZoom);
+            lastKnownPosition = this.watcher.Position;
+            Point p = new Point(this.lastKnownPosition.Location.Latitude, this.lastKnownPosition.Location.Longitude);
+            this.OSM_Map.navigateToCoordinate(p, 16);
+            
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
