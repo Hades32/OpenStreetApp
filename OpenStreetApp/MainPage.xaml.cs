@@ -28,9 +28,8 @@ namespace OpenStreetApp
             watcher.StatusChanged += watcher_StatusChanged;
             watcher.PositionChanged += watcher_PositionChanged;
 
-            if (OSA_Configuration.Instance.UseCurrentLocationSetting)
+            if ((!(System.Diagnostics.Debugger.IsAttached)) && OSA_Configuration.Instance.UseCurrentLocationSetting)
             {
-                System.Diagnostics.Debug.WriteLine("blubb");
                 watcher.PositionChanged += watcher_initialLocationing;
             }
 
