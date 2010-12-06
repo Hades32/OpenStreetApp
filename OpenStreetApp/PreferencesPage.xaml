@@ -12,29 +12,36 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="Einstellungen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-        <ListBox Grid.Row="1" Margin="5" Name="listBox1" VerticalAlignment="Top">
+        <ListBox Grid.Row="1" Margin="12,17,0,28" Name="listBox1" VerticalAlignment="Top">
           <StackPanel>
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            <ListBox Margin="15,5,0,5" ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      ItemsSource="{Binding Path=AvailableTileSources}"
-                     SelectedItem="{Binding Path=TileSource, Mode=TwoWay}">
+                     SelectedIndex="{Binding Path=SelectedTileSourceSetting, Mode=TwoWay}">
             </ListBox>
           </StackPanel>
         </ListBox>
+        <StackPanel x:Name="preferences" Grid.Row="2" Margin="12,5,0,28">
+            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Ansicht bei Programmstart?</TextBlock>
+            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="190" Name="toggleSwitch1" Width="419" HorizontalAlignment="Left" 
+                                  Content="Weltkarte" Checked="toggleSwitch1_Checked" Unchecked="toggleSwitch1_Unchecked" IsChecked="{Binding Path=UseCurrentLocationSetting, Mode=TwoWay}"/>
+        </StackPanel>
     </Grid>
 
 </phone:PhoneApplicationPage>

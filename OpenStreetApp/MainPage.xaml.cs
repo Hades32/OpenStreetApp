@@ -28,8 +28,23 @@ namespace OpenStreetApp
             watcher.StatusChanged += watcher_StatusChanged;
             watcher.PositionChanged += watcher_PositionChanged;
 
+            if (OSA_Configuration.Instance.UseCurrentLocationSetting)
+            {
+                System.Diagnostics.Debug.WriteLine("blubb");
+                watcher.PositionChanged += watcher_initialLocationing;
+            }
+
             watcher.Start();
-            System.Diagnostics.Debug.WriteLine("watcher started");
+            System.Diagnostics.Debug.WriteLine("watcher started");        
+        }
+
+        void watcher_initialLocationing(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            System.Diagnostics.Debug.WriteLine("user wanted to start at his location");
+            lastKnownPosition = e.Position;
+            Point p = new Point(this.lastKnownPosition.Location.Longitude, this.lastKnownPosition.Location.Latitude);
+            this.OSM_Map.navigateToCoordinate(p, 16);      
+            watcher.PositionChanged -= watcher_initialLocationing;
         }
 
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)

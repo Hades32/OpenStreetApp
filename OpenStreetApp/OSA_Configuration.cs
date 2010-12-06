@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Threading;
+using System.IO.IsolatedStorage;
 
 namespace OpenStreetApp
 {
@@ -55,33 +57,129 @@ namespace OpenStreetApp
         #endregion
 
         public IEnumerable<MultiScaleTileSource> AvailableTileSources { private set; get; }
+       
+        // Provides a Dictionary(Of TKey, TValue) that stores key-value pairs in isolated storage. 
+        private IsolatedStorageSettings isolatedStore;
+
+        #region key names for our storage
+        private const string selectedTileSourceKeyName = "defaultTileSource";
+        private const string useCurrentLocationKeyName = "useCurrentLocation";
+        #endregion
+
+        #region default values for our keys
+        private int selectedTileSourceDefault = 1;
+        private bool useCurrentLocationDefault = true;
+        #endregion
 
         private OSA_Configuration()
         {
+            try
+            {
+                // Get the settings for this application.
+                isolatedStore = IsolatedStorageSettings.ApplicationSettings;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception while using IsolatedStorageSettings: " + e.ToString());
+            }
+
             //avoid NULL checks
             this.PropertyChanged += (s, e) => { };
             // set some sensible defaults
-            var defaultTS = new CloudeMadeTileSource();
+            var defaultTS = 
             this.AvailableTileSources = new List<MultiScaleTileSource>() 
             {
-                new OSMTileSource(), new VEArialTileSource(), new VERoadTileSource(), defaultTS
+                new OSMTileSource(), new VEArialTileSource(), new VERoadTileSource(), new CloudeMadeTileSource()
             };
-            this.TileSource = defaultTS;
+            this.TileSource = AvailableTileSources.ElementAt(SelectedTileSourceSetting);
         }
 
         public void initialize(Action callback, Dispatcher dispatcher)
         {
             CloudeMadeService.authorize(() => dispatcher.BeginInvoke(() => callback()));
         }
-
-        public void save(Stream stream)
+  
+        public bool AddOrUpdateValue(string Key, Object value)
         {
-            //TODO save
+            bool valueChanged = false;
+
+            try
+            {
+                // if new value is different, set the new value.
+                if (isolatedStore[Key] != value)
+                {
+                    isolatedStore[Key] = value;
+                    valueChanged = true;
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                isolatedStore.Add(Key, value);
+                valueChanged = true;
+            }
+            catch (ArgumentException)
+            {
+                isolatedStore.Add(Key, value);
+                valueChanged = true;
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception while using IsolatedStorageSettings: " + e.ToString());
+            }
+            return valueChanged;
         }
 
-        public void load(Stream stream)
+        public valueType GetValueOrDefault<valueType>(string Key, valueType defaultValue)
         {
-            //TODO load
+            valueType value;
+
+            try
+            {
+                value = (valueType)isolatedStore[Key];
+            }
+            catch (KeyNotFoundException)
+            {
+                value = defaultValue;
+            }
+            catch (ArgumentException)
+            {
+                value = defaultValue;
+            }
+
+            return value;
+        }
+
+
+        public void Save()
+        {
+            isolatedStore.Save();
+        }
+
+        public bool UseCurrentLocationSetting
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(useCurrentLocationKeyName, useCurrentLocationDefault);
+            }
+            set
+            {
+                AddOrUpdateValue(useCurrentLocationKeyName, value);
+                Save();
+            }
+        }
+
+        public int SelectedTileSourceSetting
+        {
+            get
+            {
+                return GetValueOrDefault<int>(selectedTileSourceKeyName, selectedTileSourceDefault);
+            }
+            set
+            {
+                AddOrUpdateValue(selectedTileSourceKeyName, value);
+                TileSource = AvailableTileSources.ElementAt(value);
+                Save();
+            }
         }
     }
 }
