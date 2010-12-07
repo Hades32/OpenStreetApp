@@ -169,19 +169,18 @@ namespace OpenStreetApp
             // Zoom
             if (e.DeltaManipulation.Scale.X != 0 || e.DeltaManipulation.Scale.Y != 0)
             {
-                e.Handled = true;
                 // zoom by average of X and Y scaling
                 var zoom = Math.Max(Math.Abs(e.DeltaManipulation.Scale.X), Math.Abs(e.DeltaManipulation.Scale.Y));
-                //System.Diagnostics.Debug.WriteLine("zoom: " + zoom);
+
                 // ignore out-zooming when already zoomed out
                 if (zoom < 1 && this.OSM_Map.ViewportWidth == 1 || zoom == 1)
                     return;
-                //Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(this.lastMouseLogicalPos);
+
+                e.Handled = true;
+
                 Point logicalPoint = this.OSM_Map.ElementToLogicalPoint(e.ManipulationOrigin);
                 var curpos = this.getCurrentPosition();
-                this.OSM_Map.UseSprings = true;
                 this.OSM_Map.ZoomAboutLogicalPoint(zoom, logicalPoint.X, logicalPoint.Y);
-                this.OSM_Map.UseSprings = false;
 
                 if (this.OSM_Map.ViewportWidth > 1)
                     this.OSM_Map.ViewportWidth = 1;
@@ -192,6 +191,17 @@ namespace OpenStreetApp
                 Point newPoint = lastMouseViewPort;
                 newPoint.X -= e.CumulativeManipulation.Translation.X / this.OSM_Map.ActualWidth * this.OSM_Map.ViewportWidth;
                 newPoint.Y -= e.CumulativeManipulation.Translation.Y / this.OSM_Map.ActualWidth * this.OSM_Map.ViewportWidth;
+
+                //normalize in (0,1) range
+                newPoint.X = Math.Min(Math.Max(newPoint.X, 0), 1);
+                newPoint.Y = Math.Min(Math.Max(newPoint.Y, 0), 1);
+
+                // (Y or X) + viewportwidth < 1
+                if (newPoint.X + this.OSM_Map.ViewportWidth > 1)
+                    newPoint.X = 1 - this.OSM_Map.ViewportWidth;
+                if (newPoint.Y + this.OSM_Map.ViewportWidth > 1)
+                    newPoint.Y = 1 - this.OSM_Map.ViewportWidth;
+
                 this.OSM_Map.ViewportOrigin = newPoint;
             }
         }
