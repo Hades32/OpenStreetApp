@@ -1,0 +1,130 @@
+Content-Type: multipart/related; start=<op.mhtml.1291641727599.d3b7f47e586ad8cb@192.168.2.101>; boundary=----------2HwmmD3KaoO0WU3e2VutLj
+Content-Location: http://typewith.me/ep/pad/export/WP7Hauptseminar/latest?format=html
+Subject: =?utf-8?Q?/WP7Hauptseminar?=
+MIME-Version: 1.0
+
+------------2HwmmD3KaoO0WU3e2VutLj
+Content-Disposition: inline; filename=WP7Hauptseminar-latest.html
+Content-Type: text/html; charset=utf-8; name=WP7Hauptseminar-latest.html
+Content-ID: <op.mhtml.1291641727599.d3b7f47e586ad8cb@192.168.2.101>
+Content-Location: http://typewith.me/ep/pad/export/WP7Hauptseminar/latest?format=html
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>/WP7Hauptseminar</title>
+</head>
+<body><b>Hauptseminar WP7 und OSM</b><br
+/><br
+/><ul><li>was ins HS schreiben<br/><br
+/></li></ul
+><b>ToDo - Planung:</b><br
+/><ul><li>GUI</li
+><li>Einstellungen</li
+><li>Navigieren zu</li
+><li>POIs (welches Format? JSON/XML?)</li
+><li>Favoriten</li
+><li>Menü</li
+><li>Favoriten Anzeigen</li
+><li>Einstellungen</li
+><li><br/></li></ul
+>Store app list <a href="https://windowsphone.create.msdn.com/app/list">https://windowsphone.create.msdn.com/app/list</a><br
+/><a href="http://www.martani.net/2010/11/windows-phone-7-hacks-start.html">http://www.martani.net/2010/11/windows-phone-7-hacks-start.html</a><br
+/><b>Kostenloses EBook </b><a href="http://www.charlespetzold.com/phone/">http://www.charlespetzold.com/phone/</a><br
+/><a href="http://msdnrss.thecoderblogs.com/2010/10/31/windows-phone-scenarios-map/">http://msdnrss.thecoderblogs.com/2010/10/31/windows-phone-scenarios-map/</a><br
+/><b>Typen von TextBoxes </b><a href="http://msdn.microsoft.com/en-us/library/system.windows.input.inputscopenamevalue(VS.96).aspx">http://msdn.microsoft.com/en-us/library/system.windows.input.inputscopenamevalue(VS.96).aspx</a><br
+/><br
+/><b>Vector Stream Server anschaun!</b><br
+/><a href="http://developers.cloudmade.com/projects/show/vector-stream-server">http://developers.cloudmade.com/projects/show/vector-stream-server</a>&nbsp;<br
+/><br
+/><b>API-Key CloudeMade</b><br
+/>1a8bcc813f9646519c9d2b12e92c69b2<br
+/><br
+/><b>Yahoo Place Finder:</b><br
+/>openstreetmap@yahoo.com&nbsp; pw:&nbsp; osaUNI<br
+/>API Key: dj0yJmk9ZWMzSjkwU1JWOHE0JmQ9WVdrOVF6RlpRWFp5TjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yYg<br
+/>Keys zu finden in "My Projects" section bei yahoo.com<br
+/><br
+/><b>ToDo - Implementation:</b><br
+/><br
+/><b>Flo:</b><br
+/><ul><li><s>fetch_async</s></li
+><li><s>Aufräumen: Zoomen und Viewport (auslagern</s></li
+><li><s>Navigieren zu Ort auf Karte</s></li
+><li><s>Geolocation mit Yahoo</s></li
+><li>Multiset Results verarbeiten/Benutzer anzeigen</li
+><li>Gui Optimieren</li
+><li><a href="http://developers.cloudmade.com/wiki/geocoding-http-api/Documentation">http://developers.cloudmade.com/wiki/geocoding-http-api/Documentation</a></li
+><li><a href="http://developer.yahoo.com/geo/placefinder/">http://developer.yahoo.com/geo/placefinder/</a></li
+><li><a href="http://www.uni-ulm.de/~s_mraus1/TestPage.html">http://www.uni-ulm.de/~s_mraus1/TestPage.html</a><br/><br
+/></li></ul
+><b>Martin:</b><br
+/><ul><li>Alternative Karten <a href="http://cloudmade.com/">http://cloudmade.com/</a><ul><li>Scheint echt umsonst zu sein!!!</li></ul
+></li
+><li>(?) Routing via Cloudemade?</li
+><li>POI Layer implementierung</li
+><li><s>fix multi-touch zoom</s></li
+><li>zoom to int (animation?)<br/><br
+/><br/><br
+/></li></ul
+><b>Interessante Links:</b><br
+/><br
+/><b>WP7 Handy als USB-Drive:</b> <a href="http://www.mobiletechworld.com/2010/11/18/use-your-windows-phone-7-device-as-a-portable-usb-drive/">http://www.mobiletechworld.com/2010/11/18/use-your-windows-phone-7-device-as-a-portable-usb-drive/</a><br
+/><br
+/><b>Eigener OSM Server:</b><br
+/><ul><li><a href="http://tiledrawer.com/">http://tiledrawer.com/</a><br/><br
+/></li></ul
+><b>WP7 Artikel:</b><br
+/><ul><li>Vorgegebene Styles: <a href="http://msdn.microsoft.com/en-us/library/ff769552(v=VS.92).aspx">http://msdn.microsoft.com/en-us/library/ff769552(v=VS.92).aspx</a></li
+><li>Using the GPS, Accelerometer &amp; Vibration Controller&nbsp; <a href="http://www.codeproject.com/Articles/71084/Using-the-GPS-Accelerometer-Vibration-Controller.aspx">http://www.codeproject.com/Articles/71084/Using-the-GPS-Accelerometer-Vibration-Controller.aspx</a></li
+><li>Introduction to Windows Phone Programming: Part 1&nbsp; <a href="http://www.codeproject.com/Articles/108022/Introduction-to-Windows-Phone-Programming-Part-1.aspx">http://www.codeproject.com/Articles/108022/Introduction-to-Windows-Phone-Programming-Part-1.aspx</a></li
+><li>Detect Shaking Motion on Windows Phone 7&nbsp; <a href="http://www.codeproject.com/Articles/98492/Detect-Shaking-Motion-on-Windows-Phone-7.aspx">http://www.codeproject.com/Articles/98492/Detect-Shaking-Motion-on-Windows-Phone-7.aspx</a></li
+><li>Windows Phone 7 Custom Message Box&nbsp; <a href="http://blogs.microsoft.co.il/blogs/tomershamam/archive/2010/10/19/windows-phone-7-custom-message-box.aspx">http://blogs.microsoft.co.il/blogs/tomershamam/archive/2010/10/19/windows-phone-7-custom-message-box.aspx</a></li
+><li><a href="http://aimeegurl.com/2010/03/18/panoramic-navigation-on-windows-phone-7-with-no-code/">http://aimeegurl.com/2010/03/18/panoramic-navigation-on-windows-phone-7-with-no-code/</a></li
+><li><a href="http://devtyr.norberteder.com/post/Entwicklung-fur-Windows-Phone-7e28093Styleguide-Icons-Resourcen.aspx">http://devtyr.norberteder.com/post/Entwicklung-fur-Windows-Phone-7e28093Styleguide-Icons-Resourcen.aspx</a></li
+><li>WP7 Einführung und Lokalisierungs Zeug&nbsp; <a href="http://karlshifflett.wordpress.com/2010/10/17/windows-phone-7-application-lifecycle-ocean-for-the-phone/">http://karlshifflett.wordpress.com/2010/10/17/windows-phone-7-application-lifecycle-ocean-for-the-phone/</a></li
+><li><a href="http://www.daveamenta.com/2010-11/send-push-notifications-to-windows-phone-7-from-php/">http://www.daveamenta.com/2010-11/send-push-notifications-to-windows-phone-7-from-php/</a><br/><br
+/></li></ul
+><b>WP7 Unit Testing:</b><br
+/><ul><li>Unit Testing Silverlight and Windows Phone Applications <a href="http://live.visitmix.com/MIX10/Sessions/CL59">http://live.visitmix.com/MIX10/Sessions/CL59</a></li
+><li>A Cheat Sheet for Unit Testing Silverlight Apps on Windows Phone 7&nbsp; <a href="http://www.smartypantscoding.com/a-cheat-sheet-for-unit-testing-silverlight-apps-on-windows-phone-7">http://www.smartypantscoding.com/a-cheat-sheet-for-unit-testing-silverlight-apps-on-windows-phone-7</a></li
+><li>Windows Phone 7 — MVVM Light and Unit Testing Example&nbsp; <a href="http://www.markerstudio.com/technical/2010/07/mvvm-light-and-unit-testing-example/">http://www.markerstudio.com/technical/2010/07/mvvm-light-and-unit-testing-example/</a><br/><br
+/></li></ul
+><b>WP7 Deployment:</b><br
+/><ul><li>How to: Use the Windows Phone Capability Detection Tool <a href="http://msdn.microsoft.com/en-us/library/gg180730(v=VS.92).aspx">http://msdn.microsoft.com/en-us/library/gg180730(v=VS.92).aspx</a></li
+><li>Checking Your WP7 Application Capabilities <a href="http://cloudstore.blogspot.com/2010/10/checking-your-wp7-application.html">http://cloudstore.blogspot.com/2010/10/checking-your-wp7-application.html</a><br/><br
+/></li></ul
+><b>Multitouch SDKs</b><br
+/><ul><li><a href="http://touch.codeplex.com/">http://touch.codeplex.com/</a></li
+><li><a href="http://miria.codeplex.com/">http://miria.codeplex.com/</a></li
+><li><a href="http://yobriefcase.posterous.com/multi-touch-reactive-extensions">http://yobriefcase.posterous.com/multi-touch-reactive-extensions</a><br/><br
+/></li></ul
+><b>Handys</b><br
+/><ul><li><a href="http://www.chip.de/news/Samsung-Omnia-7-Super-AMOLED-Windows-Phone-7_45059502.html">http://www.chip.de/news/Samsung-Omnia-7-Super-AMOLED-Windows-Phone-7_45059502.html</a></li
+><li><a href="http://www.amazon.de/HTC-Smartphone-Touchscreen-interner-Speicher/dp/B0046RDWBC/ref=sr_1_1?ie=UTF8&qid=1287491328&sr=8-1">http://www.amazon.de/HTC-Smartphone-Touchscreen-interner-Speicher/dp/B0046RDWBC/ref=sr_1_1?ie=UTF8&amp;qid=1287491328&amp;sr=8-1</a></li
+><li>Vergleich: <a href="http://www.chip.de/news/HTC-HD7-Co.-Windows-Phone-7-Handys-sind-da_45202422.html">http://www.chip.de/news/HTC-HD7-Co.-Windows-Phone-7-Handys-sind-da_45202422.html</a><br/><br
+/></li></ul
+><b>Windows Phone Developer Tools October 2010 Update</b><br
+/><ul><li><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=49b9d0c5-6597-4313-912a-f0cca9c7d277&displayLang=de">http://www.microsoft.com/downloads/details.aspx?FamilyID=49b9d0c5-6597-4313-912a-f0cca9c7d277&amp;displayLang=de</a><br/><br
+/></li></ul
+><b>Zeug</b><br
+/><ul><li><a href="http://deepzoomcontainer.codeplex.com/">http://deepzoomcontainer.codeplex.com/</a><br/><br
+/></li></ul
+><b>OSM API:&nbsp;</b><br
+/><ul><li><a href="http://wiki.openstreetmap.org/wiki/API_v0.6">http://wiki.openstreetmap.org/wiki/API_v0.6</a></li
+><li><a href="http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">http://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a><br/><br
+/></li></ul
+><b>Beachten:</b><br
+/><ul><li><a href="http://wiki.openstreetmap.org/wiki/Tile_usage_policy">http://wiki.openstreetmap.org/wiki/Tile_usage_policy</a><br/><br
+/></li></ul
+>ElementinformationenAttributePositionAndereElternelementeKindelemente<br
+/><br
+/>ElementinformationenAttributePositionAndereElternelementeKindelemente<br
+/><br
+/></body>
+</html>
+
+------------2HwmmD3KaoO0WU3e2VutLj--
