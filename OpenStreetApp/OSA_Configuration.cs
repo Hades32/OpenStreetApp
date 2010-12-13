@@ -71,6 +71,9 @@ namespace OpenStreetApp
         private bool useCurrentLocationDefault = true;
         #endregion
 
+        // Stores the last user-searched Location.
+        private Location lastSearchedLocation;
+
         private OSA_Configuration()
         {
             try

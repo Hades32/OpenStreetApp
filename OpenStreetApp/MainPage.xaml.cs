@@ -83,7 +83,8 @@ namespace OpenStreetApp
 
         private void openButton_Click(object sender, EventArgs e)
         {
-            ContextMenuPopup.IsOpen = true;
+           // ContextMenuPopup.IsOpen = true;
+            NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
 
         private void showFavoritesButton_Click(object sender, EventArgs e)

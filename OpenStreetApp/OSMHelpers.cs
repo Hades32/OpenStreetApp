@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Collections.Generic;
+using System.Xml.Linq;
+using System.Linq;
 
 namespace OpenStreetApp
 {
@@ -26,6 +29,41 @@ namespace OpenStreetApp
             p.Y = (float)(180.0 / Math.PI * Math.Atan(Math.Sinh(n)));
 
             return p;
+        }
+
+        public static List<Location> InputAdressToLocations(String inputAdressString)
+        {
+            List<Location> locations = new List<Location>();
+            String encoded = System.Net.HttpUtility.UrlEncode(inputAdressString);
+            System.Net.WebClient wc = new System.Net.WebClient();
+            wc.DownloadStringCompleted += (sender, e) =>
+            {
+                XDocument xdoc = XDocument.Parse(e.Result);
+                XElement resultSetRoot =  xdoc.Element("ResultSet");
+                
+                var testresult = resultSetRoot.Elements("Result");
+                
+                //System.Diagnostics.Debug.WriteLine(testresult);
+
+                foreach (XElement elem in testresult)
+                {
+                 
+                    Location nl = new Location();
+                    nl.Longitude = Double.Parse(elem.Element("longitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+                    nl.Latitude = Double.Parse(elem.Element("latitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+                // nl.City = elem.Element("city").Value;
+                // nl.Adress = elem.Element("adress").Value;
+                // nl.City = elem.Element("state").Value;
+                    locations.Add(nl);
+                  
+                    
+                }
+            };
+            Uri adress = new Uri("http://where.yahooapis.com/geocode?q="
+                + encoded + "&appid=dj0yJmk9ZWMzSjkwU1JWOHE0JmQ9WVdrOVF6RlpRWFp5TjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZ");
+            System.Diagnostics.Debug.WriteLine(adress);
+            wc.DownloadStringAsync(adress);
+            return locations;
         }
     }
 }
