@@ -25,12 +25,12 @@
             <TextBlock x:Name="PageTitle" Text="Error" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-          
-        </Grid>
+        <TextBox x:Name="ErrorTB" Grid.Row="1" />
         
-        <TextBlock Grid.Row="2" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp">
-            A bad error has occured. If you want to help us improve OSA
+        <TextBlock Grid.Row="2" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"
+                   TextWrapping="Wrap">
+            A bad error has occured. If you want to help us to improve OSA, just click this text to send an email
+            to with this error to us.
         </TextBlock>
     </Grid>
 
