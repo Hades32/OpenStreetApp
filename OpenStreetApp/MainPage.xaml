@@ -18,15 +18,8 @@
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-       
-        <TextBlock x:Name="ApplicationTitle" Margin="10,0,0,10" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
-
-      <my:MapControl x:Name="OSM_Map" Grid.Row="1" Source="{Binding Path=TileSource}"/>
+      <my:MapControl x:Name="OSM_Map" Source="{Binding Path=TileSource}"/>
 
       <Popup Grid.Row="1" x:Name="ContextMenuPopup" Height="200" Width="460" Margin="1" VerticalAlignment="Top" HorizontalAlignment="Center" Opened="ContextMenuPopup_Opened">           
             <Grid x:Name="InnerPopupGrid">

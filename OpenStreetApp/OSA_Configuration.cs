@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel;
-using System.IO;
-using System.Windows.Media;
-using System.Windows.Threading;
 using System.IO.IsolatedStorage;
+using System.Linq;
+using System.Windows.Threading;
 
 namespace OpenStreetApp
 {
@@ -35,13 +33,13 @@ namespace OpenStreetApp
         /// <summary>
         /// TileSource Property
         /// </summary>
-        private MultiScaleTileSource _TileSource;
+        private Microsoft.Phone.Controls.Maps.TileSource _TileSource;
 
         /// <summary>
         /// Gets or sets the TileSource property. This property 
         /// indicates the current TileSource.
         /// </summary>
-        public MultiScaleTileSource TileSource
+        public Microsoft.Phone.Controls.Maps.TileSource TileSource
         {
             get { return this._TileSource; }
             set
@@ -56,8 +54,8 @@ namespace OpenStreetApp
 
         #endregion
 
-        public IEnumerable<MultiScaleTileSource> AvailableTileSources { private set; get; }
-       
+        public IEnumerable<Microsoft.Phone.Controls.Maps.TileSource> AvailableTileSources { private set; get; }
+
         // Provides a Dictionary(Of TKey, TValue) that stores key-value pairs in isolated storage. 
         private IsolatedStorageSettings isolatedStore;
 
@@ -86,8 +84,8 @@ namespace OpenStreetApp
             //avoid NULL checks
             this.PropertyChanged += (s, e) => { };
             // set some sensible defaults
-            var defaultTS = 
-            this.AvailableTileSources = new List<MultiScaleTileSource>() 
+            var defaultTS =
+            this.AvailableTileSources = new List<Microsoft.Phone.Controls.Maps.TileSource>() 
             {
                 new OSMTileSource(), new VEArialTileSource(), new VERoadTileSource(), new CloudeMadeTileSource()
             };
@@ -98,7 +96,7 @@ namespace OpenStreetApp
         {
             CloudeMadeService.authorize(() => dispatcher.BeginInvoke(() => callback()));
         }
-  
+
         public bool AddOrUpdateValue(string Key, Object value)
         {
             bool valueChanged = false;
