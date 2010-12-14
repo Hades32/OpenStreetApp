@@ -19,5 +19,10 @@ namespace OpenStreetApp
         {
             InitializeComponent();
         }
+
+        private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
