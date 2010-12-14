@@ -70,6 +70,9 @@
     </Compile>
     <Compile Include="BetterProgressBar\RelativeAnimatingContentControl.cs" />
     <Compile Include="CloudeMadeService.cs" />
+    <Compile Include="ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="BetterProgressBar\PerfProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ErrorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
