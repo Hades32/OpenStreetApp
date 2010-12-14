@@ -36,7 +36,7 @@ namespace OpenStreetApp
             }
 
             watcher.Start();
-            System.Diagnostics.Debug.WriteLine("watcher started");        
+            System.Diagnostics.Debug.WriteLine("watcher started");
         }
 
         void watcher_initialLocationing(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
@@ -44,7 +44,7 @@ namespace OpenStreetApp
             System.Diagnostics.Debug.WriteLine("user wanted to start at his location");
             lastKnownPosition = e.Position;
             Point p = new Point(this.lastKnownPosition.Location.Longitude, this.lastKnownPosition.Location.Latitude);
-            this.OSM_Map.navigateToCoordinate(p, 16);      
+            this.OSM_Map.navigateToCoordinate(p, 16);
             watcher.PositionChanged -= watcher_initialLocationing;
         }
 
@@ -75,7 +75,7 @@ namespace OpenStreetApp
         {
             lastKnownPosition = this.watcher.Position;
             Point p = new Point(this.lastKnownPosition.Location.Longitude, this.lastKnownPosition.Location.Latitude);
-            this.OSM_Map.navigateToCoordinate(p, 16);      
+            this.OSM_Map.navigateToCoordinate(p, 16);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -85,6 +85,7 @@ namespace OpenStreetApp
 
         private void openButton_Click(object sender, EventArgs e)
         {
+            // ContextMenuPopup.IsOpen = true;
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
 

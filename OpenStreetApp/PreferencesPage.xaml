@@ -7,12 +7,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:OpenStreetApp"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+    shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -25,18 +26,15 @@
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="Einstellungen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-        <ListBox Grid.Row="1" Margin="12,17,0,28" Name="listBox1" VerticalAlignment="Top">
-          <StackPanel>
+        <StackPanel Grid.Row="1" >
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <ListBox Margin="15,5,0,5" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            <toolkit:ListPicker Margin="15,5,0,5"
                      ItemsSource="{Binding Path=AvailableTileSources}"
-                     SelectedIndex="{Binding Path=SelectedTileSourceSetting, Mode=TwoWay}">
-            </ListBox>
-          </StackPanel>
-        </ListBox>
+                     SelectedIndex="{Binding Path=SelectedTileSourceSetting, Mode=TwoWay}"/>
+        </StackPanel>
         <StackPanel x:Name="preferences" Grid.Row="2" Margin="12,5,0,28">
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Ansicht bei Programmstart?</TextBlock>
             <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="190" Name="toggleSwitch1" Width="419" HorizontalAlignment="Left" 
