@@ -85,7 +85,6 @@ namespace OpenStreetApp
 
         private void openButton_Click(object sender, EventArgs e)
         {
-            // ContextMenuPopup.IsOpen = true;
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
 
@@ -112,22 +111,6 @@ namespace OpenStreetApp
         private void ContextMenuPopup_Opened(object sender, EventArgs e)
         {
             this.OSM_Map.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-        private void buttonOK_Click(object sender, RoutedEventArgs e)
-        {
-            ContextMenuPopup.IsOpen = false;
-            this.OSM_Map.Visibility = System.Windows.Visibility.Visible;
-            if (!String.IsNullOrEmpty(this.TargetInput.Text))
-            {
-                this.OSM_Map.navigateToInputAdress(this.TargetInput.Text);
-            }
-        }
-
-        private void buttonAbort_Click(object sender, RoutedEventArgs e)
-        {
-            ContextMenuPopup.IsOpen = false;
-            this.OSM_Map.Visibility = System.Windows.Visibility.Visible;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
