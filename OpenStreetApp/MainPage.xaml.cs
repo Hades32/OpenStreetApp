@@ -9,7 +9,9 @@ namespace OpenStreetApp
     {
         GeoCoordinateWatcher watcher;
         GeoPosition<GeoCoordinate> lastKnownPosition;
-
+      
+        // Stores the last user-searched Location.
+        public static Location lastSearchedLocation = null;
 
         public MainPage()
         {
@@ -83,7 +85,6 @@ namespace OpenStreetApp
 
         private void openButton_Click(object sender, EventArgs e)
         {
-           // ContextMenuPopup.IsOpen = true;
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
 
@@ -126,6 +127,17 @@ namespace OpenStreetApp
         {
             ContextMenuPopup.IsOpen = false;
             this.OSM_Map.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (lastSearchedLocation != null)
+            {
+                GeoCoordinate nC = new GeoCoordinate(lastSearchedLocation.Latitude, lastSearchedLocation.Longitude);
+                this.OSM_Map.navigateToCoordinate(nC, 16);
+                lastSearchedLocation = null;
+            }
         }
     }
 }

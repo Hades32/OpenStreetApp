@@ -37,22 +37,25 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Height="33" HorizontalAlignment="Left" Margin="10,30,0,0" Name="textDescription" Text="Bitte Zielort eingeben:" FontSize="24" VerticalAlignment="Top" Width="474" />
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" Margin="0,0,0,0" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" Name="textDescription" Text="Bitte Zielort eingeben:" FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" Margin="0,0,0,0" InputScope="Search" KeyDown="TargetInput_KeyDown"/>
                 <Button Grid.Row="2" Grid.Column="0" x:Name="buttonOK" Content="Ok" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="0,0,0,0" Click="buttonOK_Click"/>
                 <Button Grid.Row="2" Grid.Column="1" x:Name="buttonAbort" Content="Abbrechen" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="70,0,0,0" Click="buttonAbort_Click"/>
 
-                <ListBox Grid.Row="3" Margin="15,5,0,-390" ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     ItemsSource="{Binding Path=Locaions}" Height="395">
-                </ListBox>
-
-            </Grid>
-
-            
+                
+            </Grid>    
         </Grid>
+
+        <StackPanel x:Name="ResultPanel" Grid.Row="1" Visibility="Collapsed">
+            <TextBlock Margin="22,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Suchergebnisse</TextBlock>
+            <ListBox x:Name="results" Margin="22,15,0,-390" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     ItemsSource="{Binding Path=Locations}" Height="395" SelectionChanged="ListBox_SelectionChanged">   
+            </ListBox>
+        </StackPanel>
+
+
     </Grid>
 
 </phone:PhoneApplicationPage>
