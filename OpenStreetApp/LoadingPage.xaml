@@ -31,7 +31,7 @@
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="Open Street App" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding AppTitle}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
           <TextBlock x:Name="ApplicationTitle" Text="is loading..." Style="{StaticResource PhoneTextNormalStyle}"/>
         </StackPanel>
 

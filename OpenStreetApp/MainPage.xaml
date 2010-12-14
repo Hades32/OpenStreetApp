@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
        
-        <TextBlock x:Name="ApplicationTitle" Margin="10,0,0,10" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <TextBlock x:Name="ApplicationTitle" Margin="10,0,0,10" Text="{Binding AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
 
       <my:MapControl x:Name="OSM_Map" Grid.Row="1" Source="{Binding Path=TileSource}"/>
 
