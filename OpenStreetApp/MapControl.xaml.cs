@@ -100,6 +100,7 @@ namespace OpenStreetApp
             fixY = (this.OSM_Map.ActualHeight / 256.0) / 4.0;
             if (System.Diagnostics.Debugger.IsAttached)
                 this.OSM_Map.ZoomBarVisibility = System.Windows.Visibility.Visible;
+            this.OSM_Map.CredentialsProvider = new ApplicationIdCredentialsProvider("Akc2a6v34Acf-tYc8miIU8NgDDffnkpD7TZdV69jwWk-3pt21_RCIUfba7_G5-Vl");
         }
 
         public void navigateToInputAdress(String inputAdressString)
