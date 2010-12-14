@@ -50,10 +50,10 @@
     <!--Beispielcode für die Verwendung von ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5">
-            <shell:ApplicationBarIconButton x:Name="geoLocationButton" Click="geoLocationButton_Click"  IconUri="geo.png" Text="Aktueller Standort"/>
-            <shell:ApplicationBarIconButton x:Name="openButton" Click="openButton_Click" IconUri="search.png" Text="Koordinate öffnen"/>
-            <shell:ApplicationBarIconButton x:Name="favoriteButton" Click="favoriteButton_Click" IconUri="addfav.png" Text="Favoriten hinzufügen"/>
-            <shell:ApplicationBarIconButton x:Name="POIButton" Click="POIButton_Click" IconUri="poi.png" Text="Wichtige Punkte"/>
+            <shell:ApplicationBarIconButton x:Name="geoLocationButton" Click="geoLocationButton_Click"  IconUri="Images/geo.png" Text="Aktueller Standort"/>
+            <shell:ApplicationBarIconButton x:Name="openButton" Click="openButton_Click" IconUri="Images/search.png" Text="Koordinate öffnen"/>
+            <shell:ApplicationBarIconButton x:Name="favoriteButton" Click="favoriteButton_Click" IconUri="Images/addfav.png" Text="Favoriten hinzufügen"/>
+            <shell:ApplicationBarIconButton x:Name="POIButton" Click="POIButton_Click" IconUri="Images/poi.png" Text="Wichtige Punkte"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem x:Name="showFavoritesButton" Click="showFavoritesButton_Click" Text="Favoriten anzeigen"/>
                 <shell:ApplicationBarMenuItem x:Name="preferencesButton" Click="preferencesButton_Click" Text="Einstellungen"/>
