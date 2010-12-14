@@ -7,7 +7,7 @@ namespace OpenStreetApp
     {
         private static string url = "http://h{0}.ortho.tiles.virtualearth.net/tiles/h{1}.jpeg?g=203&mkt="
                                         + System.Globalization.CultureInfo.CurrentCulture.Name;
-        public override string UriFormat
+        public override string MyUriFormat
         {
             get { return url; }
         }
@@ -22,7 +22,7 @@ namespace OpenStreetApp
     {
         private static string url = "http://r{0}.ortho.tiles.virtualearth.net/tiles/r{1}.png?g=203&mkt="
                                         + System.Globalization.CultureInfo.CurrentCulture.Name;
-        public override string UriFormat
+        public override string MyUriFormat
         {
             get { return url; }
         }
@@ -45,7 +45,7 @@ namespace OpenStreetApp
         /// <summary>
         /// Format for map tile uri.
         /// </summary>
-        public abstract string UriFormat { get; }
+        public abstract string MyUriFormat { get; }
 
         /*
         protected override void GetTileLayers(int tileLevel, int tilePositionX, int tilePositionY,
@@ -65,7 +65,7 @@ namespace OpenStreetApp
         {
 
             string QuadKey = TileXYToQuadKey(x, y, zoomLevel);
-            string veLink = string.Format(UriFormat,
+            string veLink = string.Format(MyUriFormat,
                                           new object[] { QuadKey[QuadKey.Length - 1], QuadKey });
             var veUri = new Uri(veLink);
             return veUri;
