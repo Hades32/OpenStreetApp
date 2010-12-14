@@ -98,6 +98,8 @@ namespace OpenStreetApp
         {
             fixX = (this.OSM_Map.ActualWidth / 256.0) / 4.0;
             fixY = (this.OSM_Map.ActualHeight / 256.0) / 4.0;
+            if (System.Diagnostics.Debugger.IsAttached)
+                this.OSM_Map.ZoomBarVisibility = System.Windows.Visibility.Visible;
         }
 
         public void navigateToInputAdress(String inputAdressString)
@@ -152,6 +154,7 @@ namespace OpenStreetApp
         public void navigateToCoordinate(System.Device.Location.GeoCoordinate geoCoordinate, double zoom)
         {
             this.OSM_Map.Center = geoCoordinate;
+            this.OSM_Map.ZoomLevel = zoom;
         }
 
         public void zoomToWorldView()
