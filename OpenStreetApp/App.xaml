@@ -8,7 +8,7 @@
 
     <!--Anwendungsressourcen-->
     <Application.Resources>
-        <System:String x:Key="AppTitle">Opera Street App</System:String>
+        <System:String x:Key="AppTitle">Open Street App</System:String>
     </Application.Resources>
     
     <Application.ApplicationLifetimeObjects>

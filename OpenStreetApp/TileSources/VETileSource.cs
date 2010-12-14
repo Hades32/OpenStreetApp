@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace OpenStreetApp
 {
@@ -36,13 +33,12 @@ namespace OpenStreetApp
         }
     }
 
-    public abstract class BaseVETileSource : MultiScaleTileSource
+    public abstract class BaseVETileSource : Microsoft.Phone.Controls.Maps.TileSource
     {
         /// <summary>
         /// Setting of tile size and max image size.
         /// </summary>
         protected BaseVETileSource()
-            : base(0x8000000, 0x8000000, 0x100, 0x100, 0)
         {
         }
 
@@ -51,13 +47,7 @@ namespace OpenStreetApp
         /// </summary>
         public abstract string UriFormat { get; }
 
-        /// <summary>
-        /// Get tiles for <see cref="MultiScaleImage"   />.
-        /// </summary>
-        /// <param name="tileLevel">Tile Level</param>
-        /// <param name="tilePositionX">Tile X position</param>
-        /// <param name="tilePositionY">Tile Y position</param>
-        /// <param name="tileImageLayerSources">Tile images repository</param>
+        /*
         protected override void GetTileLayers(int tileLevel, int tilePositionX, int tilePositionY,
                                               IList<object> tileImageLayerSources)
         {
@@ -70,6 +60,15 @@ namespace OpenStreetApp
                 var veUri = new Uri(veLink);
                 tileImageLayerSources.Add(veUri);
             }
+        }*/
+        public override Uri GetUri(int x, int y, int zoomLevel)
+        {
+
+            string QuadKey = TileXYToQuadKey(x, y, zoomLevel);
+            string veLink = string.Format(UriFormat,
+                                          new object[] { QuadKey[QuadKey.Length - 1], QuadKey });
+            var veUri = new Uri(veLink);
+            return veUri;
         }
 
         /// <summary>

@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Windows.Media;
 
 namespace OpenStreetApp
 {
-    public class CloudeMadeTileSource : MultiScaleTileSource
+    public class CloudeMadeTileSource : Microsoft.Phone.Controls.Maps.TileSource
     {
         public CloudeMadeTileSource()
-            : base(0x8000000, 0x8000000, 256, 256, 0) //no idea why 0x8000000, but it works :)
         {
         }
 
+        public override Uri GetUri(int x, int y, int zoomLevel)
+        {
+            return new Uri("http://tile.cloudmade.com/" + CloudeMadeService.ApiKey + "/1/256/"
+                    + zoomLevel + "/" + x + "/" + y + ".png?token=" + CloudeMadeService.Token);
+        }
+        /*
         protected override void GetTileLayers(int tileLevel, int tilePositionX, int tilePositionY, System.Collections.Generic.IList<object> tileImageLayerSources)
         {
             var zoom = tileLevel - 8; // No idea why this starts at 8 but... well.....
             if (zoom > 0 && zoom < 18)
-                tileImageLayerSources.Add(new Uri("http://tile.cloudmade.com/" + CloudeMadeService.ApiKey + "/1/256/"
-                    + zoom + "/" + tilePositionX + "/" + tilePositionY + ".png?token=" + CloudeMadeService.Token));
-        }
+                tileImageLayerSources.Add();
+        }*/
 
         public override string ToString()
         {
