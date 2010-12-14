@@ -11,12 +11,6 @@ namespace OpenStreetApp
 {
     public partial class MapControl : UserControl
     {
-        Point lastMouseLogicalPos = new Point();
-        Point lastMouseViewPort = new Point();
-        Point lastOSMPoint = new Point();
-        double zoom = 1;
-        double fixX = 0, fixY = 0;
-
         #region Source
 
         /// <summary>
@@ -96,55 +90,14 @@ namespace OpenStreetApp
 
         private void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            fixX = (this.OSM_Map.ActualWidth / 256.0) / 4.0;
-            fixY = (this.OSM_Map.ActualHeight / 256.0) / 4.0;
             if (System.Diagnostics.Debugger.IsAttached)
                 this.OSM_Map.ZoomBarVisibility = System.Windows.Visibility.Visible;
             this.OSM_Map.CredentialsProvider = new ApplicationIdCredentialsProvider("Akc2a6v34Acf-tYc8miIU8NgDDffnkpD7TZdV69jwWk-3pt21_RCIUfba7_G5-Vl");
         }
 
-        public void navigateToInputAdress(String inputAdressString)
-        {
-            String encoded = System.Net.HttpUtility.UrlEncode(inputAdressString);
-            System.Net.WebClient wc = new System.Net.WebClient();
-            wc.DownloadStringCompleted += (sender, e) =>
-            {
-                IEnumerable<XElement> locations = null;
-                XElement resultSetRoot;
-                if (!(e.Result.Length == 0))
-                {
-                    XDocument xdoc = XDocument.Parse(e.Result);
-                    resultSetRoot = xdoc.Element("ResultSet");
-                    locations = resultSetRoot.Elements("Result");
-                }
-
-                //// TEST CODE
-                if (!(locations.Count() > 1))
-                {
-                    System.Diagnostics.Debug.WriteLine(locations.ElementAt(0).Element("latitude").ToString());
-                    double x = Double.Parse(locations.ElementAt(0).Element("latitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
-                    double y = Double.Parse(locations.ElementAt(0).Element("longitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
-                    this.Dispatcher.BeginInvoke(() =>
-                    {
-                        navigateToCoordinate(new System.Device.Location.GeoCoordinate(x, y), 12);
-                    });
-                }
-                else
-                {
-                    //TODO ERROR HANDLING
-                    System.Diagnostics.Debugger.Break();
-                }
-
-            };
-            Uri adress = new Uri("http://where.yahooapis.com/geocode?q="
-                + encoded + "&appid=dj0yJmk9ZWMzSjkwU1JWOHE0JmQ9WVdrOVF6RlpRWFp5TjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZ");
-            System.Diagnostics.Debug.WriteLine(adress);
-            wc.DownloadStringAsync(adress);
-        }
-
         private void OSM_Map_OnDoubleClick()
         {
-            this.OSM_Map.ZoomLevel *= 1.5;
+            this.OSM_Map.ZoomLevel *= 0.1;
         }
 
         public void navigateToCoordinate(Point p, double zoom)
