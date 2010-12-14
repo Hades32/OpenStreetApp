@@ -2,11 +2,13 @@
     x:Class="OpenStreetApp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
     <!--Anwendungsressourcen-->
     <Application.Resources>
+        <System:String x:Key="AppTitle">Opera Street App</System:String>
     </Application.Resources>
     
     <Application.ApplicationLifetimeObjects>
