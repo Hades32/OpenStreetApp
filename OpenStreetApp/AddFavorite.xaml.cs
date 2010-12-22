@@ -17,7 +17,18 @@ namespace OpenStreetApp
     {
         public AddFavorite()
         {
+            OSMHelpers.GeoPositionToLocation(MainPage.currentPosition, onLocationReceived);
             InitializeComponent();
+        }
+
+        private void onLocationReceived(Location current)
+        {
+            
+        }
+
+        private void buttonSave_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO SERIALIZE
         }
     }
 }

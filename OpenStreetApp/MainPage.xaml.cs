@@ -12,6 +12,7 @@ namespace OpenStreetApp
       
         // Stores the last user-searched Location.
         public static Location lastSearchedLocation = null;
+        public static Point currentPosition = new Point();
 
         public MainPage()
         {
@@ -106,7 +107,13 @@ namespace OpenStreetApp
 
         private void favoriteButton_Click(object sender, EventArgs e)
         {
-            this.OSM_Map.navigateToCoordinate(new GeoCoordinate(48.399833, 9.994923), 12);
+            System.Diagnostics.Debug.WriteLine(this.OSM_Map.getCurrentPosition());
+            currentPosition = this.OSM_Map.getCurrentPosition();
+            NavigationService.Navigate(new Uri("/AddFavorite.xaml", UriKind.Relative));
+
+
+            // THE ULM BUTTON
+            //this.OSM_Map.navigateToCoordinate(new GeoCoordinate(48.399833, 9.994923), 12);
         }
 
         private void ContextMenuPopup_Opened(object sender, EventArgs e)
