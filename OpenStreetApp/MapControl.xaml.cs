@@ -7,6 +7,8 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Reactive;
+using System.Device.Location;
+
 namespace OpenStreetApp
 {
     public partial class MapControl : UserControl
@@ -72,6 +74,8 @@ namespace OpenStreetApp
             }
         }
 
+        private MapLayer PushpinLayer = new MapLayer();
+
         public MapControl()
         {
             InitializeComponent();
@@ -86,9 +90,11 @@ namespace OpenStreetApp
                         // subscribing directly on that dispatcher didn't work...
                         this.Dispatcher.BeginInvoke(OSM_Map_OnDoubleClick);
                 }));
+
+            this.OSM_Map.Children.Add(PushpinLayer);
         }
 
-        private void Control_Loaded(object sender, RoutedEventArgs e)
+        void Control_Loaded(object sender, RoutedEventArgs e)
         {
             if (System.Diagnostics.Debugger.IsAttached)
                 this.OSM_Map.ZoomBarVisibility = System.Windows.Visibility.Visible;
@@ -125,6 +131,12 @@ namespace OpenStreetApp
             res.Y = this.OSM_Map.TargetCenter.Latitude;
 
             return res;
+        }
+
+        public void addPushpin(GeoCoordinate geoCoordinate)
+        {
+            Pushpin pushpin = new Pushpin();
+            this.PushpinLayer.AddChild(pushpin, geoCoordinate);
         }
     }
 }

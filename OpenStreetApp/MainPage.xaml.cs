@@ -76,6 +76,7 @@ namespace OpenStreetApp
             lastKnownPosition = this.watcher.Position;
             Point p = new Point(this.lastKnownPosition.Location.Longitude, this.lastKnownPosition.Location.Latitude);
             this.OSM_Map.navigateToCoordinate(p, 16);
+            this.OSM_Map.addPushpin(lastKnownPosition.Location);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
