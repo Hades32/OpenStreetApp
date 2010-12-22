@@ -30,8 +30,8 @@
             <TextBlock x:Name="PageTitle" Text="Einstellungen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" >
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
-            <toolkit:ListPicker Margin="15,5,0,5"
+            <TextBlock Margin="12,5,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
+            <toolkit:ListPicker Margin="15,5,10,5"
                      ItemsSource="{Binding Path=AvailableTileSources}"
                      SelectedIndex="{Binding Path=SelectedTileSourceSetting, Mode=TwoWay}"/>
         </StackPanel>

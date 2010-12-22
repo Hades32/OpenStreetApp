@@ -1,20 +1,32 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace OpenStreetApp
 {
+    [DataContract]
     public class Location
     {
+        [DataMember]
         public double Longitude {get; set;}
+        [DataMember]
         public double Latitude { get; set; }
+        [DataMember]
         public String City { get; set; }
+        [DataMember]
         public String Adress { get; set; }
+        [DataMember]
         public String Area { get; set; }
+        [DataMember]
         public String Description { get; set; }
+        [DataMember]
         public String Line1 { get; set; }
+        [DataMember]
         public String Line2 { get; set; }
+        [DataMember]
         public String Line3 { get; set; }
+        [DataMember]
         public String Line4 { get; set; }
 
         public override string ToString()
