@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Xml.Linq;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Reactive;
 namespace OpenStreetApp
@@ -97,7 +95,7 @@ namespace OpenStreetApp
 
         private void OSM_Map_OnDoubleClick()
         {
-            this.OSM_Map.ZoomLevel *= 0.1;
+            this.OSM_Map.ZoomLevel += 0.5;
         }
 
         public void navigateToCoordinate(Point p, double zoom)
