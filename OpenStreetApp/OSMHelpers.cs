@@ -3,11 +3,31 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows;
 using System.Xml.Linq;
+using System.Device.Location;
 
 namespace OpenStreetApp
 {
     public static class OSMHelpers
     {
+
+        public static void GeoPositionToLocation(Point geoCoordinate, Action<Location> callback)
+      { 
+          Uri adress = new Uri("http://where.yahooapis.com/geocode?q="
+              + geoCoordinate.X + ",+" + geoCoordinate.Y +
+          "&gflags=R&appid=dj0yJmk9ZWMzSjkwU1JWOHE0JmQ9WVdrOVF6RlpRWFp5TjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZ");
+
+          System.Net.WebClient wc = new System.Net.WebClient();
+          wc.DownloadStringCompleted += (sender, e) =>
+          {
+              Location location = new Location();
+
+              System.Diagnostics.Debug.WriteLine(e.Result);
+              
+              callback(location);
+          };
+          wc.DownloadStringAsync(adress);
+      }
+
       public static void InputAdressToLocations(String inputAdressString, Action<List<Location>> callback)
         {
             InputAdressAsync(inputAdressString, (List1) =>

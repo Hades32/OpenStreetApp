@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Reactive;
+
 namespace OpenStreetApp
 {
     public partial class MapControl : UserControl
@@ -70,6 +72,8 @@ namespace OpenStreetApp
             }
         }
 
+        private MapLayer PushpinLayer = new MapLayer();
+
         public MapControl()
         {
             InitializeComponent();
@@ -84,9 +88,11 @@ namespace OpenStreetApp
                         // subscribing directly on that dispatcher didn't work...
                         this.Dispatcher.BeginInvoke(OSM_Map_OnDoubleClick);
                 }));
+
+            this.OSM_Map.Children.Add(PushpinLayer);
         }
 
-        private void Control_Loaded(object sender, RoutedEventArgs e)
+        void Control_Loaded(object sender, RoutedEventArgs e)
         {
             this.OSM_Map.CredentialsProvider = new ApplicationIdCredentialsProvider("Akc2a6v34Acf-tYc8miIU8NgDDffnkpD7TZdV69jwWk-3pt21_RCIUfba7_G5-Vl");
         }
@@ -121,6 +127,12 @@ namespace OpenStreetApp
             res.Y = this.OSM_Map.TargetCenter.Latitude;
 
             return res;
+        }
+
+        public void addPushpin(GeoCoordinate geoCoordinate)
+        {
+            Pushpin pushpin = new Pushpin();
+            this.PushpinLayer.AddChild(pushpin, geoCoordinate);
         }
 
         private void touchBorder_ManipulationStarted(object sender, System.Windows.Input.ManipulationStartedEventArgs e)
