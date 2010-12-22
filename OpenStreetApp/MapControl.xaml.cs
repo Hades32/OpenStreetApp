@@ -75,7 +75,7 @@ namespace OpenStreetApp
             InitializeComponent();
 
             // Implement double click
-            Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.OSM_Map, "MouseLeftButtonUp")
+            Microsoft.Phone.Reactive.Observable.FromEvent<MouseButtonEventArgs>(this.touchBorder, "MouseLeftButtonUp")
             .BufferWithTimeOrCount(TimeSpan.FromSeconds(0.5), 2)
             .Subscribe(new Action<IList<IEvent<MouseButtonEventArgs>>>(
                 eventList =>
@@ -88,8 +88,6 @@ namespace OpenStreetApp
 
         private void Control_Loaded(object sender, RoutedEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
-                this.OSM_Map.ZoomBarVisibility = System.Windows.Visibility.Visible;
             this.OSM_Map.CredentialsProvider = new ApplicationIdCredentialsProvider("Akc2a6v34Acf-tYc8miIU8NgDDffnkpD7TZdV69jwWk-3pt21_RCIUfba7_G5-Vl");
         }
 
@@ -123,6 +121,50 @@ namespace OpenStreetApp
             res.Y = this.OSM_Map.TargetCenter.Latitude;
 
             return res;
+        }
+
+        private void touchBorder_ManipulationStarted(object sender, System.Windows.Input.ManipulationStartedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void touchBorder_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
+        {
+            // is zoom
+            if (e.DeltaManipulation.Scale.X != 0 ||
+                e.DeltaManipulation.Scale.Y != 0)
+            {
+                e.Complete();
+                var zoom = this.OSM_Map.ZoomLevel * Math.Min(e.DeltaManipulation.Scale.X,
+                                                         e.DeltaManipulation.Scale.Y);
+                if (zoom == this.OSM_Map.ZoomLevel)
+                    zoom = this.OSM_Map.ZoomLevel * Math.Max(e.DeltaManipulation.Scale.X,
+                                                         e.DeltaManipulation.Scale.Y);
+                if (zoom == this.OSM_Map.ZoomLevel)
+                    return;
+
+                this.OSM_Map.ZoomLevel = zoom;
+                this.OSM_Map.Center = this.OSM_Map.ViewportPointToLocation(e.ManipulationOrigin);
+            }
+            else // no zoom
+            {
+                var newpos = this.OSM_Map.LocationToViewportPoint(this.OSM_Map.Center);
+                var widthConst = 1;
+                var heightConst = 1;
+                var dx = e.DeltaManipulation.Translation.X * widthConst;
+                var dy = e.DeltaManipulation.Translation.Y * heightConst;
+                newpos.X -= dx;
+                newpos.Y -= dy;
+                this.OSM_Map.AnimationLevel = AnimationLevel.None;
+                this.OSM_Map.Center = this.OSM_Map.ViewportPointToLocation(newpos);
+                this.OSM_Map.AnimationLevel = AnimationLevel.Full;
+            }
+            e.Handled = true;
+        }
+
+        private void touchBorder_ManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

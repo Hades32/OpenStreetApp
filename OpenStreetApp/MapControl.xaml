@@ -13,17 +13,23 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     Loaded="Control_Loaded"
     d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Border x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+
+    <Grid Background="{StaticResource PhoneChromeBrush}">
+        
         <my:Map x:Name="OSM_Map" Margin="0" CopyrightVisibility="Collapsed"
-                LogoVisibility="Collapsed" ZoomBarVisibility="Collapsed">
+            LogoVisibility="Collapsed" ZoomBarVisibility="Collapsed">
             <my:Map.Mode>
                 <mycore:MercatorMode/>
             </my:Map.Mode>
             <my:Map.Children>
                 <my:MapTileLayer x:Name="TileLayer"/>
             </my:Map.Children>
-            
+
         </my:Map>
-    </Border>
+
+        <Border Name="touchBorder" Background="Transparent"
+                ManipulationStarted="touchBorder_ManipulationStarted"
+                ManipulationDelta="touchBorder_ManipulationDelta"
+                ManipulationCompleted="touchBorder_ManipulationCompleted"/>
+    </Grid>
 </UserControl>

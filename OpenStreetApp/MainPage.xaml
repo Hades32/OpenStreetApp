@@ -16,14 +16,9 @@
     UseLayoutRounding="True"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
-
-      <my:MapControl x:Name="OSM_Map" Source="{Binding Path=TileSource}"/>
-
-    </Grid>
+    <my:MapControl x:Name="OSM_Map" Source="{Binding Path=TileSource}"
+                    Background="Black"/>
  
-    <!--Beispielcode für die Verwendung von ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5">
             <shell:ApplicationBarIconButton x:Name="geoLocationButton" Click="geoLocationButton_Click"  IconUri="Images/geo.png" Text="Aktueller Standort"/>

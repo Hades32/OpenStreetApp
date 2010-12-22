@@ -9,7 +9,7 @@ namespace OpenStreetApp
     {
         GeoCoordinateWatcher watcher;
         GeoPosition<GeoCoordinate> lastKnownPosition;
-      
+
         // Stores the last user-searched Location.
         public static Location lastSearchedLocation = null;
 
