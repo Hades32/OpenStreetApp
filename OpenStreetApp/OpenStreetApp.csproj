@@ -79,6 +79,9 @@
     <Compile Include="ErrorPage.xaml.cs">
       <DependentUpon>ErrorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FavoritesPage.xaml.cs">
+      <DependentUpon>FavoritesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavoritesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

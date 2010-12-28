@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows.Threading;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Xml;
 
 namespace OpenStreetApp
 {
@@ -54,6 +57,8 @@ namespace OpenStreetApp
 
         #endregion
 
+        public List<Location> Favorites { private set; get; }
+
         public IEnumerable<Microsoft.Phone.Controls.Maps.TileSource> AvailableTileSources { private set; get; }
 
         // Provides a Dictionary(Of TKey, TValue) that stores key-value pairs in isolated storage. 
@@ -84,12 +89,14 @@ namespace OpenStreetApp
             //avoid NULL checks
             this.PropertyChanged += (s, e) => { };
             // set some sensible defaults
-            var defaultTS =
+           
             this.AvailableTileSources = new List<Microsoft.Phone.Controls.Maps.TileSource>() 
             {
                 new OSMTileSource(), new VEArialTileSource(), new VERoadTileSource(), new CloudeMadeTileSource()
             };
             this.TileSource = AvailableTileSources.ElementAt(SelectedTileSourceSetting);
+
+            this.Favorites = loadFavoritesFromFile();
         }
 
         public void initialize(Action callback, Dispatcher dispatcher)
@@ -179,5 +186,58 @@ namespace OpenStreetApp
                 Save();
             }
         }
+
+
+        // SERIALIZING FAVORITES 
+
+        public void addFavorite(Location toAdd)
+        {
+            this.Favorites.Add(toAdd);
+            saveFavoritesToFile();
+        }
+
+        private List<Location> loadFavoritesFromFile()
+        {
+            //Setting the fileName
+            var fileName = "favorites.dat";
+            DataContractSerializer dcs = new DataContractSerializer(typeof(List<Location>));
+            try
+            {
+                ///<summary>
+                ///get the user Store and then open the file in the store
+                ///finally read the content to the file and return it
+                ///</summary>
+                using (var store = IsolatedStorageFile.GetUserStoreForApplication())
+                using (var readStream = new IsolatedStorageFileStream(fileName, FileMode.Open, store))
+
+                    return (List<Location>)dcs.ReadObject(readStream);
+            }
+            catch (IsolatedStorageException e)
+            {
+                //IsolatedStorageException catch if File cant be opened
+                System.Diagnostics.Debug.WriteLine(e.Message + e.StackTrace);
+                return null;
+            }
+            catch (SerializationException n)
+            {
+                System.Diagnostics.Debug.WriteLine(n.Message + n.StackTrace);
+                return new List<Location>();
+            }
+        }
+
+        private void saveFavoritesToFile()
+        {
+            var fileName = "favorites.dat";
+            DataContractSerializer dcs = new DataContractSerializer(typeof(List<Location>));
+            ///<summary>
+            ///get the user Store and then create the file in the store
+            ///finally write the content to the file
+            ///</summary>
+            using (var store = IsolatedStorageFile.GetUserStoreForApplication())
+            using (var writeStream = new IsolatedStorageFileStream(fileName, FileMode.Create, store))
+
+            dcs.WriteObject(writeStream, this.Favorites);
+        }
+
     }
 }

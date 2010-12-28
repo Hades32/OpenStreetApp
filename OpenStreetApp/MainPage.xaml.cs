@@ -92,7 +92,7 @@ namespace OpenStreetApp
 
         private void showFavoritesButton_Click(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/FavoritesPage.xaml", UriKind.Relative));
         }
 
         private void POIButton_Click(object sender, EventArgs e)

@@ -10,11 +10,15 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.IO.IsolatedStorage;
+using System.IO;
 
 namespace OpenStreetApp
 {
     public partial class AddFavorite : PhoneApplicationPage
     {
+        private Location current = null;
+
         public AddFavorite()
         {
             OSMHelpers.GeoPositionToLocation(MainPage.currentPosition, onLocationReceived);
@@ -24,11 +28,12 @@ namespace OpenStreetApp
         private void onLocationReceived(Location current)
         {
             this.LocationInfo.Text = current.ToString();
+            this.current = current;
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            // TODO SERIALIZE
+            OSA_Configuration.Instance.addFavorite(this.current);   
         }
     }
 }
