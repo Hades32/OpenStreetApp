@@ -13,14 +13,25 @@ namespace OpenStreetApp
         public static void GeoPositionToLocation(Point geoCoordinate, Action<Location> callback)
       { 
           Uri adress = new Uri("http://where.yahooapis.com/geocode?q="
-              + geoCoordinate.X + ",+" + geoCoordinate.Y +
-          "&gflags=R&appid=dj0yJmk9ZWMzSjkwU1JWOHE0JmQ9WVdrOVF6RlpRWFp5TjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZ");
+              + geoCoordinate.Y.ToString().Replace(",", ".") + ",+" + geoCoordinate.X.ToString().Replace(",", ".") +
+          "&gflags=R&locale=" + System.Globalization.CultureInfo.CurrentCulture.Name + "&appid=dj0yJmk9ZWMzSjkwU1JWOHE0JmQ9WVdrOVF6RlpRWFp5TjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZ");
 
           System.Net.WebClient wc = new System.Net.WebClient();
           wc.DownloadStringCompleted += (sender, e) =>
           {
-              Location location = new Location();
+              XDocument xdoc = XDocument.Parse(e.Result);
+              XElement resultSetRoot = xdoc.Element("ResultSet");
 
+              var elem = resultSetRoot.Element("Result");
+
+              Location location = new Location();
+              location.Longitude = Double.Parse(elem.Element("longitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+              location.Latitude = Double.Parse(elem.Element("latitude").Value, System.Globalization.NumberFormatInfo.InvariantInfo);
+              location.Line1 = elem.Element("line1").Value;
+              location.Line2 = elem.Element("line2").Value;
+              location.Line3 = elem.Element("line3").Value;
+              location.Line4 = elem.Element("line4").Value;
+             
               System.Diagnostics.Debug.WriteLine(e.Result);
               
               callback(location);

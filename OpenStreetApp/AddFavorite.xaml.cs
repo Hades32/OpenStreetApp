@@ -23,7 +23,7 @@ namespace OpenStreetApp
 
         private void onLocationReceived(Location current)
         {
-            
+            this.LocationInfo.Text = current.ToString();
         }
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
