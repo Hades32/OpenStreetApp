@@ -48,5 +48,17 @@ namespace OpenStreetApp
             }
             return returnString;
         }
+
+        public String LocationListView
+        {
+            get
+            {
+                return this.ToString();
+            }
+            set
+            {
+                return;
+            }
+        }
     }
 }

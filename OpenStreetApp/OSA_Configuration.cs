@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
+using System.Collections.ObjectModel;
 
 namespace OpenStreetApp
 {
@@ -57,7 +58,7 @@ namespace OpenStreetApp
 
         #endregion
 
-        public List<Location> Favorites { private set; get; }
+        public ObservableCollection<Location> Favorites { private set; get; }
 
         public IEnumerable<Microsoft.Phone.Controls.Maps.TileSource> AvailableTileSources { private set; get; }
 
@@ -196,7 +197,13 @@ namespace OpenStreetApp
             saveFavoritesToFile();
         }
 
-        private List<Location> loadFavoritesFromFile()
+        public void removeFavorite(Location toRemove)
+        {
+            this.Favorites.Remove(toRemove);
+            saveFavoritesToFile();
+        }
+
+        private ObservableCollection<Location> loadFavoritesFromFile()
         {
             //Setting the fileName
             var fileName = "favorites.dat";
@@ -210,25 +217,30 @@ namespace OpenStreetApp
                 using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 using (var readStream = new IsolatedStorageFileStream(fileName, FileMode.Open, store))
 
-                    return (List<Location>)dcs.ReadObject(readStream);
+                    return (ObservableCollection<Location>)dcs.ReadObject(readStream);
             }
             catch (IsolatedStorageException e)
             {
                 //IsolatedStorageException catch if File cant be opened
                 System.Diagnostics.Debug.WriteLine(e.Message + e.StackTrace);
-                return null;
+                return new ObservableCollection<Location>();
             }
             catch (SerializationException n)
             {
                 System.Diagnostics.Debug.WriteLine(n.Message + n.StackTrace);
-                return new List<Location>();
+                return new ObservableCollection<Location>();
+            }
+            catch (InvalidCastException m)
+            {
+                System.Diagnostics.Debug.WriteLine(m.Message + m.StackTrace);
+                return new ObservableCollection<Location>();
             }
         }
 
         private void saveFavoritesToFile()
         {
             var fileName = "favorites.dat";
-            DataContractSerializer dcs = new DataContractSerializer(typeof(List<Location>));
+            DataContractSerializer dcs = new DataContractSerializer(typeof(ObservableCollection<Location>));
             ///<summary>
             ///get the user Store and then create the file in the store
             ///finally write the content to the file

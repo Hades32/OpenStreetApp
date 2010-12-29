@@ -30,14 +30,22 @@
         <!--ContentPanel - place additional content here-->
         <StackPanel x:Name="ResultPanel" Grid.Row="1" Visibility="Visible">
             <ListBox x:Name="favorites"  Margin="22,15,15,-390" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                     ScrollViewer.HorizontalScrollBarVisibility="Auto" FontSize="30"
-                     ItemsSource="{Binding Path=Favorites, Mode=TwoWay}" Height="Auto" >
-                <toolkit:ContextMenuService.ContextMenu>
-                    <toolkit:ContextMenu x:Name="contextMenu" Opened="contextMenu_Opened">
-                        <toolkit:MenuItem x:Name="description" Header="Beschreibung sollte hier stehen. Handler, Events, lass dir was einfallen ;) "/>
-                        <toolkit:MenuItem x:Name="delete" Header="Löschen"/>
-                    </toolkit:ContextMenu>
-                </toolkit:ContextMenuService.ContextMenu>
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="30"
+                     ItemsSource="{Binding Path=Favorites, Mode=TwoWay}" Height="Auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Path=LocationListView, Mode=OneWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu x:Name="contextMenu">
+                                        <toolkit:MenuItem x:Name="detail" Header="Details" Click="detail_Click"/>
+                                        <toolkit:MenuItem x:Name="delete" Header="Löschen" Click="delete_Click"/>
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>            
             </ListBox>
         </StackPanel>
     </Grid>

@@ -21,9 +21,17 @@ namespace OpenStreetApp
             this.DataContext = OSA_Configuration.Instance;
         }
 
-        private void contextMenu_Opened(object sender, RoutedEventArgs e)
+        private void detail_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("blubb");
+
+        }
+
+        private void delete_Click(object sender, RoutedEventArgs e)
+        {
+            Location selected = (sender as MenuItem).DataContext as Location;
+            OSA_Configuration.Instance.removeFavorite(selected);
+            //this.favorites.ItemsSource = null;
+            //this.favorites.ItemsSource = OSA_Configuration.Instance.Favorites;
         }
     }
 }
