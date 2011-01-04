@@ -135,6 +135,11 @@ namespace OpenStreetApp
             this.PushpinLayer.AddChild(pushpin, geoCoordinate);
         }
 
+        public void setRoute(LocationCollection points)
+        {
+            this.Route.Locations = points;
+        }
+
         private void touchBorder_ManipulationStarted(object sender, System.Windows.Input.ManipulationStartedEventArgs e)
         {
             e.Handled = true;

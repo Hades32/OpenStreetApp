@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+using System.ComponentModel;
+using System.Device.Location;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using System.ComponentModel;
 
 namespace OpenStreetApp
 {
@@ -41,7 +36,7 @@ namespace OpenStreetApp
         }
 
         #endregion
-      
+
 
         public SearchPage()
         {
@@ -70,14 +65,15 @@ namespace OpenStreetApp
             this.Dispatcher.BeginInvoke(() =>
             {
                 this.Locations = newLocations;
-            });          
+            });
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MainPage.lastSearchedLocation = (Location) this.results.SelectedItem;
+            var targetLocation = (Location)this.results.SelectedItem; ;
+            MainPage.targetLocation = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
             NavigationService.GoBack();
         }
 

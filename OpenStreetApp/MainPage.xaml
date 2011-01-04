@@ -27,6 +27,7 @@
             <shell:ApplicationBarIconButton x:Name="POIButton" Click="POIButton_Click" IconUri="Images/poi.png" Text="Wichtige Punkte"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem x:Name="showFavoritesButton" Click="showFavoritesButton_Click" Text="Favoriten anzeigen"/>
+                <shell:ApplicationBarMenuItem x:Name="routeBtn" Click="routeBtn_Click" Text="Route planen"/>
                 <shell:ApplicationBarMenuItem x:Name="preferencesButton" Click="preferencesButton_Click" Text="Einstellungen"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

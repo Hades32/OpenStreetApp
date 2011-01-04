@@ -2,14 +2,16 @@
 using System.Device.Location;
 using System.Windows;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Controls.Maps;
 
 namespace OpenStreetApp
 {
     public partial class MainPage : PhoneApplicationPage
     {
-
         // Stores the last user-searched Location.
-        public static Location lastSearchedLocation = null;
+        public static GeoCoordinate targetLocation = null;
+        public static LocationCollection newRoute = null;
+
         public static Point currentPosition = new Point();
 
         public MainPage()
@@ -46,7 +48,21 @@ namespace OpenStreetApp
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-
+            CloudeMadeService.getRoute(new GeoCoordinate(48.458756, 10.100310),
+                                                            new GeoCoordinate(48.426353, 10.115564),
+                                                            null, (wps) =>
+                {
+                    var waypoints = new LocationCollection();
+                    foreach (var item in wps)
+                    {
+                        waypoints.Add(item.Coordinate);
+                    }
+                    this.Dispatcher.BeginInvoke(() =>
+                        {
+                            this.OSM_Map.setRoute(waypoints);
+                            this.OSM_Map.navigateToCoordinate(waypoints[waypoints.Count / 2], 8);
+                        });
+                });
         }
 
         private void openButton_Click(object sender, EventArgs e)
@@ -69,6 +85,11 @@ namespace OpenStreetApp
             NavigationService.Navigate(new Uri("/PreferencesPage.xaml", UriKind.Relative));
         }
 
+        private void routeBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void favoriteButton_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(this.OSM_Map.getCurrentPosition());
@@ -88,11 +109,15 @@ namespace OpenStreetApp
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (lastSearchedLocation != null)
+            if (targetLocation != null)
             {
-                GeoCoordinate nC = new GeoCoordinate(lastSearchedLocation.Latitude, lastSearchedLocation.Longitude);
-                this.OSM_Map.navigateToCoordinate(nC, 16);
-                lastSearchedLocation = null;
+                this.OSM_Map.navigateToCoordinate(targetLocation, 16);
+                targetLocation = null;
+            }
+            if (newRoute != null)
+            {
+                this.OSM_Map.setRoute(newRoute);
+                newRoute = null;
             }
         }
     }

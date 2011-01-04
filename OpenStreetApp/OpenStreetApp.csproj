@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="BetterProgressBar\RelativeAnimatingContentControl.cs" />
     <Compile Include="CloudeMadeService.cs" />
+    <Compile Include="Waypoint.cs" />
     <Compile Include="ErrorPage.xaml.cs">
       <DependentUpon>ErrorPage.xaml</DependentUpon>
     </Compile>
