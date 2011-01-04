@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Device.Location;
+using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
@@ -10,6 +11,9 @@ namespace OpenStreetApp
         public PhoneApplicationFrame RootFrame { get; private set; }
 
         public static System.Exception LastException { get; set; }
+
+        public static GeoCoordinateWatcher watcher;
+        public static GeoPosition<GeoCoordinate> lastKnownPosition;
 
         public App()
         {
@@ -31,6 +35,39 @@ namespace OpenStreetApp
             InitializeComponent();
 
             InitializePhoneApplication();
+
+            // Initialize GeoLocation Listener
+            watcher = new GeoCoordinateWatcher();
+            watcher.MovementThreshold = 20;
+
+            watcher.StatusChanged += watcher_StatusChanged;
+            watcher.PositionChanged += watcher_PositionChanged;
+
+            watcher.Start();
+            System.Diagnostics.Debug.WriteLine("watcher started");
+        }
+
+        void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            System.Diagnostics.Debug.WriteLine("receive coordinate, now setting");
+            lastKnownPosition = e.Position;
+            System.Diagnostics.Debug.WriteLine("new coordinate is now:" + lastKnownPosition.Location.Latitude + ", " + lastKnownPosition.Location.Longitude);
+        }
+
+        void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+            switch (e.Status)
+            {
+                case GeoPositionStatus.Disabled:
+                    // READ ARTICLE FOR POPUP - ERROR Message
+                    break;
+                case GeoPositionStatus.Ready:
+                    System.Diagnostics.Debug.WriteLine("service is now ready");
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void Application_Launching(object sender, LaunchingEventArgs e)

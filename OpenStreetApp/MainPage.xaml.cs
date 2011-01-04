@@ -7,8 +7,6 @@ namespace OpenStreetApp
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        GeoCoordinateWatcher watcher;
-        GeoPosition<GeoCoordinate> lastKnownPosition;
 
         // Stores the last user-searched Location.
         public static Location lastSearchedLocation = null;
@@ -24,60 +22,26 @@ namespace OpenStreetApp
 
             this.DataContext = OSA_Configuration.Instance;
 
-            // Initialize GeoLocation Listener
-            watcher = new GeoCoordinateWatcher();
-            watcher.MovementThreshold = 20;
-
-            watcher.StatusChanged += watcher_StatusChanged;
-            watcher.PositionChanged += watcher_PositionChanged;
-
             if ((!(System.Diagnostics.Debugger.IsAttached)) && OSA_Configuration.Instance.UseCurrentLocationSetting)
             {
-                watcher.PositionChanged += watcher_initialLocationing;
+                App.watcher.PositionChanged += watcher_initialLocationing;
             }
-
-            watcher.Start();
-            System.Diagnostics.Debug.WriteLine("watcher started");
         }
 
         void watcher_initialLocationing(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             System.Diagnostics.Debug.WriteLine("user wanted to start at his location");
-            lastKnownPosition = e.Position;
-            Point p = new Point(this.lastKnownPosition.Location.Longitude, this.lastKnownPosition.Location.Latitude);
+            App.lastKnownPosition = e.Position;
+            Point p = new Point(App.lastKnownPosition.Location.Longitude, App.lastKnownPosition.Location.Latitude);
             this.OSM_Map.navigateToCoordinate(p, 16);
-            watcher.PositionChanged -= watcher_initialLocationing;
-        }
-
-        void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
-        {
-            System.Diagnostics.Debug.WriteLine("receive coordinate, now setting");
-            lastKnownPosition = e.Position;
-            System.Diagnostics.Debug.WriteLine("new coordinate is now:" + lastKnownPosition.Location.Latitude + ", " + lastKnownPosition.Location.Longitude);
-        }
-
-        void watcher_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
-        {
-            switch (e.Status)
-            {
-                case GeoPositionStatus.Disabled:
-                    // READ ARTICLE FOR POPUP - ERROR Message
-                    break;
-                case GeoPositionStatus.Ready:
-                    System.Diagnostics.Debug.WriteLine("service is now ready");
-                    break;
-
-                default:
-                    break;
-            }
+            App.watcher.PositionChanged -= watcher_initialLocationing;
         }
 
         private void geoLocationButton_Click(object sender, EventArgs e)
         {
-            lastKnownPosition = this.watcher.Position;
-            Point p = new Point(this.lastKnownPosition.Location.Longitude, this.lastKnownPosition.Location.Latitude);
+            Point p = new Point(App.lastKnownPosition.Location.Longitude, App.lastKnownPosition.Location.Latitude);
+            this.OSM_Map.addPushpin(App.lastKnownPosition.Location);
             this.OSM_Map.navigateToCoordinate(p, 16);
-            this.OSM_Map.addPushpin(lastKnownPosition.Location);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
