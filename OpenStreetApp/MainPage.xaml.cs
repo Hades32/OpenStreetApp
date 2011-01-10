@@ -8,10 +8,6 @@ namespace OpenStreetApp
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Stores the last user-searched Location.
-        public static GeoCoordinate targetLocation = null;
-        public static LocationCollection newRoute = null;
-
         public static Point currentPosition = new Point();
 
         public MainPage()
@@ -109,16 +105,21 @@ namespace OpenStreetApp
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            //came from SearchPage?
+            var targetLocation = SearchPage.popResult();
             if (targetLocation != null)
             {
-                this.OSM_Map.navigateToCoordinate(targetLocation, 16);
+                var coords = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
+                this.OSM_Map.navigateToCoordinate(coords, 16);
                 targetLocation = null;
             }
-            if (newRoute != null)
+            /*if (newRoute != null)
             {
                 this.OSM_Map.setRoute(newRoute);
+                this.OSM_Map.navigateToCoordinate(newRoute[newRoute.Count / 2], 10);
                 newRoute = null;
-            }
+            }*/
         }
     }
 }

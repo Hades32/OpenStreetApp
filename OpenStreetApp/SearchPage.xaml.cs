@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Device.Location;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,6 +10,33 @@ namespace OpenStreetApp
 {
     public partial class SearchPage : PhoneApplicationPage, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string prop)
+        {
+            var handler = this.PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(prop));
+        }
+
+        #region result handling
+
+        private static Location result = null;
+
+        /// <summary>
+        /// This methods returns the last selected location and then
+        /// DELETES the result. 
+        /// </summary>
+        /// <returns>The last selected location</returns>
+        public static Location popResult()
+        {
+            var res = SearchPage.result;
+            SearchPage.result = null;
+            return res;
+        }
+
+        #endregion
+
         #region Locations
 
         /// <summary>
@@ -30,19 +56,17 @@ namespace OpenStreetApp
                 if (value != this._Locations)
                 {
                     this._Locations = value;
-                    this.PropertyChanged(this, new PropertyChangedEventArgs("Locations"));
+                    this.RaisePropertyChanged("Locations");
                 }
             }
         }
 
         #endregion
 
-
         public SearchPage()
         {
             InitializeComponent();
             this.DataContext = this;
-            this.PropertyChanged += (a, b) => { };
         }
 
         private void buttonOK_Click(object sender, RoutedEventArgs e)
@@ -68,12 +92,9 @@ namespace OpenStreetApp
             });
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var targetLocation = (Location)this.results.SelectedItem; ;
-            MainPage.targetLocation = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
+            SearchPage.result = (Location)this.results.SelectedItem;
             NavigationService.GoBack();
         }
 
