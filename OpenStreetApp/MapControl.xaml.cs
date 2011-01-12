@@ -154,10 +154,10 @@ namespace OpenStreetApp
                 System.Diagnostics.Debug.WriteLine("still getting zoom event");
                 e.Complete();
                 var zoom = this.OSM_Map.ZoomLevel * Math.Min(e.DeltaManipulation.Scale.X,
-                                                         e.DeltaManipulation.Scale.Y);
+                                                             e.DeltaManipulation.Scale.Y);
                 if (zoom == this.OSM_Map.ZoomLevel)
                     zoom = this.OSM_Map.ZoomLevel * Math.Max(e.DeltaManipulation.Scale.X,
-                                                         e.DeltaManipulation.Scale.Y);
+                                                             e.DeltaManipulation.Scale.Y);
                 if (zoom == this.OSM_Map.ZoomLevel)
                     return;
 

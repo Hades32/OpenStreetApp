@@ -19,24 +19,6 @@ namespace OpenStreetApp
                 handler(this, new PropertyChangedEventArgs(prop));
         }
 
-        #region result handling
-
-        private static Location result = null;
-
-        /// <summary>
-        /// This methods returns the last selected location and then
-        /// DELETES the result. 
-        /// </summary>
-        /// <returns>The last selected location</returns>
-        public static Location popResult()
-        {
-            var res = SearchPage.result;
-            SearchPage.result = null;
-            return res;
-        }
-
-        #endregion
-
         #region Locations
 
         /// <summary>
@@ -94,7 +76,9 @@ namespace OpenStreetApp
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SearchPage.result = (Location)this.results.SelectedItem;
+            var res = App.NavigationResults[this.GetType()];
+            App.NavigationResults[this.GetType()] =
+                new KeyValuePair<string, object>(res.Key, this.results.SelectedItem);
             NavigationService.GoBack();
         }
 

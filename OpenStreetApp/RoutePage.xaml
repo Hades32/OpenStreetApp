@@ -19,10 +19,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-      <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-        <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
-        <TextBlock x:Name="PageTitle" Text="Route" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-      </StackPanel>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Route" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
 
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock Text="Start" Margin="10,10,0,0"
@@ -40,10 +40,12 @@
                 <TextBlock Text="Ziel auswählen"/>
             </Button>
             
-            <Button Margin="0,50,0,0" Name="routeBtn" Click="routeBtn_Click">
+            <Button Margin="0,50,0,0" Name="routeBtn" IsEnabled="False" Click="routeBtn_Click">
                 <TextBlock Text="Und Los!!!" FontSize="30"
                     Style="{StaticResource PhoneTextAccentStyle}"/>
             </Button>
+
+            <ProgressBar Name="progress" Visibility="Collapsed" Margin="0,20"/>
         </StackPanel>
     </Grid>
 

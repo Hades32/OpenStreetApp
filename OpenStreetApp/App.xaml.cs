@@ -1,4 +1,6 @@
-﻿using System.Device.Location;
+﻿using System;
+using System.Collections.Generic;
+using System.Device.Location;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
@@ -14,6 +16,12 @@ namespace OpenStreetApp
 
         public static GeoCoordinateWatcher watcher;
         public static GeoPosition<GeoCoordinate> lastKnownPosition;
+
+        /// <summary>
+        /// stores results from pages. The string from the pair is used to store calling site information.
+        /// </summary>
+        public static Dictionary<Type, KeyValuePair<string, object>> NavigationResults
+            = new Dictionary<Type, KeyValuePair<string, object>>();
 
         public App()
         {

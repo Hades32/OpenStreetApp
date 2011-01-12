@@ -39,10 +39,15 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" Name="textDescription" Text="Bitte Zielort eingeben:" FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" Margin="0,0,0,0" InputScope="Search" KeyDown="TargetInput_KeyDown"/>
-                <Button Grid.Row="2" Grid.Column="0" x:Name="buttonOK" Content="Ok" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="0,0,0,0" Click="buttonOK_Click"/>
-                <Button Grid.Row="2" Grid.Column="1" x:Name="buttonAbort" Content="Abbrechen" Width="auto" Height="auto" HorizontalAlignment="Left" Margin="70,0,0,0" Click="buttonAbort_Click"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
+                           Name="textDescription" Text="Ortsname:" 
+                           FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" 
+                         Margin="0,0,0,0" InputScope="Search" KeyDown="TargetInput_KeyDown"/>
+                <Button Grid.Row="2" Grid.Column="0" x:Name="buttonOK" Content="Ok" Width="auto" Height="auto" 
+                        HorizontalAlignment="Left" Margin="0,0,0,0" Click="buttonOK_Click"/>
+                <Button Grid.Row="2" Grid.Column="1" x:Name="buttonAbort" Content="Abbrechen" Width="auto"
+                        Height="auto" HorizontalAlignment="Left" Margin="70,0,0,0" Click="buttonAbort_Click"/>
 
                 
             </Grid>    

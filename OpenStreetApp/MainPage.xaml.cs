@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Device.Location;
 using System.Windows;
 using Microsoft.Phone.Controls;
@@ -44,25 +45,11 @@ namespace OpenStreetApp
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            CloudeMadeService.getRoute(new GeoCoordinate(48.458756, 10.100310),
-                                                            new GeoCoordinate(48.426353, 10.115564),
-                                                            null, (wps) =>
-                {
-                    var waypoints = new LocationCollection();
-                    foreach (var item in wps)
-                    {
-                        waypoints.Add(item.Coordinate);
-                    }
-                    this.Dispatcher.BeginInvoke(() =>
-                        {
-                            this.OSM_Map.setRoute(waypoints);
-                            this.OSM_Map.navigateToCoordinate(waypoints[waypoints.Count / 2], 8);
-                        });
-                });
         }
 
         private void openButton_Click(object sender, EventArgs e)
         {
+            App.NavigationResults.setOrAdd(typeof(SearchPage), new KeyValuePair<string, object>("search", null));
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
 
@@ -83,7 +70,8 @@ namespace OpenStreetApp
 
         private void routeBtn_Click(object sender, EventArgs e)
         {
-
+            App.NavigationResults.setOrAdd(typeof(RoutePage), new KeyValuePair<string, object>("route", null));
+            NavigationService.Navigate(new Uri("/RoutePage.xaml", UriKind.Relative));
         }
 
         private void favoriteButton_Click(object sender, EventArgs e)
@@ -107,12 +95,26 @@ namespace OpenStreetApp
             base.OnNavigatedTo(e);
 
             //came from SearchPage?
-            var targetLocation = SearchPage.popResult();
-            if (targetLocation != null)
+            if (App.NavigationResults.ContainsKey(typeof(SearchPage)))
             {
+                var searchresult = App.NavigationResults.getOrDefault(typeof(SearchPage));
+                var targetLocation = (Location)searchresult.Value;
                 var coords = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
                 this.OSM_Map.navigateToCoordinate(coords, 16);
-                targetLocation = null;
+                App.NavigationResults.Remove(typeof(SearchPage));
+            }
+            if (App.NavigationResults.ContainsKey(typeof(RoutePage)))
+            {
+                var searchresult = App.NavigationResults.getOrDefault(typeof(RoutePage));
+                var wps = (IEnumerable<Waypoint>)searchresult.Value;
+                var waypoints = new LocationCollection();
+                foreach (var item in wps)
+                {
+                    waypoints.Add(item.Coordinate);
+                }
+                this.OSM_Map.setRoute(waypoints);
+                this.OSM_Map.navigateToCoordinate(waypoints[waypoints.Count / 2], 8);
+                App.NavigationResults.Remove(typeof(RoutePage));
             }
             /*if (newRoute != null)
             {
