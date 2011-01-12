@@ -99,21 +99,27 @@ namespace OpenStreetApp
             {
                 var searchresult = App.NavigationResults.getOrDefault(typeof(SearchPage));
                 var targetLocation = (Location)searchresult.Value;
-                var coords = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
-                this.OSM_Map.navigateToCoordinate(coords, 16);
+                if (targetLocation != null)
+                {
+                    var coords = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
+                    this.OSM_Map.navigateToCoordinate(coords, 16);
+                }
                 App.NavigationResults.Remove(typeof(SearchPage));
             }
             if (App.NavigationResults.ContainsKey(typeof(RoutePage)))
             {
                 var searchresult = App.NavigationResults.getOrDefault(typeof(RoutePage));
                 var wps = (IEnumerable<Waypoint>)searchresult.Value;
-                var waypoints = new LocationCollection();
-                foreach (var item in wps)
+                if (wps != null)
                 {
-                    waypoints.Add(item.Coordinate);
+                    var waypoints = new LocationCollection();
+                    foreach (var item in wps)
+                    {
+                        waypoints.Add(item.Coordinate);
+                    }
+                    this.OSM_Map.setRoute(waypoints);
+                    this.OSM_Map.navigateToCoordinate(waypoints[waypoints.Count / 2], 8);
                 }
-                this.OSM_Map.setRoute(waypoints);
-                this.OSM_Map.navigateToCoordinate(waypoints[waypoints.Count / 2], 8);
                 App.NavigationResults.Remove(typeof(RoutePage));
             }
             /*if (newRoute != null)
