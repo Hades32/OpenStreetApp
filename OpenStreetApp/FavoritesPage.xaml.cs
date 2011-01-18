@@ -38,5 +38,10 @@ namespace OpenStreetApp
         {
 
         }
+
+        private void addFavorite_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddFavorite.xaml", UriKind.Relative));
+        }
     }
 }

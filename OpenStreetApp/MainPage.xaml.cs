@@ -53,11 +53,6 @@ namespace OpenStreetApp
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
 
-        private void showFavoritesButton_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/FavoritesPage.xaml", UriKind.Relative));
-        }
-
         private void POIButton_Click(object sender, EventArgs e)
         {
             this.OSM_Map.zoomToWorldView();
@@ -76,10 +71,11 @@ namespace OpenStreetApp
 
         private void favoriteButton_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(this.OSM_Map.getCurrentPosition());
-            currentPosition = this.OSM_Map.getCurrentPosition();
-            NavigationService.Navigate(new Uri("/AddFavorite.xaml", UriKind.Relative));
 
+            //System.Diagnostics.Debug.WriteLine(this.OSM_Map.getCurrentPosition());
+            currentPosition = this.OSM_Map.getCurrentPosition();
+            // NavigationService.Navigate(new Uri("/AddFavorite.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/FavoritesPage.xaml", UriKind.Relative));
 
             // THE ULM BUTTON
             //this.OSM_Map.navigateToCoordinate(new GeoCoordinate(48.399833, 9.994923), 12);
@@ -128,6 +124,11 @@ namespace OpenStreetApp
                 this.OSM_Map.navigateToCoordinate(newRoute[newRoute.Count / 2], 10);
                 newRoute = null;
             }*/
+        }
+
+        private void clearMap_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
