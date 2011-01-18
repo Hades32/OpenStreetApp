@@ -71,14 +71,9 @@ namespace OpenStreetApp
 
         private void favoriteButton_Click(object sender, EventArgs e)
         {
-
-            //System.Diagnostics.Debug.WriteLine(this.OSM_Map.getCurrentPosition());
             currentPosition = this.OSM_Map.getCurrentPosition();
-            // NavigationService.Navigate(new Uri("/AddFavorite.xaml", UriKind.Relative));
+            App.NavigationResults.setOrAdd(typeof(FavoritesPage), new KeyValuePair<string, object>("favorites", null));
             NavigationService.Navigate(new Uri("/FavoritesPage.xaml", UriKind.Relative));
-
-            // THE ULM BUTTON
-            //this.OSM_Map.navigateToCoordinate(new GeoCoordinate(48.399833, 9.994923), 12);
         }
 
         private void ContextMenuPopup_Opened(object sender, EventArgs e)
@@ -102,6 +97,19 @@ namespace OpenStreetApp
                 }
                 App.NavigationResults.Remove(typeof(SearchPage));
             }
+            //came from FavoritesPage?
+            if (App.NavigationResults.ContainsKey(typeof(FavoritesPage)))
+            {
+                var searchresult = App.NavigationResults.getOrDefault(typeof(FavoritesPage));
+                var targetLocation = (Location)searchresult.Value;
+                if (targetLocation != null)
+                {
+                    var coords = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
+                    this.OSM_Map.navigateToCoordinate(coords, 16);
+                }
+                App.NavigationResults.Remove(typeof(FavoritesPage));
+            }
+            //came from RoutePage?
             if (App.NavigationResults.ContainsKey(typeof(RoutePage)))
             {
                 var searchresult = App.NavigationResults.getOrDefault(typeof(RoutePage));

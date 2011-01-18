@@ -29,14 +29,15 @@ namespace OpenStreetApp
         private void delete_Click(object sender, RoutedEventArgs e)
         {
             Location selected = (sender as MenuItem).DataContext as Location;
-            OSA_Configuration.Instance.removeFavorite(selected);
-            //this.favorites.ItemsSource = null;
-            //this.favorites.ItemsSource = OSA_Configuration.Instance.Favorites;
+            OSA_Configuration.Instance.FavoritesSetting.Remove(selected);
         }
 
         private void favorites_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var res = App.NavigationResults[this.GetType()];
+            App.NavigationResults[this.GetType()] =
+                new KeyValuePair<string, object>(res.Key, this.favorites.SelectedItem);
+            NavigationService.GoBack();
         }
 
         private void addFavorite_Click(object sender, RoutedEventArgs e)
