@@ -207,7 +207,7 @@ namespace OpenStreetApp
         {
             //Setting the fileName
             var fileName = "favorites.dat";
-            DataContractSerializer dcs = new DataContractSerializer(typeof(List<Location>));
+            DataContractSerializer dcs = new DataContractSerializer(typeof(ObservableCollection<Location>));
             try
             {
                 ///<summary>
@@ -216,8 +216,9 @@ namespace OpenStreetApp
                 ///</summary>
                 using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 using (var readStream = new IsolatedStorageFileStream(fileName, FileMode.Open, store))
-
+                {
                     return (ObservableCollection<Location>)dcs.ReadObject(readStream);
+                }
             }
             catch (IsolatedStorageException e)
             {
