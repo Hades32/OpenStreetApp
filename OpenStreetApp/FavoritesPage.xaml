@@ -31,11 +31,11 @@
         <StackPanel x:Name="ResultPanel" Grid.Row="1" Visibility="Visible">
             <ListBox x:Name="favorites"  Margin="22,15,15,-390" ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" FontSize="30"
-                     ItemsSource="{Binding Path=Favorites, Mode=TwoWay}" Height="Auto">
+                     ItemsSource="{Binding Path=Favorites, Mode=TwoWay}" Height="Auto" SelectionChanged="favorites_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Path=LocationListView, Mode=OneWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap">
+                            <TextBlock  Text="{Binding Path=LocationListView, Mode=OneWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu x:Name="contextMenu">
                                         <toolkit:MenuItem x:Name="detail" Header="Details" Click="detail_Click"/>

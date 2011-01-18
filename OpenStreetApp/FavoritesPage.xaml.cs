@@ -33,5 +33,10 @@ namespace OpenStreetApp
             //this.favorites.ItemsSource = null;
             //this.favorites.ItemsSource = OSA_Configuration.Instance.Favorites;
         }
+
+        private void favorites_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
