@@ -93,8 +93,8 @@ namespace OpenStreetApp
                     if (newSearchedLocations.Count == 10)
                     {
                         newSearchedLocations.RemoveAt(0);
-                    }               
-                    newSearchedLocations.Add(this.TargetInput.Text);
+                    }
+                    newSearchedLocations.Insert(0, this.TargetInput.Text);
                     OSA_Configuration.Instance.LastSearchedLocationsSetting = newSearchedLocations;
                 }
                 OSMHelpers.InputAdressToLocations(this.TargetInput.Text, new Action<List<Location>>(onLocationsReceived));
