@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:OpenStreetApp"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -37,27 +38,44 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
+                <TextBlock Grid.Row="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
                            Name="textDescription" Text="Ortsname:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
-                <TextBox Grid.Row="1" Grid.Column="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" 
+                <TextBox Grid.Row="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" 
                          Margin="0,0,0,0" InputScope="Search" KeyDown="TargetInput_KeyDown"/>
-                <Button Grid.Row="2" Grid.Column="0" x:Name="buttonOK" Content="Ok" Width="auto" Height="auto" 
-                        HorizontalAlignment="Left" Margin="0,0,0,0" Click="buttonOK_Click"/>
-                <Button Grid.Row="2" Grid.Column="1" x:Name="buttonAbort" Content="Abbrechen" Width="auto"
-                        Height="auto" HorizontalAlignment="Left" Margin="70,0,0,0" Click="buttonAbort_Click"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
+                           Name="lastSearchedDescription" Text="Zuletzt gesucht:" 
+                           FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
+                <ListBox Grid.Row="3" x:Name="lastSearched" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="20"
+                     ItemsSource="{Binding Path=LastSearchedLocations}" FontSize="30" Height="Auto" MaxHeight="450" SelectionChanged="lastSearched_SelectionChanged">
+                </ListBox>
 
-                
-            </Grid>    
+            </Grid> 
         </Grid>
 
         <StackPanel x:Name="ResultPanel" Grid.Row="1" Visibility="Collapsed">
             <TextBlock Margin="22,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Suchergebnisse:</TextBlock>
             <ListBox x:Name="results"  Margin="22,15,15,-390" ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                     ItemsSource="{Binding Path=Locations}" FontSize="30" Height="Auto" SelectionChanged="ListBox_SelectionChanged">   
+                     ItemsSource="{Binding Path=Locations}" FontSize="30" Height="Auto" MaxHeight="550" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/listItem.png" />
+                            <TextBlock  Text="{Binding Path=LocationListView, Mode=OneWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap" Width="400">
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu x:Name="contextMenu">
+                                        <toolkit:MenuItem x:Name="detail" Header="Details" Click="detail_Click"/>
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
 

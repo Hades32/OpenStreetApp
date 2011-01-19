@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Microsoft.Phone.Controls;
+using System.Collections.ObjectModel;
 
 namespace OpenStreetApp
 {
@@ -21,7 +22,8 @@ namespace OpenStreetApp
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            OSA_Configuration.Instance.addFavorite(this.current);
+            OSA_Configuration.Instance.FavoritesSetting.Add(this.current);
+            OSA_Configuration.Instance.Save();
             NavigationService.GoBack();
         }
     }

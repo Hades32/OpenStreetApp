@@ -58,7 +58,7 @@ namespace OpenStreetApp
 
         #endregion
 
-        public ObservableCollection<Location> Favorites { private set; get; }
+        //public ObservableCollection<Location> Favorites { private set; get; }
 
         public IEnumerable<Microsoft.Phone.Controls.Maps.TileSource> AvailableTileSources { private set; get; }
 
@@ -68,11 +68,15 @@ namespace OpenStreetApp
         #region key names for our storage
         private const string selectedTileSourceKeyName = "defaultTileSource";
         private const string useCurrentLocationKeyName = "useCurrentLocation";
+        private const string favoritesKeyName = "favorites";
+        private const string lastSearchedLocationsKeyName = "lastSearchedLocations";
         #endregion
 
         #region default values for our keys
         private int selectedTileSourceDefault = 1;
         private bool useCurrentLocationDefault = true;
+        private ObservableCollection<Location> favoritesDefault = new ObservableCollection<Location>();
+        private ObservableCollection<String> lastSearchedLocationsDefault = new ObservableCollection<String>();
         #endregion
 
         private OSA_Configuration()
@@ -97,7 +101,7 @@ namespace OpenStreetApp
             };
             this.TileSource = AvailableTileSources.ElementAt(SelectedTileSourceSetting);
 
-            this.Favorites = loadFavoritesFromFile();
+            //this.Favorites = loadFavoritesFromFile();
         }
 
         public void initialize(Action callback, Dispatcher dispatcher)
@@ -188,68 +192,30 @@ namespace OpenStreetApp
             }
         }
 
-
-        // SERIALIZING FAVORITES 
-
-        public void addFavorite(Location toAdd)
+        public ObservableCollection<Location> FavoritesSetting
         {
-            this.Favorites.Add(toAdd);
-            saveFavoritesToFile();
-        }
-
-        public void removeFavorite(Location toRemove)
-        {
-            this.Favorites.Remove(toRemove);
-            saveFavoritesToFile();
-        }
-
-        private ObservableCollection<Location> loadFavoritesFromFile()
-        {
-            //Setting the fileName
-            var fileName = "favorites.dat";
-            DataContractSerializer dcs = new DataContractSerializer(typeof(List<Location>));
-            try
+            get
             {
-                ///<summary>
-                ///get the user Store and then open the file in the store
-                ///finally read the content to the file and return it
-                ///</summary>
-                using (var store = IsolatedStorageFile.GetUserStoreForApplication())
-                using (var readStream = new IsolatedStorageFileStream(fileName, FileMode.Open, store))
-
-                    return (ObservableCollection<Location>)dcs.ReadObject(readStream);
+                return GetValueOrDefault<ObservableCollection<Location>>(favoritesKeyName, favoritesDefault);
             }
-            catch (IsolatedStorageException e)
+            set
             {
-                //IsolatedStorageException catch if File cant be opened
-                System.Diagnostics.Debug.WriteLine(e.Message + e.StackTrace);
-                return new ObservableCollection<Location>();
-            }
-            catch (SerializationException n)
-            {
-                System.Diagnostics.Debug.WriteLine(n.Message + n.StackTrace);
-                return new ObservableCollection<Location>();
-            }
-            catch (InvalidCastException m)
-            {
-                System.Diagnostics.Debug.WriteLine(m.Message + m.StackTrace);
-                return new ObservableCollection<Location>();
+                AddOrUpdateValue(favoritesKeyName, value);
+                Save();
             }
         }
 
-        private void saveFavoritesToFile()
+        public ObservableCollection<String> LastSearchedLocationsSetting
         {
-            var fileName = "favorites.dat";
-            DataContractSerializer dcs = new DataContractSerializer(typeof(ObservableCollection<Location>));
-            ///<summary>
-            ///get the user Store and then create the file in the store
-            ///finally write the content to the file
-            ///</summary>
-            using (var store = IsolatedStorageFile.GetUserStoreForApplication())
-            using (var writeStream = new IsolatedStorageFileStream(fileName, FileMode.Create, store))
-
-            dcs.WriteObject(writeStream, this.Favorites);
+            get
+            {
+                return GetValueOrDefault<ObservableCollection<String>>(lastSearchedLocationsKeyName, lastSearchedLocationsDefault);
+            }
+            set
+            {
+                AddOrUpdateValue(lastSearchedLocationsKeyName, value);
+                Save();
+            }
         }
-
     }
 }
