@@ -89,7 +89,8 @@ namespace OpenStreetApp
                 {
                     if (eventList.Count >= 2)
                         // subscribing directly on that dispatcher didn't work...
-                        this.Dispatcher.BeginInvoke(OSM_Map_OnDoubleClick);
+                        this.Dispatcher.BeginInvoke(
+                            () => OSM_Map_OnDoubleClick(eventList[0].EventArgs));
                 }));
 
             Microsoft.Phone.Reactive.Observable.FromEvent<ManipulationCompletedEventArgs>(this.touchBorder, "ManipulationCompleted")
@@ -120,9 +121,10 @@ namespace OpenStreetApp
             this.OSM_Map.CredentialsProvider = new ApplicationIdCredentialsProvider("Akc2a6v34Acf-tYc8miIU8NgDDffnkpD7TZdV69jwWk-3pt21_RCIUfba7_G5-Vl");
         }
 
-        private void OSM_Map_OnDoubleClick()
+        private void OSM_Map_OnDoubleClick(MouseButtonEventArgs e)
         {
             this.OSM_Map.ZoomLevel += 0.5;
+            this.OSM_Map.Center = this.OSM_Map.ViewportPointToLocation(e.GetPosition(this.OSM_Map));
         }
 
         public void navigateToCoordinate(Point p, double zoom)
