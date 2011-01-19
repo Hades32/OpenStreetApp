@@ -82,6 +82,8 @@ namespace OpenStreetApp
 
         private void buttonOK_Click(object sender, RoutedEventArgs e)
         {
+            this.progress.Visibility = System.Windows.Visibility.Visible;
+            this.progress.IsIndeterminate = true;
             if (!String.IsNullOrEmpty(this.TargetInput.Text))
             {
                 //adding searched location manually, due to not beeing able to bind this properly. 
@@ -97,9 +99,7 @@ namespace OpenStreetApp
                     newSearchedLocations.Insert(0, this.TargetInput.Text);
                     OSA_Configuration.Instance.LastSearchedLocationsSetting = newSearchedLocations;
                 }
-                OSMHelpers.InputAdressToLocations(this.TargetInput.Text, new Action<List<Location>>(onLocationsReceived));
-                this.SearchPanel.Visibility = System.Windows.Visibility.Collapsed;
-                this.ResultPanel.Visibility = System.Windows.Visibility.Visible;             
+                OSMHelpers.InputAdressToLocations(this.TargetInput.Text, new Action<List<Location>>(onLocationsReceived));     
             }
         }
 
@@ -107,7 +107,19 @@ namespace OpenStreetApp
         {
             this.Dispatcher.BeginInvoke(() =>
             {
+                if (newLocations.Count == 0)
+                {
+                    this.resultDescription.Text = "Keine Treffer.";
+                }
+                else
+                {
+                    this.resultDescription.Text = "Ergebnisse:";
+                }
                 this.Locations = newLocations;
+                this.progress.Visibility = System.Windows.Visibility.Visible;
+                this.progress.IsIndeterminate = false;
+                this.SearchPanel.Visibility = System.Windows.Visibility.Collapsed;
+                this.ResultPanel.Visibility = System.Windows.Visibility.Visible;        
             });
         }
 

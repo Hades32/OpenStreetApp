@@ -53,6 +53,8 @@ namespace OpenStreetApp
         {
             get
             {
+                if (!(String.IsNullOrEmpty(this.Description)))
+                    return this.Description;
                 return this.ToString();
             }
             set

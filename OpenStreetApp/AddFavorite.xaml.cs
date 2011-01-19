@@ -23,6 +23,7 @@ namespace OpenStreetApp
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
+            this.current.Description = "" + this.Description.Text;
             var res = App.NavigationResults[this.GetType()];
             App.NavigationResults[this.GetType()] =
                 new KeyValuePair<string, object>(res.Key, this.current);

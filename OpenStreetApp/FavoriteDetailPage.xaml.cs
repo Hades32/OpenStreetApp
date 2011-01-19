@@ -23,7 +23,7 @@ namespace OpenStreetApp
             var searchresult = App.NavigationResults.getOrDefault(typeof(FavoriteDetailPage));
             current = (Location)searchresult.Value;
 
-            this.LocationInfo.Text = "" + current.LocationListView;
+            this.LocationInfo.Text = "" + current.ToString();
             this.latitude.Text = "Latitude: " + current.Latitude;
             this.longitude.Text = "Longitude: " + current.Longitude;
             this.description.Text = "" + current.Description;
