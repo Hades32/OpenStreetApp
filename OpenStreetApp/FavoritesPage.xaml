@@ -37,7 +37,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images/listItem.png" />
-                            <TextBlock  Text="{Binding Path=LocationListView, Mode=OneWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap" Width="400">
+                            <TextBlock  Text="{Binding Path=LocationListView, Mode=TwoWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap" Width="400">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu x:Name="contextMenu">
                                         <toolkit:MenuItem x:Name="detail" Header="Details" Click="detail_Click"/>

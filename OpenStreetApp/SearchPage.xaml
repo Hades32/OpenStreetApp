@@ -45,7 +45,7 @@
                            Name="textDescription" Text="Ortsname:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <TextBox Grid.Row="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" 
-                         Margin="0,0,0,0" InputScope="Search" KeyDown="TargetInput_KeyDown"/>
+                         Margin="0,0,0,0" InputScope="Search" KeyDown="TargetInput_KeyDown" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
                            Name="lastSearchedDescription" Text="Zuletzt gesucht:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
