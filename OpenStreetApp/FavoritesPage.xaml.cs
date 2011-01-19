@@ -23,7 +23,9 @@ namespace OpenStreetApp
 
         private void detail_Click(object sender, RoutedEventArgs e)
         {
-
+            Location selected = (sender as MenuItem).DataContext as Location;
+            App.NavigationResults.setOrAdd(typeof(FavoriteDetailPage), new KeyValuePair<string, object>("favoriteDetail", selected));
+            NavigationService.Navigate(new Uri("/FavoriteDetailPage.xaml", UriKind.Relative));
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)
