@@ -17,7 +17,8 @@
     <Grid Background="{StaticResource PhoneChromeBrush}">
         
         <my:Map x:Name="OSM_Map" Margin="0" CopyrightVisibility="Collapsed"
-            LogoVisibility="Collapsed" ZoomBarVisibility="Collapsed">
+                MapZoom="OSM_Map_MapZoom"
+                LogoVisibility="Collapsed" ZoomBarVisibility="Collapsed">
             <my:Map.Mode>
                 <mycore:MercatorMode/>
             </my:Map.Mode>
