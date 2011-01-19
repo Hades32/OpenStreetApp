@@ -73,6 +73,9 @@ namespace OpenStreetApp
         }
 
         private MapLayer PushpinLayer = new MapLayer();
+        private LocationCollection fullRoute = null;
+        //prevent cross-thread problems
+        private double lastKnownZoom = 1.0;
 
         public MapControl()
         {
@@ -89,7 +92,27 @@ namespace OpenStreetApp
                         this.Dispatcher.BeginInvoke(OSM_Map_OnDoubleClick);
                 }));
 
+            Microsoft.Phone.Reactive.Observable.FromEvent<ManipulationCompletedEventArgs>(this.touchBorder, "ManipulationCompleted")
+                .BufferWithTime(TimeSpan.FromSeconds(1))
+                .Subscribe(new Action<IList<IEvent<ManipulationCompletedEventArgs>>>(
+                eventList =>
+                {
+                    if (this.fullRoute != null)
+                    {
+                        var simpleroute = RouteSimplifier.simplifyRoute(this.fullRoute, 
+                                                                        this.getMaxDistForZoomLevel(),
+                                                                        this.OSM_Map.TargetBoundingRectangle);
+                        this.Dispatcher.BeginInvoke(() =>
+                            this.Route.Locations = simpleroute);
+                    }
+                }));
+
             this.OSM_Map.Children.Add(PushpinLayer);
+        }
+
+        private void OSM_Map_MapZoom(object sender, MapZoomEventArgs e)
+        {
+            this.lastKnownZoom = this.OSM_Map.TargetZoomLevel;
         }
 
         void Control_Loaded(object sender, RoutedEventArgs e)
@@ -137,7 +160,43 @@ namespace OpenStreetApp
 
         public void setRoute(LocationCollection points)
         {
-            this.Route.Locations = points;
+            this.fullRoute = points;
+            this.Route.Locations = RouteSimplifier.simplifyRoute(points, getMaxDistForZoomLevel(),
+                                                                 this.OSM_Map.TargetBoundingRectangle);
+        }
+
+        private double getMaxDistForZoomLevel()
+        {
+            if (this.lastKnownZoom > 15)
+                return 0.003;
+            else if (this.lastKnownZoom > 14)
+                return 0.03;
+            else if (this.lastKnownZoom > 13)
+                return 0.3;
+            else if (this.lastKnownZoom > 12)
+                return 3;
+            else if (this.lastKnownZoom > 11)
+                return 10;
+            else if (this.lastKnownZoom > 10)
+                return 20;
+            else if (this.lastKnownZoom > 9)
+                return 30;
+            else if (this.lastKnownZoom > 8)
+                return 50;
+            else if (this.lastKnownZoom > 7)
+                return 60;
+            else if (this.lastKnownZoom > 6)
+                return 70;
+            else if (this.lastKnownZoom > 5)
+                return 80;
+            else if (this.lastKnownZoom > 4)
+                return 90;
+            else if (this.lastKnownZoom > 3)
+                return 100;
+            else if (this.lastKnownZoom > 2)
+                return 100;
+            else
+                return 100;
         }
 
         private void touchBorder_ManipulationStarted(object sender, System.Windows.Input.ManipulationStartedEventArgs e)
