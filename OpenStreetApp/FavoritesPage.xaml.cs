@@ -30,6 +30,7 @@ namespace OpenStreetApp
         {
             Location selected = (sender as MenuItem).DataContext as Location;
             OSA_Configuration.Instance.FavoritesSetting.Remove(selected);
+            OSA_Configuration.Instance.FavoritesSetting = OSA_Configuration.Instance.FavoritesSetting;
         }
 
         private void favorites_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,7 +43,25 @@ namespace OpenStreetApp
 
         private void addFavorite_Click(object sender, RoutedEventArgs e)
         {
+            App.NavigationResults.setOrAdd(typeof(AddFavorite), new KeyValuePair<string, object>("addFavorite", null));
             NavigationService.Navigate(new Uri("/AddFavorite.xaml", UriKind.Relative));
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (App.NavigationResults.ContainsKey(typeof(AddFavorite)))
+            {
+                var searchresult = App.NavigationResults.getOrDefault(typeof(AddFavorite));
+                var targetLocation = (Location)searchresult.Value;
+                if (targetLocation != null)
+                {
+                    OSA_Configuration.Instance.FavoritesSetting.Add(targetLocation);
+                    OSA_Configuration.Instance.FavoritesSetting = OSA_Configuration.Instance.FavoritesSetting;
+                }
+                App.NavigationResults.Remove(typeof(AddFavorite));
+            }
         }
     }
 }
