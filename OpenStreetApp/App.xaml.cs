@@ -14,14 +14,38 @@ namespace OpenStreetApp
 
         public static System.Exception LastException { get; set; }
 
+        public static App My
+        {
+            get { return (App)App.Current; }
+        }
+
         public static GeoCoordinateWatcher watcher;
         public static GeoPosition<GeoCoordinate> lastKnownPosition;
 
         /// <summary>
         /// stores results from pages. The string from the pair is used to store calling site information.
         /// </summary>
-        public static Dictionary<Type, KeyValuePair<string, object>> NavigationResults
-            = new Dictionary<Type, KeyValuePair<string, object>>();
+        private static Dictionary<string, KeyValuePair<string, object>> NavigationResults
+            = new Dictionary<string, KeyValuePair<string, object>>();
+
+        public void navigateWithResult(string url, string name)
+        {
+            App.NavigationResults.setOrAdd(url, new KeyValuePair<string, object>(name, null));
+            this.RootFrame.Navigate(new Uri(url, UriKind.Relative));
+        }
+
+        public KeyValuePair<string, object> getNavigationResult(string url)
+        {
+            var result = App.NavigationResults.getOrDefault(url);
+            App.NavigationResults.Remove(url);
+            return result;
+        }
+
+        public void putNavigationResult(string url, object obj)
+        {
+            var tmp = App.NavigationResults[url];
+            App.NavigationResults[url] = new KeyValuePair<string, object>(tmp.Key, obj);
+        }
 
         public App()
         {

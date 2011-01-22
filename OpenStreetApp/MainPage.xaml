@@ -22,7 +22,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5">
             <shell:ApplicationBarIconButton x:Name="geoLocationButton" Click="geoLocationButton_Click"  IconUri="Images/geo.png" Text="Aktueller Standort"/>
-            <shell:ApplicationBarIconButton x:Name="openButton" Click="openButton_Click" IconUri="Images/search.png" Text="Koordinate öffnen"/>
+            <shell:ApplicationBarIconButton x:Name="openButton" Click="openButton_Click" IconUri="Images/search.png" Text="Suchen"/>
             <shell:ApplicationBarIconButton x:Name="favoriteButton" Click="favoriteButton_Click" IconUri="Images/addfav.png" Text="Favoriten öffnen"/>
             <shell:ApplicationBarIconButton x:Name="routeBtn" Click="routeBtn_Click" IconUri="Images/navigate.png" Text="Route berechnen"/>
             <shell:ApplicationBar.MenuItems>

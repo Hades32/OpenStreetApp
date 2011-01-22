@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
-using System.Collections.ObjectModel;
 
 namespace OpenStreetApp
 {
@@ -90,7 +89,7 @@ namespace OpenStreetApp
                 //adding searched location manually, due to not beeing able to bind this properly. 
                 //observable collection will however do the syncronization for the ui.
                 //the code checks wether the last searched locations have reached 10, therefor deleting the first (FIFO)
-                if(!(sender == this.lastSearched))
+                if (!(sender == this.lastSearched))
                 {
                     ObservableCollection<String> newSearchedLocations = OSA_Configuration.Instance.LastSearchedLocationsSetting;
                     if (newSearchedLocations.Count == 10)
@@ -102,7 +101,7 @@ namespace OpenStreetApp
                 }
                 OSMHelpers.InputAdressToLocations(this.TargetInput.Text, new Action<List<Location>>(onLocationsReceived));
                 this.SearchPanel.Visibility = System.Windows.Visibility.Collapsed;
-                this.ResultPanel.Visibility = System.Windows.Visibility.Visible;             
+                this.ResultPanel.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
@@ -123,9 +122,7 @@ namespace OpenStreetApp
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var res = App.NavigationResults[this.GetType()];
-            App.NavigationResults[this.GetType()] =
-                new KeyValuePair<string, object>(res.Key, this.results.SelectedItem);
+            App.My.putNavigationResult("/SearchPage.xaml", this.results.SelectedItem);
             NavigationService.GoBack();
         }
 

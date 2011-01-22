@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using Microsoft.Phone.Controls;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
 
 namespace OpenStreetApp
 {
@@ -23,10 +21,8 @@ namespace OpenStreetApp
 
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
-            var res = App.NavigationResults[this.GetType()];
-            App.NavigationResults[this.GetType()] =
-                new KeyValuePair<string, object>(res.Key, this.current);
-            NavigationService.GoBack();
+            App.My.putNavigationResult("/AddFavorite.xaml", this.current);
+            this.NavigationService.GoBack();
         }
     }
 }
