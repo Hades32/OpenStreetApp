@@ -84,6 +84,9 @@ namespace OpenStreetApp
         {
             if (!String.IsNullOrEmpty(this.TargetInput.Text))
             {
+                this.Locations = null;
+                this.results.IsEnabled = true;
+                this.setIsLoading(true);
                 //adding searched location manually, due to not beeing able to bind this properly. 
                 //observable collection will however do the syncronization for the ui.
                 //the code checks wether the last searched locations have reached 10, therefor deleting the first (FIFO)
@@ -107,7 +110,14 @@ namespace OpenStreetApp
         {
             this.Dispatcher.BeginInvoke(() =>
             {
-                this.Locations = newLocations;
+                this.setIsLoading(false);
+                if (newLocations.Count > 0)
+                    this.Locations = newLocations;
+                else
+                {
+                    this.results.IsEnabled = false;
+                    this.Locations = new List<Location>() { new Location() { Description = "Keine Ergebnisse" } };
+                }
             });
         }
 
@@ -147,6 +157,12 @@ namespace OpenStreetApp
         {
             this.TargetInput.Text = (String)this.lastSearched.SelectedItem;
             buttonOK_Click(this.lastSearched, null);
+        }
+
+        protected void setIsLoading(bool loading)
+        {
+            this.progress.IsIndeterminate = loading;
+            this.progress.Visibility = loading ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
     }
 }

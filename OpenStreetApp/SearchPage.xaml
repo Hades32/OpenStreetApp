@@ -28,6 +28,7 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="Suchen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <ProgressBar Name="progress" Margin="-5" Visibility="Collapsed"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->

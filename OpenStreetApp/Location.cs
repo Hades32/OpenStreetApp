@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -9,7 +8,7 @@ namespace OpenStreetApp
     public class Location
     {
         [DataMember]
-        public double Longitude {get; set;}
+        public double Longitude { get; set; }
         [DataMember]
         public double Latitude { get; set; }
         [DataMember]
@@ -31,7 +30,7 @@ namespace OpenStreetApp
 
         public override string ToString()
         {
-            List<String> values = new List<String>{ City, Adress, Area, Description, Line1, Line2, Line3, Line4 };
+            List<String> values = new List<String> { City, Adress, Area, Description, Line1, Line2, Line3, Line4 };
             String returnString = "";
             bool isfirst = true;
             foreach (var s in values)
@@ -40,7 +39,7 @@ namespace OpenStreetApp
                 {
                     returnString += ", " + s;
                 }
-                else if(!String.IsNullOrEmpty(s))
+                else if (!String.IsNullOrEmpty(s))
                 {
                     returnString += s;
                     isfirst = false;
@@ -54,10 +53,6 @@ namespace OpenStreetApp
             get
             {
                 return this.ToString();
-            }
-            set
-            {
-                return;
             }
         }
     }
