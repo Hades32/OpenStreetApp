@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Device.Location;
+﻿using System.Device.Location;
 using System.Windows;
 using Microsoft.Phone.Controls;
 
@@ -15,14 +13,12 @@ namespace OpenStreetApp
 
         private void startBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.NavigationResults.setOrAdd(typeof(SearchPage), new KeyValuePair<string, object>("start", null));
-            NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+            App.My.navigateWithResult("/SearchPage.xaml", "start");
         }
 
         private void targetBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.NavigationResults.setOrAdd(typeof(SearchPage), new KeyValuePair<string, object>("target", null));
-            NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+            App.My.navigateWithResult("/SearchPage.xaml", "target");
         }
 
         private void routeBtn_Click(object sender, RoutedEventArgs e)
@@ -33,17 +29,25 @@ namespace OpenStreetApp
             this.progress.Visibility = System.Windows.Visibility.Visible;
             this.progress.IsIndeterminate = true;
 
-            var start_loc = (Location)this.State["start"];
+            GeoCoordinate start;
+            if (this.State.getOrDefault("currentposition") as bool? == true)
+            {
+                start = App.lastKnownPosition.Location;
+            }
+            else
+            {
+                var start_loc = (Location)this.State["start"];
+                start = new GeoCoordinate(start_loc.Latitude, start_loc.Longitude);
+            }
+
             var end_loc = (Location)this.State["target"];
-            var start = new GeoCoordinate(start_loc.Latitude, start_loc.Longitude);
             var end = new GeoCoordinate(end_loc.Latitude, end_loc.Longitude);
+
             CloudeMadeService.getRoute(start,
                                         end,
                                         null, (wps) =>
                                         {
-                                            var res = App.NavigationResults[this.GetType()];
-                                            App.NavigationResults[this.GetType()] =
-                                                new KeyValuePair<string, object>(res.Key, wps);
+                                            App.My.putNavigationResult("/RoutePage.xaml", wps);
                                             this.Dispatcher.BeginInvoke(() =>
                                                 NavigationService.GoBack());
                                         });
@@ -58,17 +62,48 @@ namespace OpenStreetApp
         {
             base.OnNavigatedTo(e);
 
-            if (App.NavigationResults.ContainsKey(typeof(SearchPage)))
+            var searchresult = App.My.getNavigationResult("/SearchPage.xaml");
+            if (string.IsNullOrEmpty(searchresult.Key) == false)
             {
-                var searchresult = App.NavigationResults.getOrDefault(typeof(SearchPage));
                 this.State[searchresult.Key] = searchresult.Value;
-                App.NavigationResults.Remove(typeof(SearchPage));
+            }
+            updateGuiState();
+        }
+
+        private void updateGuiState()
+        {
+            this.routeBtn.IsEnabled = (this.State.ContainsKey("start")
+                                    || this.State.getOrDefault("currentposition") as bool? == true)
+                                    && this.State.ContainsKey("target");
+
+            if (this.State.ContainsKey("start"))
+                this.startBtnTB.Text = ((Location)this.State["start"]).ToShortString();
+
+            if (this.State.getOrDefault("currentposition") as bool? == true)
+            {
+                this.startBtnTB.Text = "Aktuelle Position";
+                this.startBtn.IsEnabled = false;
+            }
+            else
+            {
+                this.startBtnTB.Text = "Start auswählen";
+                this.startBtn.IsEnabled = true;
             }
 
-            if (this.State.ContainsKey("start") && this.State.ContainsKey("target"))
-            {
-                this.routeBtn.IsEnabled = true;
-            }
+            if (this.State.ContainsKey("target"))
+                this.targetBtnTB.Text = ((Location)this.State["target"]).ToShortString();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.State.setOrAdd("currentposition", true);
+            updateGuiState();
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.State.setOrAdd("currentposition", false);
+            updateGuiState();
         }
     }
 }
