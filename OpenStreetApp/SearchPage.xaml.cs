@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
-using System.Collections.ObjectModel;
 
 namespace OpenStreetApp
 {
@@ -82,14 +81,15 @@ namespace OpenStreetApp
 
         private void buttonOK_Click(object sender, RoutedEventArgs e)
         {
-            this.progress.Visibility = System.Windows.Visibility.Visible;
-            this.progress.IsIndeterminate = true;
             if (!String.IsNullOrEmpty(this.TargetInput.Text))
             {
+                this.Locations = null;
+                this.results.IsEnabled = true;
+                this.setIsLoading(true);
                 //adding searched location manually, due to not beeing able to bind this properly. 
                 //observable collection will however do the syncronization for the ui.
                 //the code checks wether the last searched locations have reached 10, therefor deleting the first (FIFO)
-                if(!(sender == this.lastSearched))
+                if (!(sender == this.lastSearched))
                 {
                     ObservableCollection<String> newSearchedLocations = OSA_Configuration.Instance.LastSearchedLocationsSetting;
                     if (newSearchedLocations.Count == 10)
@@ -99,7 +99,9 @@ namespace OpenStreetApp
                     newSearchedLocations.Insert(0, this.TargetInput.Text);
                     OSA_Configuration.Instance.LastSearchedLocationsSetting = newSearchedLocations;
                 }
-                OSMHelpers.InputAdressToLocations(this.TargetInput.Text, new Action<List<Location>>(onLocationsReceived));     
+                OSMHelpers.InputAdressToLocations(this.TargetInput.Text, new Action<List<Location>>(onLocationsReceived));
+                this.SearchPanel.Visibility = System.Windows.Visibility.Collapsed;
+                this.ResultPanel.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
@@ -107,27 +109,20 @@ namespace OpenStreetApp
         {
             this.Dispatcher.BeginInvoke(() =>
             {
-                if (newLocations.Count == 0)
-                {
-                    this.resultDescription.Text = "Keine Treffer.";
-                }
+                this.setIsLoading(false);
+                if (newLocations.Count > 0)
+                    this.Locations = newLocations;
                 else
                 {
-                    this.resultDescription.Text = "Ergebnisse:";
+                    this.results.IsEnabled = false;
+                    this.Locations = new List<Location>() { new Location() { Description = "Keine Ergebnisse" } };
                 }
-                this.Locations = newLocations;
-                this.progress.Visibility = System.Windows.Visibility.Visible;
-                this.progress.IsIndeterminate = false;
-                this.SearchPanel.Visibility = System.Windows.Visibility.Collapsed;
-                this.ResultPanel.Visibility = System.Windows.Visibility.Visible;        
             });
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var res = App.NavigationResults[this.GetType()];
-            App.NavigationResults[this.GetType()] =
-                new KeyValuePair<string, object>(res.Key, this.results.SelectedItem);
+            App.My.putNavigationResult("/SearchPage.xaml", this.results.SelectedItem);
             NavigationService.GoBack();
         }
 
@@ -159,6 +154,12 @@ namespace OpenStreetApp
         {
             this.TargetInput.Text = (String)this.lastSearched.SelectedItem;
             buttonOK_Click(this.lastSearched, null);
+        }
+
+        protected void setIsLoading(bool loading)
+        {
+            this.progress.IsIndeterminate = loading;
+            this.progress.Visibility = loading ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
         }
     }
 }

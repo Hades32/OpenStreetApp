@@ -146,5 +146,18 @@ namespace OpenStreetApp
         {
             return dict.getOrDefault(key, default(TValue));
         }
+
+        /// <summary>
+        /// Gets the HashCode or 0 if the object is NULL
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public static int TryGetHashCode(this object o)
+        {
+            if (o == null)
+                return 0;
+            else
+                return o.GetHashCode();
+        }
     }
 }

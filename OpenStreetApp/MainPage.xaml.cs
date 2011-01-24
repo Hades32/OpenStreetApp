@@ -49,8 +49,7 @@ namespace OpenStreetApp
 
         private void openButton_Click(object sender, EventArgs e)
         {
-            App.NavigationResults.setOrAdd(typeof(SearchPage), new KeyValuePair<string, object>("search", null));
-            NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+            App.My.navigateWithResult("/SearchPage.xaml", "search");
         }
 
         private void POIButton_Click(object sender, EventArgs e)
@@ -65,15 +64,13 @@ namespace OpenStreetApp
 
         private void routeBtn_Click(object sender, EventArgs e)
         {
-            App.NavigationResults.setOrAdd(typeof(RoutePage), new KeyValuePair<string, object>("route", null));
-            NavigationService.Navigate(new Uri("/RoutePage.xaml", UriKind.Relative));
+            App.My.navigateWithResult("/RoutePage.xaml", "route");
         }
 
         private void favoriteButton_Click(object sender, EventArgs e)
         {
-            currentPosition = this.OSM_Map.getCurrentPosition();
-            App.NavigationResults.setOrAdd(typeof(FavoritesPage), new KeyValuePair<string, object>("favorites", null));
-            NavigationService.Navigate(new Uri("/FavoritesPage.xaml", UriKind.Relative));
+            MainPage.currentPosition = this.OSM_Map.getCurrentPosition();
+            App.My.navigateWithResult("/FavoritesPage.xaml", "favorites");
         }
 
         private void ContextMenuPopup_Opened(object sender, EventArgs e)
@@ -86,34 +83,33 @@ namespace OpenStreetApp
             base.OnNavigatedTo(e);
 
             //came from SearchPage?
-            if (App.NavigationResults.ContainsKey(typeof(SearchPage)))
+            var searchresult = App.My.getNavigationResult("/SearchPage.xaml");
+            if (!string.IsNullOrEmpty(searchresult.Key))
             {
-                var searchresult = App.NavigationResults.getOrDefault(typeof(SearchPage));
                 var targetLocation = (Location)searchresult.Value;
                 if (targetLocation != null)
                 {
                     var coords = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
                     this.OSM_Map.navigateToCoordinate(coords, 16);
                 }
-                App.NavigationResults.Remove(typeof(SearchPage));
             }
             //came from FavoritesPage?
-            if (App.NavigationResults.ContainsKey(typeof(FavoritesPage)))
+            var favresult = App.My.getNavigationResult("/FavoritesPage.xaml");
+            if (!string.IsNullOrEmpty(favresult.Key))
             {
-                var searchresult = App.NavigationResults.getOrDefault(typeof(FavoritesPage));
-                var targetLocation = (Location)searchresult.Value;
+                var targetLocation = (Location)favresult.Value;
                 if (targetLocation != null)
                 {
                     var coords = new GeoCoordinate(targetLocation.Latitude, targetLocation.Longitude);
                     this.OSM_Map.navigateToCoordinate(coords, 16);
                 }
-                App.NavigationResults.Remove(typeof(FavoritesPage));
             }
+
             //came from RoutePage?
-            if (App.NavigationResults.ContainsKey(typeof(RoutePage)))
+            var routeresult = App.My.getNavigationResult("/RoutePage.xaml");
+            if (!string.IsNullOrEmpty(routeresult.Key))
             {
-                var searchresult = App.NavigationResults.getOrDefault(typeof(RoutePage));
-                var wps = (IEnumerable<Waypoint>)searchresult.Value;
+                var wps = (IEnumerable<Waypoint>)routeresult.Value;
                 if (wps != null)
                 {
                     var waypoints = new LocationCollection();
@@ -124,7 +120,6 @@ namespace OpenStreetApp
                     this.OSM_Map.setRoute(waypoints);
                     this.OSM_Map.navigateToCoordinate(waypoints[waypoints.Count / 2], 8);
                 }
-                App.NavigationResults.Remove(typeof(RoutePage));
             }
             /*if (newRoute != null)
             {

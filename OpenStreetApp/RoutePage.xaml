@@ -28,16 +28,16 @@
             <TextBlock Text="Start" Margin="10,10,0,0"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
             <Button Name="startBtn" Click="startBtn_Click">
-                <TextBlock Text="Start auswählen"/>
+                <TextBlock Text="Start auswählen" Name="startBtnTB"/>
             </Button>
-            <CheckBox>
+            <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                 <TextBlock Text="aktuelle position verwenden"/>
             </CheckBox>
 
             <TextBlock Text="Ziel" Margin="10,10,0,0"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
             <Button Name="targetBtn" Click="targetBtn_Click">
-                <TextBlock Text="Ziel auswählen"/>
+                <TextBlock Text="Ziel auswählen" Name="targetBtnTB"/>
             </Button>
             
             <Button Margin="0,50,0,0" Name="routeBtn" IsEnabled="False" Click="routeBtn_Click">
