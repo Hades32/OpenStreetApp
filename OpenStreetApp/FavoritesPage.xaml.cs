@@ -15,7 +15,7 @@ namespace OpenStreetApp
         private void detail_Click(object sender, RoutedEventArgs e)
         {
             Location selected = (sender as MenuItem).DataContext as Location;
-            App.My.navigateWithResult("/FavoriteDetailPage.xaml", "favoriteDetail");
+            App.My.navigateWithResult("/FavoriteDetailPage.xaml", "favoriteDetail", selected);
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)
@@ -33,7 +33,7 @@ namespace OpenStreetApp
 
         private void addFavorite_Click(object sender, RoutedEventArgs e)
         {
-            App.My.navigateWithResult("/AddFavorite.xaml", "addFavorite");
+            App.My.navigateWithResult("/AddFavorite.xaml", "addFavorite", null);
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

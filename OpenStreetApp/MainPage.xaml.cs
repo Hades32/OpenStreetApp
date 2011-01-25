@@ -49,7 +49,7 @@ namespace OpenStreetApp
 
         private void openButton_Click(object sender, EventArgs e)
         {
-            App.My.navigateWithResult("/SearchPage.xaml", "search");
+            App.My.navigateWithResult("/SearchPage.xaml", "search", null);
         }
 
         private void POIButton_Click(object sender, EventArgs e)
@@ -64,13 +64,13 @@ namespace OpenStreetApp
 
         private void routeBtn_Click(object sender, EventArgs e)
         {
-            App.My.navigateWithResult("/RoutePage.xaml", "route");
+            App.My.navigateWithResult("/RoutePage.xaml", "route", null);
         }
 
         private void favoriteButton_Click(object sender, EventArgs e)
         {
             MainPage.currentPosition = this.OSM_Map.getCurrentPosition();
-            App.My.navigateWithResult("/FavoritesPage.xaml", "favorites");
+            App.My.navigateWithResult("/FavoritesPage.xaml", "favorites", null);
         }
 
         private void ContextMenuPopup_Opened(object sender, EventArgs e)

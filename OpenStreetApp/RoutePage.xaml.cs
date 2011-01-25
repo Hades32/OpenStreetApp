@@ -13,12 +13,12 @@ namespace OpenStreetApp
 
         private void startBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.My.navigateWithResult("/SearchPage.xaml", "start");
+            App.My.navigateWithResult("/SearchPage.xaml", "start", null);
         }
 
         private void targetBtn_Click(object sender, RoutedEventArgs e)
         {
-            App.My.navigateWithResult("/SearchPage.xaml", "target");
+            App.My.navigateWithResult("/SearchPage.xaml", "target", null);
         }
 
         private void routeBtn_Click(object sender, RoutedEventArgs e)

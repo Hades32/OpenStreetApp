@@ -28,10 +28,20 @@ namespace OpenStreetApp
         private static Dictionary<string, KeyValuePair<string, object>> NavigationResults
             = new Dictionary<string, KeyValuePair<string, object>>();
 
-        public void navigateWithResult(string url, string name)
+        private static Stack<object> navigationParameters = new Stack<object>();
+
+        public void navigateWithResult(string url, string name, object parameter)
         {
+            if (parameter != null)
+                App.navigationParameters.Push(parameter);
+
             App.NavigationResults.setOrAdd(url, new KeyValuePair<string, object>(name, null));
             this.RootFrame.Navigate(new Uri(url, UriKind.Relative));
+        }
+
+        public object getNavigationParameter()
+        {
+            return App.navigationParameters.Pop();
         }
 
         public KeyValuePair<string, object> getNavigationResult(string url)
