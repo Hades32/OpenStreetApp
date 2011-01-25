@@ -24,6 +24,7 @@
             </my:Map.Mode>
             <my:Map.Children>
                 <my:MapTileLayer x:Name="TileLayer"/>
+                <my:MapLayer x:Name="PushpinLayer" Visibility="Collapsed"/>
                 <my:MapPolyline x:Name="Route"
                                 Stroke="Blue" StrokeThickness="5" StrokeLineJoin="Round"/>
             </my:Map.Children>
