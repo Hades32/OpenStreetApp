@@ -76,9 +76,6 @@ namespace OpenStreetApp
                                     || this.State.getOrDefault("currentposition") as bool? == true)
                                     && this.State.ContainsKey("target");
 
-            if (this.State.ContainsKey("start"))
-                this.startBtnTB.Text = ((Location)this.State["start"]).ToShortString();
-
             if (this.State.getOrDefault("currentposition") as bool? == true)
             {
                 this.startBtnTB.Text = "Aktuelle Position";
@@ -90,8 +87,11 @@ namespace OpenStreetApp
                 this.startBtn.IsEnabled = true;
             }
 
+            if (this.State.ContainsKey("start"))
+                this.startBtnTB.Text = ((Location)this.State["start"]).LocationListView;
+
             if (this.State.ContainsKey("target"))
-                this.targetBtnTB.Text = ((Location)this.State["target"]).ToShortString();
+                this.targetBtnTB.Text = ((Location)this.State["target"]).LocationListView;
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

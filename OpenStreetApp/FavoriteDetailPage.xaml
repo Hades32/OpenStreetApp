@@ -29,10 +29,21 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
+                <TextBlock Grid.Row="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
+                           Name="adressLabel" Text="Adresse:" 
+                           FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <TextBlock Margin="12,5,0,5" TextWrapping="Wrap" Width="434" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="LocationInfo" />
+
+                <TextBlock Grid.Row="0" Height="43" HorizontalAlignment="Left" Margin="10,30,0,0" 
+                           Name="coordinatesLabel" Text="Koordinaten:" 
+                           FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <TextBlock Margin="12,5,0,5" x:Name="latitude"></TextBlock>
                 <TextBlock Margin="12,5,0,5" x:Name="longitude"></TextBlock>
-                <TextBlock Margin="12,5,0,5" Text="Beschreibung: "></TextBlock>
+
+
+                <TextBlock Grid.Row="0" Height="43" HorizontalAlignment="Left" Margin="10,30,0,0" 
+                           Name="descriptionLabel" Text="Beschreibung:" 
+                           FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <TextBox Margin="0,5,0,5" x:Name="description"></TextBox>
             </StackPanel>
         </Grid>

@@ -32,7 +32,9 @@ namespace OpenStreetApp
         {
             get
             {
-                return this.ToString();
+                if (string.IsNullOrEmpty(this.Description))
+                    return this.ToString();
+                return this.Description;
             }
         }
 
@@ -86,19 +88,6 @@ namespace OpenStreetApp
                  ^ this.Line3.TryGetHashCode()
                  ^ this.Line4.TryGetHashCode()
                  ^ this.Longitude.GetHashCode();
-        }
-
-        public string ToShortString()
-        {
-            string res = this.Description;
-
-            if (string.IsNullOrEmpty(res))
-                res = this.Adress ?? "" + this.City ?? "";
-
-            if (string.IsNullOrEmpty(res))
-                res = "Lng. " + this.Longitude + " Lat." + this.Latitude;
-
-            return res;
         }
     }
 }

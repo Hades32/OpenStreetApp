@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
+using System;
 
 namespace OpenStreetApp
 {
@@ -14,8 +15,11 @@ namespace OpenStreetApp
 
         private void detail_Click(object sender, RoutedEventArgs e)
         {
+
+            // TODO CHANGE 
             Location selected = (sender as MenuItem).DataContext as Location;
-            App.My.navigateWithResult("/FavoriteDetailPage.xaml", "favoriteDetail");
+            App.My.navigateWithResult("/FavoriteDetailPage.xaml", "FavoriteDetail");
+            App.My.putNavigationResult("/FavoriteDetailPage.xaml", selected);
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)

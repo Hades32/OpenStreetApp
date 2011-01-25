@@ -40,7 +40,6 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
@@ -48,11 +47,10 @@
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <TextBox Grid.Row="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" 
                          Margin="0,0,0,0" InputScope="Text"  KeyDown="TargetInput_KeyDown" />
-                <ProgressBar Grid.Row="2" Name="progress" Visibility="Collapsed" Margin="0,20"/>
-                <TextBlock Grid.Row="3" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,20,0,0" 
+                <TextBlock Grid.Row="2" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,20,0,0" 
                            Name="lastSearchedDescription" Text="Zuletzt gesucht:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
-                <ListBox Grid.Row="4" x:Name="lastSearched" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                <ListBox Grid.Row="3" x:Name="lastSearched" ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="20"
                      ItemsSource="{Binding Path=LastSearchedLocations}" FontSize="30" Height="Auto" MaxHeight="450" SelectionChanged="lastSearched_SelectionChanged">
                 </ListBox>

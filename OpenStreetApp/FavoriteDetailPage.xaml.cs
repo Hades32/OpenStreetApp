@@ -9,13 +9,15 @@ namespace OpenStreetApp
         public FavoriteDetailPage()
         {
             InitializeComponent();
-            var searchresult = App.My.getNavigationResult("/FavoriteDetailPage.xaml");
-            current = (Location)searchresult.Value;
-
-            this.LocationInfo.Text = "" + current.ToString();
-            this.latitude.Text = "Latitude: " + current.Latitude;
-            this.longitude.Text = "Longitude: " + current.Longitude;
-            this.description.Text = "" + current.Description;
+            var res = App.My.getNavigationResult("/FavoriteDetailPage.xaml");
+            if (!string.IsNullOrEmpty(res.Key))
+            {
+                this.current = (Location)res.Value;
+                this.LocationInfo.Text = "" + current.ToString();
+                this.latitude.Text = "Latitude: " + current.Latitude;
+                this.longitude.Text = "Longitude: " + current.Longitude;
+                this.description.Text = "" + current.Description;
+            }       
         }
     }
 }

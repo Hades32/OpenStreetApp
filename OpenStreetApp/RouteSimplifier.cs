@@ -30,6 +30,9 @@ namespace OpenStreetApp
                 }
             }
 
+            if (lastPos == -1) 
+                return res;
+
             //simplify route to have only segments of ~ maxDist
             for (int i = 1; i < points.Count; i++)
             {
