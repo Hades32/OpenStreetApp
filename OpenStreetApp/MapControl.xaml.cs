@@ -100,15 +100,23 @@ namespace OpenStreetApp
                 {
                     if (this.fullRoute != null)
                     {
-                        var simpleroute = RouteSimplifier.simplifyRoute(this.fullRoute, 
-                                                                        this.getMaxDistForZoomLevel(),
-                                                                        this.OSM_Map.TargetBoundingRectangle);
-                        this.Dispatcher.BeginInvoke(() =>
-                            this.Route.Locations = simpleroute);
+                        setAndSimplifyRoute();
                     }
                 }));
 
             this.OSM_Map.Children.Add(PushpinLayer);
+        }
+
+        private void setAndSimplifyRoute()
+        {
+            System.Threading.ThreadPool.QueueUserWorkItem((x) =>
+                {
+                    var simpleroute = RouteSimplifier.simplifyRoute(this.fullRoute,
+                                                                    this.OSM_Map.TargetBoundingRectangle);
+                    System.Diagnostics.Debug.WriteLine("recalculated route");
+                    this.Dispatcher.BeginInvoke(() =>
+                        this.Route.Locations = simpleroute);
+                });
         }
 
         private void OSM_Map_MapZoom(object sender, MapZoomEventArgs e)
@@ -163,8 +171,7 @@ namespace OpenStreetApp
         public void setRoute(LocationCollection points)
         {
             this.fullRoute = points;
-            this.Route.Locations = RouteSimplifier.simplifyRoute(points, getMaxDistForZoomLevel(),
-                                                                 this.OSM_Map.TargetBoundingRectangle);
+            this.setAndSimplifyRoute();
         }
 
         private double getMaxDistForZoomLevel()
