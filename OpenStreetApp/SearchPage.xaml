@@ -46,8 +46,8 @@
                            Name="textDescription" Text="Ortsname:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <TextBox Grid.Row="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" 
-                         Margin="0,0,0,0" InputScope="Search" KeyDown="TargetInput_KeyDown" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
+                         Margin="0,0,0,0" InputScope="Text"  KeyDown="TargetInput_KeyDown" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,20,0,0" 
                            Name="lastSearchedDescription" Text="Zuletzt gesucht:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <ListBox Grid.Row="3" x:Name="lastSearched" ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -59,14 +59,14 @@
         </Grid>
 
         <StackPanel x:Name="ResultPanel" Grid.Row="1" Visibility="Collapsed">
-            <TextBlock Margin="22,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Suchergebnisse:</TextBlock>
+            <TextBlock x:Name="resultDescription" Margin="22,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Suchergebnisse:</TextBlock>
             <ListBox x:Name="results"  Margin="22,15,15,-390" ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
                      ItemsSource="{Binding Path=Locations}" FontSize="30" Height="Auto" MaxHeight="550" SelectionChanged="ListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Images/listItem.png" />
+                            <Image Source="Images/listItem.png" Margin="0,-15,0,0"/>
                             <TextBlock  Text="{Binding Path=LocationListView, Mode=OneWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap" Width="400">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu x:Name="contextMenu">

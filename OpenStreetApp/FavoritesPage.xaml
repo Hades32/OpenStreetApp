@@ -36,7 +36,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Images/listItem.png" />
+                            <Image Source="Images/listItem.png" Margin="0,-15,0,0"/>
                             <TextBlock  Text="{Binding Path=LocationListView, Mode=TwoWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap" Width="400">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu x:Name="contextMenu">
