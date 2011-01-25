@@ -20,27 +20,20 @@ namespace OpenStreetApp
             //show loading animation while authorizing
 
             this.DataContext = OSA_Configuration.Instance;
-
-            if ((!(System.Diagnostics.Debugger.IsAttached)) && OSA_Configuration.Instance.UseCurrentLocationSetting)
-            {
-                App.watcher.PositionChanged += watcher_initialLocationing;
-            }
-        }
-
-        void watcher_initialLocationing(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
-        {
-            System.Diagnostics.Debug.WriteLine("user wanted to start at his location");
-            App.lastKnownPosition = e.Position;
-            Point p = new Point(App.lastKnownPosition.Location.Longitude, App.lastKnownPosition.Location.Latitude);
-            this.OSM_Map.navigateToCoordinate(p, 16);
-            App.watcher.PositionChanged -= watcher_initialLocationing;
         }
 
         private void geoLocationButton_Click(object sender, EventArgs e)
         {
-            Point p = new Point(App.lastKnownPosition.Location.Longitude, App.lastKnownPosition.Location.Latitude);
-            this.OSM_Map.addPushpin(App.lastKnownPosition.Location);
-            this.OSM_Map.navigateToCoordinate(p, 16);
+            if (App.lastKnownPosition != null)
+            {
+                Point p = new Point(App.lastKnownPosition.Location.Longitude, App.lastKnownPosition.Location.Latitude);
+                this.OSM_Map.addPushpin(App.lastKnownPosition.Location);
+                this.OSM_Map.navigateToCoordinate(p, 16);
+            }
+            else
+            {
+                MessageBox.Show("Sorry, no GPS available");
+            }
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)

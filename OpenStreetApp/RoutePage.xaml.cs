@@ -96,8 +96,15 @@ namespace OpenStreetApp
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            this.State.setOrAdd("currentposition", true);
-            updateGuiState();
+            if (App.lastKnownPosition != null)
+            {
+                this.State.setOrAdd("currentposition", true);
+                updateGuiState();
+            }
+            else
+            {
+                MessageBox.Show("Sorry, no GPS available");
+            }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
