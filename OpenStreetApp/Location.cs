@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 namespace OpenStreetApp
 {
     [DataContract]
-    public class Location
+    public class Location : INotifyPropertyChanged
     {
         [DataMember]
         public double Longitude { get; set; }
@@ -89,5 +90,7 @@ namespace OpenStreetApp
                  ^ this.Line4.TryGetHashCode()
                  ^ this.Longitude.GetHashCode();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
