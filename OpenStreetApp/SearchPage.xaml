@@ -61,7 +61,6 @@
         <StackPanel x:Name="ResultPanel" Grid.Row="1" Visibility="Collapsed">
             <TextBlock x:Name="resultDescription" Margin="22,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Suchergebnisse:</TextBlock>
             <ListBox x:Name="results"  Margin="22,15,15,-390" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                     ScrollViewer.HorizontalScrollBarVisibility="Auto"
                      ItemsSource="{Binding Path=Locations}" FontSize="30" Height="Auto" MaxHeight="550" SelectionChanged="ListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

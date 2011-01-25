@@ -72,7 +72,6 @@ namespace OpenStreetApp
             }
         }
 
-        private MapLayer PushpinLayer = new MapLayer();
         private LocationCollection fullRoute = null;
         //prevent cross-thread problems
         private double lastKnownZoom = 1.0;
@@ -107,8 +106,6 @@ namespace OpenStreetApp
                             this.Route.Locations = simpleroute);
                     }
                 }));
-
-            this.OSM_Map.Children.Add(PushpinLayer);
         }
 
         private void OSM_Map_MapZoom(object sender, MapZoomEventArgs e)
@@ -157,6 +154,7 @@ namespace OpenStreetApp
         public void addPushpin(GeoCoordinate geoCoordinate)
         {
             Pushpin pushpin = new Pushpin();
+            
             this.PushpinLayer.AddChild(pushpin, geoCoordinate);
         }
 
