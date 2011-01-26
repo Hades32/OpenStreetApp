@@ -1,6 +1,7 @@
 ﻿using System.Device.Location;
 using System.Windows;
 using Microsoft.Phone.Controls;
+using System.Windows.Controls;
 
 namespace OpenStreetApp
 {
@@ -87,10 +88,10 @@ namespace OpenStreetApp
                 this.startBtn.IsEnabled = true;
             }
 
-            if (this.State.ContainsKey("start"))
+            if (this.State.ContainsKey("start") && this.State["start"] != null)
                 this.startBtnTB.Text = ((Location)this.State["start"]).LocationListView;
 
-            if (this.State.ContainsKey("target"))
+            if (this.State.ContainsKey("target") && this.State["target"] != null)
                 this.targetBtnTB.Text = ((Location)this.State["target"]).LocationListView;
         }
 
@@ -104,6 +105,7 @@ namespace OpenStreetApp
             else
             {
                 MessageBox.Show("Sorry, no GPS available");
+                ((CheckBox)e.OriginalSource).IsChecked = false;
             }
         }
 
