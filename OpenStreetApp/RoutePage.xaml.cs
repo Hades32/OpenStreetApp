@@ -80,6 +80,7 @@ namespace OpenStreetApp
             if (this.State.getOrDefault("currentposition") as bool? == true)
             {
                 this.startBtnTB.Text = "Aktuelle Position";
+                this.State.Remove("start");
                 this.startBtn.IsEnabled = false;
             }
             else
