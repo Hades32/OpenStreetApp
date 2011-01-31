@@ -5,26 +5,39 @@
 \textclass article
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language ngerman
 \inputencoding auto
 \fontencoding global
-\font_roman default
-\font_sans default
-\font_typewriter default
+\font_roman Cambria
+\font_sans Calibri
+\font_typewriter Consolas
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
 
 \graphics default
-\default_output_format default
+\default_output_format pdf4
 \output_sync 0
 \bibtex_command default
 \index_command default
 \paperfontsize default
-\use_hyperref false
+\spacing other 1.2
+\use_hyperref true
+\pdf_title "Entwicklung auf Windows Phone 7"
+\pdf_author "Martin Rauscher"
+\pdf_keywords "Windows Phone 7, WP7, XAML, Silverlight, Microsoft"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
 \use_geometry false
 \use_amsmath 1
@@ -57,8 +70,115 @@
 
 \begin_body
 
-\begin_layout Standard
+\begin_layout Title
+Entwicklung auf Windows Phone 7
+\begin_inset Newline newline
+\end_inset
 
+
+\size large
+Am Beispiel einer 
+\noun on
+OpenStreetMap
+\noun default
+ Anwendung
+\end_layout
+
+\begin_layout Author
+Martin Rauscher
+\end_layout
+
+\begin_layout Section
+Einführung
+\end_layout
+
+\begin_layout Standard
+Laber laber laber
+\end_layout
+
+\begin_layout Subsection
+Vorstellung der Beispielanwendung
+\end_layout
+
+\begin_layout Section
+Eine kurze Geschichte der 
+\noun on
+Windows Presentation Foundation
+\end_layout
+
+\begin_layout Standard
+wpf (vista) -> wpf/e aka Silverlight (Moonlight, Mac) -> Silverlight on
+ WP7
+\end_layout
+
+\begin_layout Standard
+XNA gibts auch noch
+\end_layout
+
+\begin_layout Section
+Entwicklen mit Silverlight
+\end_layout
+
+\begin_layout Standard
+XAML, bindings, MVVM etc
+\end_layout
+
+\begin_layout Subsection
+Besonderheiten auf dem Handy
+\end_layout
+
+\begin_layout Standard
+laaaaangsam, tombstoning
+\end_layout
+
+\begin_layout Section
+Das Microsoft-Ökosystem
+\end_layout
+
+\begin_layout Standard
+bla bla
+\end_layout
+
+\begin_layout Subsection
+Marketplace (aka App-Store™
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Apple hat 
+\begin_inset Quotes eld
+\end_inset
+
+App-Store
+\begin_inset Quotes erd
+\end_inset
+
+ als Markenzeichen eintragen lassen, wogegen Microsoft gerade Einspruch
+ erhoben hat.
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsection
+Entwicklungsumgebung
+\end_layout
+
+\begin_layout Section
+Fazit - Erfolgschancen von WP7
+\end_layout
+
+\begin_layout Bibliography
+\labelwidthstring Literaturverzeichnis
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+Erste Quelle
 \end_layout
 
 \end_body
