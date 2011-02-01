@@ -100,10 +100,32 @@ Laber laber laber
 Vorstellung der Beispielanwendung
 \end_layout
 
+\begin_layout Subsection
+Rahmen dieser Arbeit
+\end_layout
+
+\begin_layout Standard
+XNA gibts auch noch
+\end_layout
+
 \begin_layout Section
-Eine kurze Geschichte der 
+Eine kurze Geschichte der
+\begin_inset Newline newline
+\end_inset
+
+
 \noun on
-Windows Presentation Foundation
+Windows
+\begin_inset space ~
+\end_inset
+
+Presentation
+\begin_inset space ~
+\end_inset
+
+Foundation
+\noun default
+g
 \end_layout
 
 \begin_layout Standard
@@ -111,8 +133,131 @@ wpf (vista) -> wpf/e aka Silverlight (Moonlight, Mac) -> Silverlight on
  WP7
 \end_layout
 
+\begin_layout Subsection
+
+\noun on
+Windows Presentation Foundation (WPF)
+\end_layout
+
 \begin_layout Standard
-XNA gibts auch noch
+Ende 2006 stellte Microsoft die finale Version 3.0 des .NET Framwork vor.
+ Mit diesem wurde zum ersten mal die, bis dahin unter dem Codenamen Avalon
+ entwickelte, 
+\noun on
+Windows Presentation Foundation (WPF)
+\noun default
+ der Öffentlichkeit zugänglich gemacht.
+ Microsoft hoffte das Entwickler, insbesondere für das nur zwei Monate später
+ erscheinende Windows Vista, nun hauptsächlich mit .NET und WPF entwickeln
+ würden.
+ Bis heute ist allerdings die Akzeptanz von WPF im Consumerbereich eher
+ gering.
+\end_layout
+
+\begin_layout Standard
+Mit WPF führte Microsoft erstmals ein deklaratives Modell zur Gestaltung
+ von Benutzeroberflächen ein.
+ Dabei wird die GUI und die Datenbindungen mit einem auf XML basierenden
+ Format beschrieben.
+ Dies erhöht die Wartbarkeit und Wiederverwendbarkeit verglichen mit den
+ bisher verwendeten, zum Teil riesigen, automatisch generierten Funktionen
+ enorm.
+\end_layout
+
+\begin_layout Standard
+Eine weitere große Neuerung ist die Abwendung von GDI(+) für das GUI-Rendering.
+ Mit WPF wird erstmals voll auf (hardwarebeschleunigtes) DirectX gesetzt.
+ Das hat den Vorteil, dass komplexe Oberflächen gerendert, transformiert
+ und mit Effekten versehen werden können, ohne dass die CPU zusätzlich belastet
+ würde.
+\end_layout
+
+\begin_layout Subsection
+
+\noun on
+Silverlight 
+\noun default
+(WPF/E)
+\end_layout
+
+\begin_layout Standard
+2007 stellte Microsoft 
+\noun on
+Silverlight
+\noun default
+ (unter dem Codenamen Windows 
+\noun on
+Presentation Foundation/Everywhere 
+\noun default
+(WPF/E) entwickelt) vor.
+ Bei Silverlight handelt es sich grob gesagt um eine stark reduziert Version
+ des .NET Framework und einer Untermenge
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Aufgrund von unterschiedlichen Releasezyklen hat die aktuelle WPF einige
+ Klassen nicht, die in Silverlight enthalten sind.
+ Dies wurden aber über ein Silverlight Toolkit nachgereicht.
+\end_layout
+
+\end_inset
+
+ der WPF Funktionalität.
+ 
+\end_layout
+
+\begin_layout Standard
+Auch wenn Silverlight oft als Konkurenz zu Adobes Flash Player gesehen wird,
+ wurde es hauptsächlich mit dem Ziel entwickelt so genannte Rich Internet
+ Applications (RIAs) zu ermöglichen, die hauptsächlich im Geschäftsbereich
+ ihren Einsatzzweck haben.
+ Der einzige Bereich in dem Silverlight momentan ernsthaft in Konkurrenz
+ zu Flash steht ist die Fähigkeit der Videowiedergabe.
+ Sowohl 
+\noun on
+Smooth Streaming
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Bei Smooth Streaming handelt es sich um eine Technik die Videomaterial dynamisch
+ neu kodiert, um sich der zur Verfügung stehenden Bandbreite anzupassen.
+\end_layout
+
+\end_inset
+
+
+\noun default
+ als auch hardwarebeschleunigte Videowiedergabe waren zuerst in Silverlight
+ möglich.
+\end_layout
+
+\begin_layout Standard
+Silverlight wurde ausgelegt, 
+\begin_inset Quotes eld
+\end_inset
+
+cross-platform
+\begin_inset Quotes erd
+\end_inset
+
+ zu sein.
+ Microsoft stellt es für die meisten Windows Versionen sowie für Mac OS
+ X zur Verfügung.
+ Desweiteren ist ein Großteil der Spezifikationen und einige Teile des Codes
+ öffentlich zugänglich.
+ Darauf aufbauend entwickelt das Mono Projekt unter Leitung von Novell einen
+ Linux Port.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Moonlight
+\begin_inset Quotes erd
+\end_inset
+
+ ist momentan Kompatibel mit Silverlight 3.
 \end_layout
 
 \begin_layout Section
@@ -127,8 +272,114 @@ XAML, bindings, MVVM etc
 Besonderheiten auf dem Handy
 \end_layout
 
+\begin_layout Subsubsection
+Performance
+\end_layout
+
 \begin_layout Standard
-laaaaangsam, tombstoning
+Die Entwicklung auf Mobilgeräten unterliegt zum Teil gänzlich anderen Anforderun
+gen, als die Entwicklung für den Desktopbereich.
+ Während auf 
+\begin_inset Quotes eld
+\end_inset
+
+normalen
+\begin_inset Quotes erd
+\end_inset
+
+ PCs sowohl Rechenleistung als auch Arbeitsspeicher im Übermaß vorhanden
+ ist, müssen sich Entwickler im mobilen Bereich über diese Aspekte wieder
+ Gedanken machen.
+ Nur dann kann eine ausreichende Performance auf dem Gerät zu erzielt werden.
+\end_layout
+
+\begin_layout Standard
+Beispiele im Vergleich WPF SL/WP7
+\end_layout
+
+\begin_layout Subsubsection
+
+\noun on
+Tombstoning
+\end_layout
+
+\begin_layout Standard
+Eine Konsequenz der geringen Ressourcen ist das so genannte 
+\noun on
+Tombstoning
+\noun default
+.
+ WP7 unterstützt kein Multitasking
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Das OS selbst unterstützt Multitasking und ein zukünftiges Update soll es
+ auch Apps zugänglich machen.
+\end_layout
+
+\end_inset
+
+, wie man es auf dem Desktop gewöhnt ist.
+ Stattdessen wird ein Programm sobald es inaktiv wird aus dem RAM entfernt.
+ Bevor dies geschieht wird der App zuvor die Möglichkeit gegeben ihren Zustand
+ zu sichern.
+\end_layout
+
+\begin_layout Standard
+Dies geschieht an zwei Stellen:
+\end_layout
+
+\begin_layout Standard
+Zum einen kann jede Page lokale Daten halten.
+ Da Pages bei jedem Aufruf neu erstellt werden, müssen diese Daten, für
+ eine eventuell später ausgeführte 
+\begin_inset Quotes eld
+\end_inset
+
+zurück
+\begin_inset Quotes erd
+\end_inset
+
+ Navigation, bei jedem Verlassen gespeichert werden.
+ Dies geschieht durch setzen eines 
+\noun on
+State
+\noun default
+ Dictionaries, auf das der Navigationsservice Zugriff hat.
+ 
+\end_layout
+
+\begin_layout Standard
+Zum Anderen kann die 
+\noun on
+App
+\noun default
+ Klasse globale Daten halten.
+ Diese können entweder auch mit einer Dictionary basierten Methode gespeichert
+ werden, oder aber auch manuell mit dem normalen Dateisystem.
+\end_layout
+
+\begin_layout Standard
+Wenn eine Anwendung oder eine Seite keinen inhärenten Zustand hat, ist die
+ Verwendung dieser Methoden aber nicht verpflichtend.
+ Sie werden dann einfach neu erstellt, wie beim ersten Aufruf.
+\end_layout
+
+\begin_layout Subsubsection
+Design
+\end_layout
+
+\begin_layout Standard
+Ein weiterer Aspekt, auf den hier aber nicht näher eingegangen werden soll,
+ ist die Bauform.
+ Durch sie bedingt steht sehr viel weniger Bildschirmfläche zur Verfügung,
+ was u.U.
+ ein Komplett unterschiedliches Design von Nöten machen kann.
+ Außerdem sind in diesem Bereich Eingabemethoden üblich, die auf dem Desktop
+ oft garnicht zur Verfügung stehen.
+ (Z.B.
+ Multi-Touch-Screens, Beschleunigungs- und Lagesensoren)
 \end_layout
 
 \begin_layout Section
