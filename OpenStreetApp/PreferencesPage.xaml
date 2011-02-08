@@ -36,7 +36,7 @@
                      SelectedIndex="{Binding Path=SelectedTileSourceSetting, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel x:Name="preferences" Grid.Row="2" Margin="12,5,0,28">
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">View On Startup?</TextBlock>
+            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">View On Startup</TextBlock>
             <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="190" Name="toggleSwitch1" Width="419" HorizontalAlignment="Left" 
                                   Content="World View" Checked="toggleSwitch1_Checked" Unchecked="toggleSwitch1_Unchecked" IsChecked="{Binding Path=UseCurrentLocationSetting, Mode=TwoWay}"/>
         </StackPanel>

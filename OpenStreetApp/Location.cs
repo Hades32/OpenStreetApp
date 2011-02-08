@@ -65,30 +65,38 @@ namespace OpenStreetApp
             if (x == null)
                 return false;
 
+            int thisLat = (int)(this.Latitude * 10000);
+            int thisLong = (int)(this.Longitude * 10000);
+            int objLat = (int)(x.Latitude * 10000);
+            int objLong = (int)(x.Longitude * 10000);
+
             return x.Adress == this.Adress
                 && x.Area == this.Area
                 && x.City == this.City
                 && x.Description == this.Description
-                && x.Latitude == this.Latitude
+                && thisLat == objLat
                 && x.Line1 == this.Line1
                 && x.Line2 == this.Line2
                 && x.Line3 == this.Line3
                 && x.Line4 == this.Line4
-                && x.Longitude == this.Longitude;
+                && thisLong == objLong;
         }
 
         public override int GetHashCode()
         {
+            int thisLat = (int)(this.Latitude * 10000);
+            int thisLong = (int)(this.Longitude * 10000);
+
             return this.Adress.TryGetHashCode()
                  ^ this.Area.TryGetHashCode()
                  ^ this.City.TryGetHashCode()
                  ^ this.Description.TryGetHashCode()
-                 ^ this.Latitude.GetHashCode()
+                 ^ thisLat.GetHashCode()
                  ^ this.Line1.TryGetHashCode()
                  ^ this.Line2.TryGetHashCode()
                  ^ this.Line3.TryGetHashCode()
                  ^ this.Line4.TryGetHashCode()
-                 ^ this.Longitude.GetHashCode();
+                 ^ thisLong.GetHashCode();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
