@@ -47,7 +47,7 @@ namespace OpenStreetApp
             {
                 InputAdressAsync(inputAdressString + ",*", (List2) =>
                 {
-                    callback(List1.Union(List2).ToList());
+                    callback(List1.Union(List2).Distinct().ToList());
                 });
             });
         }

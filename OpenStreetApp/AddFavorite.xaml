@@ -23,16 +23,16 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Favorit hinzufügen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Add Favorite" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Margin="12,5,0,5" FontSize="{StaticResource PhoneFontSizeLarge}">Aktuelle Position:</TextBlock>
+            <TextBlock Margin="12,5,0,5" FontSize="{StaticResource PhoneFontSizeLarge}">Current Position</TextBlock>
             <TextBlock Margin="12,5,0,5" TextWrapping="Wrap" Width="434" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="LocationInfo" />
-            <TextBlock Margin="12,5,0,5" FontSize="{StaticResource PhoneFontSizeLarge}">Beschreibung:</TextBlock>
-            <TextBox TextWrapping="Wrap" x:Name="Description" Width="460" HorizontalAlignment="left" Margin="0,0,0,0" />
-            <Button x:Name="buttonSave" Content="Speichern" Width="auto" Height="auto" HorizontalAlignment="Left" Click="buttonSave_Click"/>
+            <TextBlock Margin="12,5,0,5" FontSize="{StaticResource PhoneFontSizeLarge}">Description</TextBlock>
+            <TextBox TextWrapping="Wrap" x:Name="Description" InputScope="Text" Width="460" HorizontalAlignment="left" Margin="0,0,0,0" />
+            <Button x:Name="buttonSave" Content="Save" Width="auto" Height="auto" HorizontalAlignment="Left" Click="buttonSave_Click"/>
         </StackPanel>
     </Grid>
 

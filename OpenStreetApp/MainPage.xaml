@@ -21,14 +21,14 @@
  
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5">
-            <shell:ApplicationBarIconButton x:Name="geoLocationButton" Click="geoLocationButton_Click"  IconUri="Images/geo.png" Text="Aktueller Standort"/>
-            <shell:ApplicationBarIconButton x:Name="openButton" Click="openButton_Click" IconUri="Images/search.png" Text="Suchen"/>
-            <shell:ApplicationBarIconButton x:Name="favoriteButton" Click="favoriteButton_Click" IconUri="Images/addfav.png" Text="Favoriten öffnen"/>
-            <shell:ApplicationBarIconButton x:Name="routeBtn" Click="routeBtn_Click" IconUri="Images/navigate.png" Text="Route berechnen"/>
+            <shell:ApplicationBarIconButton x:Name="geoLocationButton" Click="geoLocationButton_Click"  IconUri="Images/geo.png" Text="Current Position"/>
+            <shell:ApplicationBarIconButton x:Name="openButton" Click="openButton_Click" IconUri="Images/search.png" Text="Search"/>
+            <shell:ApplicationBarIconButton x:Name="favoriteButton" Click="favoriteButton_Click" IconUri="Images/addfav.png" Text="Open Favorites"/>
+            <shell:ApplicationBarIconButton x:Name="routeBtn" Click="routeBtn_Click" IconUri="Images/navigate.png" Text="Calculate Route"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="POIButton" Click="POIButton_Click" Text="POI anzeigen"/>
-                <shell:ApplicationBarMenuItem x:Name="clearMap" Click="clearMap_Click" Text="Karte leeren" />
-                <shell:ApplicationBarMenuItem x:Name="preferencesButton" Click="preferencesButton_Click" Text="Einstellungen"/>
+                <shell:ApplicationBarMenuItem x:Name="POIButton" Click="POIButton_Click" Text="Toggle POIs"/>
+                <shell:ApplicationBarMenuItem x:Name="clearMap" Click="clearMap_Click" Text="Clear Map" />
+                <shell:ApplicationBarMenuItem x:Name="preferencesButton" Click="preferencesButton_Click" Text="Preferences"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

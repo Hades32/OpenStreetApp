@@ -27,7 +27,7 @@
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Einstellungen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Preferences" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" >
             <TextBlock Margin="12,5,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
@@ -36,9 +36,9 @@
                      SelectedIndex="{Binding Path=SelectedTileSourceSetting, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel x:Name="preferences" Grid.Row="2" Margin="12,5,0,28">
-            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Ansicht bei Programmstart?</TextBlock>
+            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">View On Startup</TextBlock>
             <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="190" Name="toggleSwitch1" Width="419" HorizontalAlignment="Left" 
-                                  Content="Weltkarte" Checked="toggleSwitch1_Checked" Unchecked="toggleSwitch1_Unchecked" IsChecked="{Binding Path=UseCurrentLocationSetting, Mode=TwoWay}"/>
+                                  Content="World View" Checked="toggleSwitch1_Checked" Unchecked="toggleSwitch1_Unchecked" IsChecked="{Binding Path=UseCurrentLocationSetting, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 

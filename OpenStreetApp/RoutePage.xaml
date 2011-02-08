@@ -21,27 +21,27 @@
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Route" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Routing" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Text="Start" Margin="10,10,0,0"
+            <TextBlock Text="Start" Margin="10,10,0,0" FontSize="{StaticResource PhoneFontSizeLarge}"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
             <Button Name="startBtn" Click="startBtn_Click">
-                <TextBlock Text="Start auswählen" Name="startBtnTB" TextWrapping="Wrap"/>
+                <TextBlock Text="Select Start" Name="startBtnTB" TextWrapping="Wrap"/>
             </Button>
             <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                 <TextBlock Text="aktuelle position verwenden"/>
             </CheckBox>
 
-            <TextBlock Text="Ziel" Margin="10,10,0,0"
+            <TextBlock Text="Target" Margin="10,10,0,0" FontSize="{StaticResource PhoneFontSizeLarge}"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
             <Button Name="targetBtn" Click="targetBtn_Click">
-                <TextBlock Text="Ziel auswählen" Name="targetBtnTB" TextWrapping="Wrap"/>
+                <TextBlock Text="Select Target" Name="targetBtnTB" TextWrapping="Wrap"/>
             </Button>
             
             <Button Margin="0,50,0,0" Name="routeBtn" IsEnabled="False" Click="routeBtn_Click">
-                <TextBlock Text="Und Los!!!" FontSize="30"
+                <TextBlock Text="Calculate Route" FontSize="30"
                     Style="{StaticResource PhoneTextAccentStyle}"/>
             </Button>
 

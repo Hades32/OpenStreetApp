@@ -12,12 +12,12 @@ namespace OpenStreetApp
 
         private void toggleSwitch1_Checked(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.toggleSwitch1.Content = "Aktuelle Position";
+            this.toggleSwitch1.Content = "Current Position";
         }
 
         private void toggleSwitch1_Unchecked(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.toggleSwitch1.Content = "Weltkarte";
+            this.toggleSwitch1.Content = "World View";
         } 
     }
 }

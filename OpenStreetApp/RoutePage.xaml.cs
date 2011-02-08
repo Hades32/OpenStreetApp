@@ -79,12 +79,13 @@ namespace OpenStreetApp
 
             if (this.State.getOrDefault("currentposition") as bool? == true)
             {
-                this.startBtnTB.Text = "Aktuelle Position";
+                this.startBtnTB.Text = "Current Position";
+                this.State.Remove("start");
                 this.startBtn.IsEnabled = false;
             }
             else
             {
-                this.startBtnTB.Text = "Start auswählen";
+                this.startBtnTB.Text = "Select Start";
                 this.startBtn.IsEnabled = true;
             }
 
