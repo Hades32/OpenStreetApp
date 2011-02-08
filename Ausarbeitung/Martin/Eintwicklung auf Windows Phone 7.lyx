@@ -19,10 +19,11 @@
 \font_tt_scale 100
 
 \graphics default
-\default_output_format pdf4
+\default_output_format default
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement H
 \paperfontsize default
 \spacing other 1.2
 \use_hyperref true
@@ -100,12 +101,64 @@ Laber laber laber
 Vorstellung der Beispielanwendung
 \end_layout
 
+\begin_layout Standard
+Im Rahmen dieser Arbeit wurde eine Anwendung erstellt, die das Betrachten
+ von Karten von 
+\noun on
+OpenStreetMap
+\noun default
+ (und anderen Anbietern) ermöglicht.
+ Sie ermöglicht die Steuerung über die üblichen Multi-Touch-Gesten, das
+ suchen nach Orten und das erstellen von Favoritenlisten.
+ Desweiteren können Routen geplant werden.
+\end_layout
+
+\begin_layout Standard
+Alle Beispiele in dieser Arbeit sind aus dem Code dieser Anwendung.
+ Für nähere Informationen zur 
+\begin_inset Quotes eld
+\end_inset
+
+OpenStreetApp
+\begin_inset Quotes erd
+\end_inset
+
+ verweise ich auf XXXXX
+\end_layout
+
 \begin_layout Subsection
 Rahmen dieser Arbeit
 \end_layout
 
 \begin_layout Standard
-XNA gibts auch noch
+Um Anwendungen für WP7 zu schreiben gibt es grundsätzlich zwei Möglichkeiten
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Für spezielle Microsoft Partner ist es auch noch möglich halb-native Anwendungen
+ zu schreiben.
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Die Entwicklung auf Basis von Silverlight, wobei die Oberfläche in XAML
+ geschrieben wird.
+\end_layout
+
+\begin_layout Enumerate
+Das XNA Framework - eine gekapselte DirectX-Schnittstille - wird hauptsächlich
+ für die Entwicklung von Spielen verwendet.
+\end_layout
+
+\begin_layout Standard
+Diese Arbeit beschäftigt sich ausschließlich mit der Entwicklung mit Silverlight
+, da das Entwicklungsmodell mit XNA gänzlich anders ist und es nur in seltenen
+ Fällen Sinn macht mit XNA nicht-Spiele zu entwickeln.
 \end_layout
 
 \begin_layout Section
@@ -124,13 +177,17 @@ Presentation
 \end_inset
 
 Foundation
-\noun default
-g
 \end_layout
 
 \begin_layout Standard
-wpf (vista) -> wpf/e aka Silverlight (Moonlight, Mac) -> Silverlight on
- WP7
+Das Framework auf WP7 Handys basiert auf dem - vom Desktop bekannten - Silverlig
+ht, welches selbst wieder auf der 
+\noun on
+Windows Presentation Foundation
+\noun default
+ basiert.
+ In den folgen Abschnitten soll kurz aufgezeigt werden, wie die beiden Framework
+s entstanden sind und was die groben Unterschiede sind.
 \end_layout
 
 \begin_layout Subsection
@@ -212,8 +269,8 @@ Auch wenn Silverlight oft als Konkurenz zu Adobes Flash Player gesehen wird,
  wurde es hauptsächlich mit dem Ziel entwickelt so genannte Rich Internet
  Applications (RIAs) zu ermöglichen, die hauptsächlich im Geschäftsbereich
  ihren Einsatzzweck haben.
- Der einzige Bereich in dem Silverlight momentan ernsthaft in Konkurrenz
- zu Flash steht ist die Fähigkeit der Videowiedergabe.
+ Der einzige Bereich in dem Silverlight momentan ernsthaft in direkter Konkurren
+z zu Flash steht ist die Videowiedergabe.
  Sowohl 
 \noun on
 Smooth Streaming
@@ -234,15 +291,7 @@ Bei Smooth Streaming handelt es sich um eine Technik die Videomaterial dynamisch
 \end_layout
 
 \begin_layout Standard
-Silverlight wurde ausgelegt, 
-\begin_inset Quotes eld
-\end_inset
-
-cross-platform
-\begin_inset Quotes erd
-\end_inset
-
- zu sein.
+Silverlight wurde vom Grund auf Plattformunabhängig konzipiert.
  Microsoft stellt es für die meisten Windows Versionen sowie für Mac OS
  X zur Verfügung.
  Desweiteren ist ein Großteil der Spezifikationen und einige Teile des Codes
@@ -260,12 +309,154 @@ Moonlight
  ist momentan Kompatibel mit Silverlight 3.
 \end_layout
 
+\begin_layout Subsection
+Unteschiede
+\end_layout
+
+\begin_layout Standard
+Mit dem Ziel der Plattformunabhängigkeit gingen natürlich auch höhere Ansprüche
+ an einen geringen Ressourcenverbrauch einher.
+ Das hatte zur Folge, dass einige Funktionen - z.B.
+ Hardwarebeschleunigung und einige Controls - erst in späteren Versionen
+ zur Verfügung standen.
+ Bis jetzt sind noch einige Konzepte, wie z.B.
+ Trigger und implizite Styles, noch immer nur in WPF verfügbar.
+\end_layout
+
 \begin_layout Section
 Entwicklen mit Silverlight
 \end_layout
 
+\begin_layout Subsection
+XAML
+\end_layout
+
 \begin_layout Standard
 XAML, bindings, MVVM etc
+\end_layout
+
+\begin_layout Standard
+XAML ist eine deklarative Sprache zur Beschreibung von Benutzeroberflächen
+ in Silverlight und WPF.
+ Sie ist ein XML Dialekt, der um verschiedene Konzepte erweitert wurde:
+\end_layout
+
+\begin_layout Subsubsection
+Komplexe Attributdefinitionen
+\end_layout
+
+\begin_layout Standard
+In XML können Attributen nur Strings, Zahlen und Referenzen zugewiesen werden,
+ während der Inhalt von Element beliebig komplex sein kann.
+ In XAML können Attribute durch eine simple Erweiterung der Semantik von
+ Elementnamen, ebenfalls beschrieben werden.
+ Im Beispiel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Beispiel-für-Komplexe"
+
+\end_inset
+
+ wird so auf das Attribut 
+\family typewriter
+Background
+\family default
+ über 
+\family typewriter
+Grid.Background
+\family default
+ zugegriffen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=HTML,tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<Grid x:Name="LayoutRoot" Background="Transparent"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+<!-- oder -->
+\end_layout
+
+\begin_layout Plain Layout
+
+<Grid x:Name="LayoutRoot">
+\end_layout
+
+\begin_layout Plain Layout
+
+	<Grid.Background>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<SolidColorBrush Color="Transparent"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</Grid.Background>
+\end_layout
+
+\begin_layout Plain Layout
+
+</Grid>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Beispiel-für-Komplexe"
+
+\end_inset
+
+Beispiel für Komplexe Attributdefinitionen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Subsection
+Datenverbindungen
+\end_layout
+
+\begin_layout Subsection
+Reactive Extensions (Rx)
 \end_layout
 
 \begin_layout Subsection
@@ -386,10 +577,6 @@ Ein weiterer Aspekt, auf den hier aber nicht näher eingegangen werden soll,
 Das Microsoft-Ökosystem
 \end_layout
 
-\begin_layout Standard
-bla bla
-\end_layout
-
 \begin_layout Subsection
 Marketplace (aka App-Store™
 \begin_inset Foot
@@ -429,7 +616,7 @@ key "key-1"
 
 \end_inset
 
-Erste Quelle
+Erste Quelleden
 \end_layout
 
 \end_body
