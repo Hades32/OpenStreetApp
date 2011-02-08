@@ -11,8 +11,7 @@ namespace OpenStreetApp
 
         internal static LocationCollection simplifyRoute(LocationCollection points, LocationRect bounds)
         {
-
-            if (points == lastPoints && (bounds.East - bounds.West == lastBounds.East - lastBounds.West))
+            if (points == lastPoints && bounds == lastBounds)
                 return lastRes;
 
             var res = new LocationCollection();
@@ -80,7 +79,7 @@ namespace OpenStreetApp
                 if (removeId + 2 < keep.Count)
                     distances[keep[removeId + 1]] = getDistanceDelta(res[keep[removeId - 1]],
                                                 res[keep[removeId + 1]],
-                                                res[keep[removeId + 2]]);                
+                                                res[keep[removeId + 2]]);
                 keep.RemoveAt(removeId);
             }
 

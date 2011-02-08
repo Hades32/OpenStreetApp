@@ -4,6 +4,7 @@ using System.Device.Location;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Reactive;
 
@@ -76,6 +77,9 @@ namespace OpenStreetApp
         //prevent cross-thread problems
         private double lastKnownZoom = 1.0;
 
+        private int zoomLockCnt = 0;
+        private object zoomLock = new object();
+
         public MapControl()
         {
             InitializeComponent();
@@ -92,15 +96,16 @@ namespace OpenStreetApp
                             () => OSM_Map_OnDoubleClick(eventList[0].EventArgs));
                 }));
 
-            Microsoft.Phone.Reactive.Observable.FromEvent<ManipulationCompletedEventArgs>(this.touchBorder, "ManipulationCompleted")
-                .BufferWithTime(TimeSpan.FromSeconds(1))
-                .Subscribe(new Action<IList<IEvent<ManipulationCompletedEventArgs>>>(
-                eventList =>
+            Microsoft.Phone.Reactive.Observable.FromEvent<MapEventArgs>(this.OSM_Map, "TargetViewChanged")
+                .Throttle(TimeSpan.FromSeconds(0.4))
+                .Subscribe(new Action<IEvent<MapEventArgs>>(
+                event_ =>
                 {
                     if (this.fullRoute != null)
                     {
                         setAndSimplifyRoute();
                     }
+                    // TODO POI refresh
                 }));
         }
 
@@ -112,7 +117,14 @@ namespace OpenStreetApp
                                                                     this.OSM_Map.TargetBoundingRectangle);
                     System.Diagnostics.Debug.WriteLine("recalculated route");
                     this.Dispatcher.BeginInvoke(() =>
-                        this.Route.Locations = simpleroute);
+                        {
+                            var route = new MapPolyline();
+                            route.Stroke = new SolidColorBrush(Colors.Blue);
+                            route.StrokeThickness = 5;
+                            route.StrokeLineJoin = PenLineJoin.Round;
+                            route.Locations = simpleroute;
+                            this.RoutesLayer.Children.Add(route);
+                        });
                 });
         }
 
@@ -162,7 +174,7 @@ namespace OpenStreetApp
         public void addPushpin(GeoCoordinate geoCoordinate)
         {
             Pushpin pushpin = new Pushpin();
-            
+
             this.PushpinLayer.AddChild(pushpin, geoCoordinate);
         }
 
@@ -209,6 +221,25 @@ namespace OpenStreetApp
         private void touchBorder_ManipulationStarted(object sender, System.Windows.Input.ManipulationStartedEventArgs e)
         {
             e.Handled = true;
+            System.Threading.ThreadPool.QueueUserWorkItem((x) =>
+            {
+                lock (zoomLock)
+                {
+                    if (zoomLockCnt == 0)
+                        zoomLockCnt++;
+                    else
+                        return;
+                }
+                System.Threading.Thread.Sleep(150);
+                while (!this.OSM_Map.IsIdle)
+                {
+                    System.Threading.Thread.Sleep(50);
+                }
+                lock (zoomLock)
+                {
+                    zoomLockCnt--;
+                }
+            });
         }
 
         private void touchBorder_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
@@ -217,7 +248,7 @@ namespace OpenStreetApp
             if (e.DeltaManipulation.Scale.X != 0 ||
                 e.DeltaManipulation.Scale.Y != 0)
             {
-                System.Diagnostics.Debug.WriteLine("still getting zoom event");
+                this.RoutesLayer.Children.Clear();
                 e.Complete();
                 var zoom = this.OSM_Map.ZoomLevel * Math.Min(e.DeltaManipulation.Scale.X,
                                                              e.DeltaManipulation.Scale.Y);
@@ -249,6 +280,15 @@ namespace OpenStreetApp
         private void touchBorder_ManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void touchBorder_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            /*
+            if (this.fullRoute != null)
+            {
+                setAndSimplifyRoute();
+            }*/
         }
     }
 }

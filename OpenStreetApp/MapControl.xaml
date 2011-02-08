@@ -25,13 +25,13 @@
             <my:Map.Children>
                 <my:MapTileLayer x:Name="TileLayer"/>
                 <my:MapLayer x:Name="PushpinLayer" Visibility="Collapsed"/>
-                <my:MapPolyline x:Name="Route"
-                                Stroke="Blue" StrokeThickness="5" StrokeLineJoin="Round"/>
+                <my:MapLayer x:Name="RoutesLayer"/>
             </my:Map.Children>
 
         </my:Map>
 
         <Border Name="touchBorder" Background="Transparent"
+                MouseLeftButtonUp="touchBorder_MouseLeftButtonUp"
                 ManipulationStarted="touchBorder_ManipulationStarted"
                 ManipulationDelta="touchBorder_ManipulationDelta"
                 ManipulationCompleted="touchBorder_ManipulationCompleted"/>
