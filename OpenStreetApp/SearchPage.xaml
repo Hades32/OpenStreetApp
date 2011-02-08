@@ -27,7 +27,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Suchen" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Search" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
             <ProgressBar Name="progress" Margin="-5" Visibility="Collapsed"/>
         </StackPanel>
 
@@ -43,12 +43,12 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Height="43" HorizontalAlignment="Left" Margin="10,0,0,0" 
-                           Name="textDescription" Text="Ortsname:" 
+                           Name="textDescription" Text="Search For:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <TextBox Grid.Row="1" x:Name="TargetInput" Width="460" HorizontalAlignment="left" 
                          Margin="0,0,0,0" InputScope="Text"  KeyDown="TargetInput_KeyDown" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Height="43" HorizontalAlignment="Left" Margin="10,20,0,0" 
-                           Name="lastSearchedDescription" Text="Zuletzt gesucht:" 
+                           Name="lastSearchedDescription" Text="Last Searched:" 
                            FontSize="{StaticResource PhoneFontSizeLarge}" VerticalAlignment="Top" Width="474" />
                 <ListBox Grid.Row="3" x:Name="lastSearched" ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="20"
@@ -59,7 +59,7 @@
         </Grid>
 
         <StackPanel x:Name="ResultPanel" Grid.Row="1" Visibility="Collapsed">
-            <TextBlock x:Name="resultDescription" Margin="22,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Suchergebnisse:</TextBlock>
+            <TextBlock x:Name="resultDescription" Margin="22,0,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Search Results:</TextBlock>
             <ListBox x:Name="results"  Margin="22,15,15,-390" ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ItemsSource="{Binding Path=Locations}" FontSize="30" Height="Auto" MaxHeight="550" SelectionChanged="ListBox_SelectionChanged">
                 <ListBox.ItemTemplate>

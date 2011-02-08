@@ -115,7 +115,7 @@ namespace OpenStreetApp
                 else
                 {
                     this.results.IsEnabled = false;
-                    this.Locations = new List<Location>() { new Location() { Description = "Keine Ergebnisse" } };
+                    this.Locations = new List<Location>() { new Location() { Description = "No Results Found" } };
                 }
             });
         }
@@ -147,7 +147,8 @@ namespace OpenStreetApp
 
         private void detail_Click(object sender, RoutedEventArgs e)
         {
-
+            Location selected = (sender as MenuItem).DataContext as Location;
+            App.My.navigateWithResult("/FavoriteDetailPage.xaml", "favoriteDetail", selected);
         }
 
         private void lastSearched_SelectionChanged(object sender, SelectionChangedEventArgs e)

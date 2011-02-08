@@ -25,7 +25,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Open Street App" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Favoriten" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="Favorites" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -41,7 +41,7 @@
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu x:Name="contextMenu">
                                         <toolkit:MenuItem x:Name="detail" Header="Details" Click="detail_Click"/>
-                                        <toolkit:MenuItem x:Name="delete" Header="Löschen" Click="delete_Click"/>
+                                        <toolkit:MenuItem x:Name="delete" Header="Remove" Click="delete_Click"/>
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                             </TextBlock>
@@ -50,7 +50,7 @@
                 </ListBox.ItemTemplate>            
             </ListBox>
         </StackPanel>  
-        <Button Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,15" x:Name="addFavorite" Content="Aktuelle Position hinzufügen" Click="addFavorite_Click" Width="Auto" Height="80" MaxHeight="80"/>
+        <Button Grid.Row="2" VerticalAlignment="Bottom" Margin="0,0,0,15" x:Name="addFavorite" Content="Add Current Position" Click="addFavorite_Click" Width="Auto" Height="80" MaxHeight="80"/>
     </Grid>
 
 </phone:PhoneApplicationPage>
