@@ -111,7 +111,6 @@ namespace OpenStreetApp
                         waypoints.Add(item.Coordinate);
                     }
                     this.OSM_Map.setRoute(waypoints);
-                    this.OSM_Map.navigateToCoordinate(waypoints[waypoints.Count / 2], 8);
                 }
             }
             /*if (newRoute != null)

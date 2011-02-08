@@ -105,10 +105,12 @@ namespace OpenStreetApp
 
         private static bool pointIsInRect(GeoCoordinate point, LocationRect bounds)
         {
-            return point.Longitude >= bounds.West
-                 && point.Longitude <= bounds.East
-                 && point.Latitude <= bounds.North
-                 && point.Latitude >= bounds.South;
+            double diff = (bounds.East - bounds.West)/5;
+
+            return point.Longitude >= (bounds.West - diff)
+                 && point.Longitude <= (bounds.East + diff)
+                 && point.Latitude <= (bounds.North + diff)
+                 && point.Latitude >= (bounds.South - diff);
         }
     }
 }

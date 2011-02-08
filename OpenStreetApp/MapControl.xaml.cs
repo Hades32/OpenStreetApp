@@ -180,7 +180,30 @@ namespace OpenStreetApp
 
         public void setRoute(LocationCollection points)
         {
+            this.RoutesLayer.Children.Clear();
             this.fullRoute = points;
+
+            double north = double.MinValue;
+            double west = double.MaxValue;
+            double south = double.MaxValue;
+            double east = double.MinValue;
+            foreach (var location in fullRoute)
+            {
+                if (north < location.Latitude)
+                    north = location.Latitude;
+                if (south > location.Latitude)
+                    south = location.Latitude;
+                if (west > location.Longitude)
+                    west = location.Longitude;
+                if (east < location.Longitude)
+                    east = location.Longitude;
+            }
+
+            double diff = (east - west)/5;
+
+            LocationRect initialRect = new LocationRect(north + diff, west - diff, south - diff, east + diff);
+
+            this.OSM_Map.SetView(initialRect);
             this.setAndSimplifyRoute();
         }
 

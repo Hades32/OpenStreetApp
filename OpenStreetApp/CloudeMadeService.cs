@@ -78,13 +78,17 @@ namespace OpenStreetApp
             {
                 if (a.IsCompleted)
                 {
-                    var stream = req.EndGetResponse(a).GetResponseStream();
-                    var xml = XDocument.Load(stream);
-                    stream.Close();
                     try
                     {
+                        var stream = req.EndGetResponse(a).GetResponseStream();
+                        var xml = XDocument.Load(stream);
+                        stream.Close();
                         var route = parseRoute(xml);
                         callback(route);
+                    }
+                    catch (WebException e)
+                    {
+                        callback(null);
                     }
                     catch (Exception ex)
                     {

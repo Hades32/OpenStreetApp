@@ -31,7 +31,7 @@
                 <TextBlock Text="Select Start" Name="startBtnTB" TextWrapping="Wrap"/>
             </Button>
             <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
-                <TextBlock Text="aktuelle position verwenden"/>
+                <TextBlock Text="use current position"/>
             </CheckBox>
 
             <TextBlock Text="Target" Margin="10,10,0,0" FontSize="{StaticResource PhoneFontSizeLarge}"

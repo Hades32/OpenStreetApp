@@ -48,9 +48,20 @@ namespace OpenStreetApp
                                         end,
                                         null, (wps) =>
                                         {
-                                            App.My.putNavigationResult("/RoutePage.xaml", wps);
-                                            this.Dispatcher.BeginInvoke(() =>
-                                                NavigationService.GoBack());
+                                            if (wps != null)
+                                            {
+                                                App.My.putNavigationResult("/RoutePage.xaml", wps);
+                                                this.Dispatcher.BeginInvoke(() =>
+                                                    NavigationService.GoBack());
+                                            }
+                                            else
+                                            {
+                                                this.Dispatcher.BeginInvoke(() =>
+                                                    {
+                                                        MessageBox.Show("YOU SHALL NOT PASS!");
+                                                        this.updateGuiState();
+                                                    });
+                                            }
                                         });
         }
 
@@ -73,6 +84,10 @@ namespace OpenStreetApp
 
         private void updateGuiState()
         {
+            this.targetBtn.IsEnabled = true;
+            this.progress.IsIndeterminate = false;
+            this.progress.Visibility = System.Windows.Visibility.Collapsed;
+
             this.routeBtn.IsEnabled = (this.State.ContainsKey("start")
                                     || this.State.getOrDefault("currentposition") as bool? == true)
                                     && this.State.ContainsKey("target");
