@@ -11,8 +11,9 @@ namespace OpenStreetApp
 
         internal static LocationCollection simplifyRoute(LocationCollection points, LocationRect bounds)
         {
-            if (points == lastPoints && bounds == lastBounds)
-                return lastRes;
+            if (points == lastPoints && (bounds == lastBounds || contains(bounds, lastBounds)))
+                if (lastRes != null)
+                    return lastRes;
 
             var res = new LocationCollection();
             var res2 = new LocationCollection();
@@ -41,16 +42,21 @@ namespace OpenStreetApp
                 }
             }
 
+            // add only the middle points (that are within the bounding rect) into the result set
             for (int i = start; i <= end; i++)
             {
                 res.Add(points[i]);
             }
 
+            // create list of all indexes of the result that that shall be used
+            //at the beginning these are simply ALL points
             List<int> keep = new List<int>();
             for (int i = 0; i < res.Count; i++)
             {
                 keep.Add(i);
             }
+            //create an array that holds the the following information for each point:
+            // how much shorter would the route get, if the point would be removed
             double[] distances = new double[res.Count];
             for (int i = 1; i < res.Count - 2; i++)
             {
@@ -61,6 +67,9 @@ namespace OpenStreetApp
             //simplify route to have only max 400 segments 
             while (keep.Count > 400)
             {
+                // search for the point that would alter the route in the LEAST, if removed, and
+                // then remove that point from the list of valid points and recalculate
+                // the distances of the surrounding points
                 int removeId = 0;
                 double remDistance = double.MaxValue;
                 for (int i = 1; i < keep.Count - 2; i++)
@@ -83,17 +92,27 @@ namespace OpenStreetApp
                 keep.RemoveAt(removeId);
             }
 
+            // create the final result set that only contains the points that were decided to be the most important ones
             foreach (var i in keep)
             {
                 res2.Add(res[i]);
             }
 
+            // cache results etc.
             lastRes = res2;
             lastBounds = bounds;
             lastPoints = points;
 
             return res2;
 
+        }
+
+        private static bool contains(LocationRect container, LocationRect inner)
+        {
+            return inner.West >= container.West
+                && inner.East <= container.East
+                && inner.North <= container.North
+                && inner.South >= container.South;
         }
 
         private static double getDistanceDelta(GeoCoordinate p1, GeoCoordinate p2, GeoCoordinate p3)
