@@ -11,8 +11,9 @@ namespace OpenStreetApp
 
         internal static LocationCollection simplifyRoute(LocationCollection points, LocationRect bounds)
         {
-            if (points == lastPoints && bounds == lastBounds)
-                return lastRes;
+            if (points == lastPoints && (bounds == lastBounds || contains(bounds, lastBounds)))
+                if (lastRes != null)
+                    return lastRes;
 
             var res = new LocationCollection();
             var res2 = new LocationCollection();
@@ -94,6 +95,14 @@ namespace OpenStreetApp
 
             return res2;
 
+        }
+
+        private static bool contains(LocationRect container, LocationRect inner)
+        {
+            return inner.West >= container.West
+                && inner.East <= container.East
+                && inner.North <= container.North
+                && inner.South >= container.South;
         }
 
         private static double getDistanceDelta(GeoCoordinate p1, GeoCoordinate p2, GeoCoordinate p3)
