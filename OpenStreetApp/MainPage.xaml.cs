@@ -20,6 +20,16 @@ namespace OpenStreetApp
             //show loading animation while authorizing
 
             this.DataContext = OSA_Configuration.Instance;
+            if (OSA_Configuration.Instance.UseCurrentLocationSetting)
+            {
+                App.watcher.PositionChanged += watcher_InitialPositionChanged;
+            }
+        }
+
+        void watcher_InitialPositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            this.OSM_Map.navigateToCoordinate(e.Position.Location, 16);
+            App.watcher.PositionChanged -= watcher_InitialPositionChanged;
         }
 
         private void geoLocationButton_Click(object sender, EventArgs e)
@@ -27,7 +37,6 @@ namespace OpenStreetApp
             if (App.lastKnownPosition != null)
             {
                 Point p = new Point(App.lastKnownPosition.Location.Longitude, App.lastKnownPosition.Location.Latitude);
-                this.OSM_Map.addPushpin(App.lastKnownPosition.Location);
                 this.OSM_Map.navigateToCoordinate(p, 16);
             }
             else
@@ -123,7 +132,7 @@ namespace OpenStreetApp
 
         private void clearMap_Click(object sender, EventArgs e)
         {
-
+            this.OSM_Map.clearMap();
         }
     }
 }

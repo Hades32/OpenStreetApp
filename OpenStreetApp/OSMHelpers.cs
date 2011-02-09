@@ -33,6 +33,11 @@ namespace OpenStreetApp
                 location.Line2 = elem.Element("line2").Value;
                 location.Line3 = elem.Element("line3").Value;
                 location.Line4 = elem.Element("line4").Value;
+                try
+                {
+                    location.Area = elem.Element("state").Value;
+                }
+                catch (Exception) { }
 
                 System.Diagnostics.Debug.WriteLine(e.Result);
 
@@ -76,9 +81,12 @@ namespace OpenStreetApp
                     nl.Line2 = elem.Element("line2").Value;
                     nl.Line3 = elem.Element("line3").Value;
                     nl.Line4 = elem.Element("line4").Value;
-                    // nl.City = elem.Element("city").Value;
-                    // nl.Adress = elem.Element("adress").Value;
-                    // nl.City = elem.Element("state").Value;
+                    try
+                    {
+                        nl.Area = elem.Element("state").Value;
+                    }
+                    catch (Exception) {}
+
                     locations.Add(nl);
                 }
                 callback(locations);

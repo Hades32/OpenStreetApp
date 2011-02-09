@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Device.Location;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.ComponentModel;
@@ -6,16 +7,12 @@ using System.ComponentModel;
 namespace OpenStreetApp
 {
     [DataContract]
-    public class Location : INotifyPropertyChanged
+    public class Location : INotifyPropertyChanged, IComparable<Location>
     {
         [DataMember]
         public double Longitude { get; set; }
         [DataMember]
         public double Latitude { get; set; }
-        [DataMember]
-        public String City { get; set; }
-        [DataMember]
-        public String Adress { get; set; }
         [DataMember]
         public String Area { get; set; }
         [DataMember]
@@ -41,7 +38,7 @@ namespace OpenStreetApp
 
         public override string ToString()
         {
-            List<String> values = new List<String> { City, Adress, Area, Description, Line1, Line2, Line3, Line4 };
+            List<String> values = new List<String> { Line1, Line2, Line3, Area, Line4 };
             String returnString = "";
             bool isfirst = true;
             foreach (var s in values)
@@ -70,9 +67,7 @@ namespace OpenStreetApp
             int objLat = (int)(x.Latitude * 10000);
             int objLong = (int)(x.Longitude * 10000);
 
-            return x.Adress == this.Adress
-                && x.Area == this.Area
-                && x.City == this.City
+            return x.Area == this.Area
                 && x.Description == this.Description
                 && thisLat == objLat
                 && x.Line1 == this.Line1
@@ -87,9 +82,7 @@ namespace OpenStreetApp
             int thisLat = (int)(this.Latitude * 10000);
             int thisLong = (int)(this.Longitude * 10000);
 
-            return this.Adress.TryGetHashCode()
-                 ^ this.Area.TryGetHashCode()
-                 ^ this.City.TryGetHashCode()
+            return this.Area.TryGetHashCode()
                  ^ this.Description.TryGetHashCode()
                  ^ thisLat.GetHashCode()
                  ^ this.Line1.TryGetHashCode()
@@ -97,6 +90,17 @@ namespace OpenStreetApp
                  ^ this.Line3.TryGetHashCode()
                  ^ this.Line4.TryGetHashCode()
                  ^ thisLong.GetHashCode();
+        }
+
+        // Compares the Distance of a Location to the last known position of the system.
+        public int CompareTo(Location other)
+        {
+            GeoCoordinate lastKnownPostion = App.lastKnownPosition.Location;
+            GeoCoordinate thisCoordinate = new GeoCoordinate(this.Latitude, this.Longitude);
+            GeoCoordinate otherCoordinate = new GeoCoordinate(other.Latitude, other.Longitude);
+            double distance1 = lastKnownPostion.GetDistanceTo(thisCoordinate);
+            double distance2 = lastKnownPostion.GetDistanceTo(otherCoordinate);
+            return distance1 > distance2 ? 1 : distance1 < distance2 ? -1 : 0;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

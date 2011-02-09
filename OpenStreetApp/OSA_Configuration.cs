@@ -68,6 +68,8 @@ namespace OpenStreetApp
         #region key names for our storage
         private const string selectedTileSourceKeyName = "defaultTileSource";
         private const string useCurrentLocationKeyName = "useCurrentLocation";
+        private const string togglePoiAtStartupKeyName = "togglePoiAtStartup";
+        private const string showCurrentPositionKeyName = "showCurrentPostion";
         private const string favoritesKeyName = "favorites";
         private const string lastSearchedLocationsKeyName = "lastSearchedLocations";
         #endregion
@@ -75,6 +77,8 @@ namespace OpenStreetApp
         #region default values for our keys
         private int selectedTileSourceDefault = 1;
         private bool useCurrentLocationDefault = true;
+        private bool togglePoiAtStartupDefault = true;
+        private bool showCurrentPositionDefault = true;
         private ObservableCollection<Location> favoritesDefault = new ObservableCollection<Location>();
         private ObservableCollection<String> lastSearchedLocationsDefault = new ObservableCollection<String>();
         #endregion
@@ -174,6 +178,32 @@ namespace OpenStreetApp
             set
             {
                 AddOrUpdateValue(useCurrentLocationKeyName, value);
+                Save();
+            }
+        }
+
+        public bool TogglePoiAtStartupSetting
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(togglePoiAtStartupKeyName, togglePoiAtStartupDefault);
+            }
+            set
+            {
+                AddOrUpdateValue(togglePoiAtStartupKeyName, value);
+                Save();
+            }
+        }
+
+        public bool ShowCurrentPositionSetting
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(showCurrentPositionKeyName, showCurrentPositionDefault);
+            }
+            set
+            {
+                AddOrUpdateValue(showCurrentPositionKeyName, value);
                 Save();
             }
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -81,7 +82,7 @@ namespace OpenStreetApp
 
         private void buttonOK_Click(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(this.TargetInput.Text))
+            if (!String.IsNullOrEmpty(this.TargetInput.Text.Trim()))
             {
                 this.Locations = null;
                 this.results.IsEnabled = true;
@@ -96,10 +97,10 @@ namespace OpenStreetApp
                     {
                         newSearchedLocations.RemoveAt(9);
                     }
-                    newSearchedLocations.Insert(0, this.TargetInput.Text);
+                    newSearchedLocations.Insert(0, this.TargetInput.Text.Trim());
                     OSA_Configuration.Instance.LastSearchedLocationsSetting = newSearchedLocations;
                 }
-                OSMHelpers.InputAdressToLocations(this.TargetInput.Text, new Action<List<Location>>(onLocationsReceived));
+                OSMHelpers.InputAdressToLocations(this.TargetInput.Text.Trim(), new Action<List<Location>>(onLocationsReceived));
                 this.SearchPanel.Visibility = System.Windows.Visibility.Collapsed;
                 this.ResultPanel.Visibility = System.Windows.Visibility.Visible;
             }
@@ -111,7 +112,10 @@ namespace OpenStreetApp
             {
                 this.setIsLoading(false);
                 if (newLocations.Count > 0)
+                {
+                    newLocations.Sort();
                     this.Locations = newLocations;
+                }
                 else
                 {
                     this.results.IsEnabled = false;
@@ -161,6 +165,11 @@ namespace OpenStreetApp
         {
             this.progress.IsIndeterminate = loading;
             this.progress.Visibility = loading ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            buttonOK_Click(this, null);
         }
     }
 }

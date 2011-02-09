@@ -24,7 +24,7 @@
             </my:Map.Mode>
             <my:Map.Children>
                 <my:MapTileLayer x:Name="TileLayer"/>
-                <my:MapLayer x:Name="PushpinLayer" Visibility="Collapsed"/>
+                <my:MapLayer x:Name="PushpinLayer"/>
                 <my:MapLayer x:Name="RoutesLayer"/>
             </my:Map.Children>
 

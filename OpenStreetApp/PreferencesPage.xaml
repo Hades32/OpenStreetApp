@@ -37,8 +37,14 @@
         </StackPanel>
         <StackPanel x:Name="preferences" Grid.Row="2" Margin="12,5,0,28">
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">View On Startup</TextBlock>
-            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="190" Name="toggleSwitch1" Width="419" HorizontalAlignment="Left" 
+            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch1" Width="419" HorizontalAlignment="Left" 
                                   Content="World View" Checked="toggleSwitch1_Checked" Unchecked="toggleSwitch1_Unchecked" IsChecked="{Binding Path=UseCurrentLocationSetting, Mode=TwoWay}"/>
+            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Toggle POIs On Startup</TextBlock>
+            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch2" Width="419" HorizontalAlignment="Left" 
+                                  Content="No" Checked="toggleSwitch2_Checked" Unchecked="toggleSwitch2_Unchecked" IsChecked="{Binding Path=TogglePoiAtStartupSetting, Mode=TwoWay}"/>
+            <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Show current Position on Map</TextBlock>
+            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch3" Width="419" HorizontalAlignment="Left" 
+                                  Content="No" Checked="toggleSwitch3_Checked" Unchecked="toggleSwitch3_Unchecked" IsChecked="{Binding Path=ShowCurrentPositionSetting, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 

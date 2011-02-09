@@ -207,6 +207,11 @@ namespace OpenStreetApp
             this.setAndSimplifyRoute();
         }
 
+        public void refreshPushpins()
+        {
+            // TODO REFRESH PUSHPINS FOR CURRENT LOCATION
+        }
+
         private double getMaxDistForZoomLevel()
         {
             if (this.lastKnownZoom > 15)
@@ -312,6 +317,13 @@ namespace OpenStreetApp
             {
                 setAndSimplifyRoute();
             }*/
+        }
+
+        internal void clearMap()
+        {
+            this.fullRoute = null;
+            this.RoutesLayer.Children.Clear();
+            this.PushpinLayer.Children.Clear();
         }
     }
 }
