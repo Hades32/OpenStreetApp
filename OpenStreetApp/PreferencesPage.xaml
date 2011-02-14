@@ -15,7 +15,6 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -23,11 +22,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
-        <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Preferences" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource AppTitle}" 
+                       Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="Preferences" Margin="9,-7,0,0" 
+                       Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
         <StackPanel Grid.Row="1" >
             <TextBlock Margin="12,5,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
@@ -37,14 +36,22 @@
         </StackPanel>
         <StackPanel x:Name="preferences" Grid.Row="2" Margin="12,5,0,28">
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">View On Startup</TextBlock>
-            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch1" Width="419" HorizontalAlignment="Left" 
-                                  Content="World View" Checked="toggleSwitch1_Checked" Unchecked="toggleSwitch1_Unchecked" IsChecked="{Binding Path=UseCurrentLocationSetting, Mode=TwoWay}"/>
+            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" 
+                                  Height="100" Width="419"
+                                  Name="toggleSwitch1" HorizontalAlignment="Left" 
+                                  Content="World View" Checked="toggleSwitch1_Checked" 
+                                  Unchecked="toggleSwitch1_Unchecked" 
+                                  IsChecked="{Binding Path=UseCurrentLocationSetting, Mode=TwoWay}"/>
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Toggle POIs On Startup</TextBlock>
-            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch2" Width="419" HorizontalAlignment="Left" 
-                                  Content="No" Checked="toggleSwitch2_Checked" Unchecked="toggleSwitch2_Unchecked" IsChecked="{Binding Path=TogglePoiAtStartupSetting, Mode=TwoWay}"/>
+            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch2" 
+                                  Width="419" HorizontalAlignment="Left" 
+                                  Content="No" Checked="toggleSwitch2_Checked" Unchecked="toggleSwitch2_Unchecked" 
+                                  IsChecked="{Binding Path=TogglePoiAtStartupSetting, Mode=TwoWay}"/>
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">Show current Position on Map</TextBlock>
-            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch3" Width="419" HorizontalAlignment="Left" 
-                                  Content="No" Checked="toggleSwitch3_Checked" Unchecked="toggleSwitch3_Unchecked" IsChecked="{Binding Path=ShowCurrentPositionSetting, Mode=TwoWay}"/>
+            <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" Height="100" Name="toggleSwitch3" 
+                                  Width="419" HorizontalAlignment="Left" 
+                                  Content="No" Checked="toggleSwitch3_Checked" Unchecked="toggleSwitch3_Unchecked" 
+                                  IsChecked="{Binding Path=ShowCurrentPositionSetting, Mode=TwoWay}"/>
         </StackPanel>
     </Grid>
 
