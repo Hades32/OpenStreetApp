@@ -1,0 +1,18 @@
+Windows Phone 7 
+	
+	- Einführende Folie
+	- Entwickeln für WP7
+	- Struktur einer WP7 App
+	- Navigation auf WP7
+	- XAML
+	- XAML-DataTemplates
+	- Code Behind
+	- Data Binding
+	- Performance
+
+Open Street App
+
+	- Einführend Folie
+		+ Idee der App: simple Naviapp
+		+ Erlernen der Entwicklungsumgebung 
+	- 
