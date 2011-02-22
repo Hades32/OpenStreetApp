@@ -95,6 +95,8 @@ namespace OpenStreetApp
         // Compares the Distance of a Location to the last known position of the system.
         public int CompareTo(Location other)
         {
+            if (App.lastKnownPosition == null)
+                return 0;
             GeoCoordinate lastKnownPostion = App.lastKnownPosition.Location;
             GeoCoordinate thisCoordinate = new GeoCoordinate(this.Latitude, this.Longitude);
             GeoCoordinate otherCoordinate = new GeoCoordinate(other.Latitude, other.Longitude);
