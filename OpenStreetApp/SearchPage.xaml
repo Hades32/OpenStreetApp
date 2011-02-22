@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:my="clr-namespace:OpenStreetApp"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:h32="clr-namespace:H32WP7Helper;assembly=H32WP7Helper"
     
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -69,7 +70,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="Images/listItem.png" Margin="0,-15,0,0"/>
+                            <Image h32:ThemeImage.Source="listItem.png" Margin="0,-15,0,0"/>
                             <TextBlock  Text="{Binding Path=LocationListView, Mode=OneWay}" Height="Auto" Margin="0,0,0,20"  TextWrapping="Wrap" Width="400">
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu x:Name="contextMenu">

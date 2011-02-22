@@ -32,6 +32,12 @@ namespace OpenStreetApp
             App.watcher.PositionChanged -= watcher_InitialPositionChanged;
         }
 
+        void watcher_PositionChangedUpdate(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+            // USE THIS CODE TO CHANGE THE CURRENT POSITION ON THE MAP. DO NOT REMOVE EVEN IF YOU CANT REMEMBER THE PURPOS OF THIS!
+
+        }
+
         private void geoLocationButton_Click(object sender, EventArgs e)
         {
             if (App.lastKnownPosition != null)
@@ -84,6 +90,18 @@ namespace OpenStreetApp
         {
             base.OnNavigatedTo(e);
 
+            //add the position changed listener
+            App.watcher.PositionChanged += watcher_PositionChangedUpdate;
+
+            //reinitialize the map view
+            if(this.State.ContainsKey("zoom"))
+            {
+                this.OSM_Map.CurrentZoom = (double)this.State.getOrDefault("zoom");
+                this.OSM_Map.MapCenter = (GeoCoordinate)this.State.getOrDefault("center");
+                this.State.Remove("zoom");
+                this.State.Remove("center");
+            }       
+
             //came from SearchPage?
             var searchresult = App.My.getNavigationResult("/SearchPage.xaml");
             if (!string.IsNullOrEmpty(searchresult.Key))
@@ -128,6 +146,14 @@ namespace OpenStreetApp
                 this.OSM_Map.navigateToCoordinate(newRoute[newRoute.Count / 2], 10);
                 newRoute = null;
             }*/
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            App.watcher.PositionChanged -= watcher_PositionChangedUpdate;
+            this.State.Add("zoom", this.OSM_Map.CurrentZoom);
+            this.State.Add("center", this.OSM_Map.MapCenter);
         }
 
         private void clearMap_Click(object sender, EventArgs e)

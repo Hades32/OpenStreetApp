@@ -12,7 +12,7 @@ Windows Phone 7
 
 Open Street App
 
-	- Einführend Folie
+	- Idee einer Navigationsapp
 		+ Idee der App: simple Naviapp
 		+ Erlernen der Entwicklungsumgebung 
 	- 

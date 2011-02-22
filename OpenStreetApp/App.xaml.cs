@@ -77,16 +77,6 @@ namespace OpenStreetApp
             InitializeComponent();
 
             InitializePhoneApplication();
-
-            // Initialize GeoLocation Listener
-            watcher = new GeoCoordinateWatcher();
-            watcher.MovementThreshold = 20;
-
-            watcher.StatusChanged += watcher_StatusChanged;
-            watcher.PositionChanged += watcher_PositionChanged;
-
-            watcher.Start();
-            System.Diagnostics.Debug.WriteLine("watcher started");
         }
 
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
@@ -112,12 +102,26 @@ namespace OpenStreetApp
             }
         }
 
+        private void initWatcher()
+        {
+            // Initialize GeoLocation Listener
+            watcher = new GeoCoordinateWatcher();
+            watcher.MovementThreshold = 20;
+
+            watcher.StatusChanged += watcher_StatusChanged;
+            watcher.PositionChanged += watcher_PositionChanged;
+
+            watcher.Start();
+        }
+
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            initWatcher();
         }
 
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            initWatcher();
         }
 
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)

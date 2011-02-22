@@ -65,11 +65,28 @@ namespace OpenStreetApp
 
         #endregion
 
+
         public double CurrentZoom
         {
             get
             {
                 return this.OSM_Map.ZoomLevel;
+            }
+            set
+            {
+                this.OSM_Map.ZoomLevel = value;
+            }
+        }
+
+        public GeoCoordinate MapCenter
+        {
+            get
+            {
+                return this.OSM_Map.Center;
+            }
+            set
+            {
+                this.OSM_Map.Center = value;
             }
         }
 
