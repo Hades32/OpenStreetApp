@@ -97,6 +97,9 @@ namespace OpenStreetApp
         private int zoomLockCnt = 0;
         private object zoomLock = new object();
 
+
+        private bool test = true;
+
         public MapControl()
         {
             InitializeComponent();
@@ -120,7 +123,7 @@ namespace OpenStreetApp
                 {
                     if (this.fullRoute != null)
                     {
-                        setAndSimplifyRoute();
+                       setAndSimplifyRoute();
                     }
                     // TODO POI refresh
                 }));
@@ -135,6 +138,7 @@ namespace OpenStreetApp
                     System.Diagnostics.Debug.WriteLine("recalculated route");
                     this.Dispatcher.BeginInvoke(() =>
                         {
+                            this.RoutesLayer.Children.Clear();
                             var route = new MapPolyline();
                             route.Stroke = new SolidColorBrush(Colors.Blue);
                             route.StrokeThickness = 5;
@@ -197,7 +201,6 @@ namespace OpenStreetApp
 
         public void setRoute(LocationCollection points)
         {
-            this.RoutesLayer.Children.Clear();
             this.fullRoute = points;
 
             double north = double.MinValue;
