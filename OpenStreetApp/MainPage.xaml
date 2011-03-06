@@ -12,7 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     Loaded="PhoneApplicationPage_Loaded"
-    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait" OrientationChanged="MainPage_OrientationChanged"
     UseLayoutRounding="True"
     shell:SystemTray.IsVisible="True">
 

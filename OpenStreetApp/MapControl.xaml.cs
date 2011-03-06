@@ -224,7 +224,7 @@ namespace OpenStreetApp
             LocationRect initialRect = new LocationRect(north + diff, west - diff, south - diff, east + diff);
 
             this.OSM_Map.SetView(initialRect);
-            this.setAndSimplifyRoute();
+            // this.setAndSimplifyRoute();
         }
 
         public void refreshPushpins()
