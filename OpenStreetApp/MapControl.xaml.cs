@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Windows;
@@ -192,10 +193,12 @@ namespace OpenStreetApp
             return res;
         }
 
-        public void addPushpin(GeoCoordinate geoCoordinate)
+        public void addPushpin(GeoCoordinate geoCoordinate, String caption)
         {
             Pushpin pushpin = new Pushpin();
-
+            var label = new TextBlock();
+            label.Text = caption;
+            pushpin.Content = label;
             this.PushpinLayer.AddChild(pushpin, geoCoordinate);
         }
 
@@ -224,6 +227,8 @@ namespace OpenStreetApp
             LocationRect initialRect = new LocationRect(north + diff, west - diff, south - diff, east + diff);
 
             this.OSM_Map.SetView(initialRect);
+            addPushpin(fullRoute.ElementAt(0), "Start");
+            addPushpin(fullRoute.ElementAt(fullRoute.Count - 1), "Goal");
             // this.setAndSimplifyRoute();
         }
 
