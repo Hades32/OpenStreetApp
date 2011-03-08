@@ -77,6 +77,10 @@ namespace OpenStreetApp
             InitializeComponent();
 
             InitializePhoneApplication();
+
+            if (Microsoft.Devices.Environment.DeviceType == Microsoft.Devices.DeviceType.Emulator)
+                lastKnownPosition = new GeoPosition<GeoCoordinate>(DateTimeOffset.Now, 
+                    new GeoCoordinate(48.422362, 9.957327));
         }
 
         void watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)

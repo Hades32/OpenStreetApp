@@ -11,9 +11,6 @@ namespace OpenStreetApp
 
         internal static LocationCollection simplifyRoute(LocationCollection points, LocationRect bounds)
         {
-            if (points == lastPoints && (bounds == lastBounds || contains(bounds, lastBounds)))
-                if (lastRes != null)
-                    return lastRes;
 
             var res = new LocationCollection();
             var res2 = new LocationCollection();
