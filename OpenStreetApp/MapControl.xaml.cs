@@ -193,13 +193,13 @@ namespace OpenStreetApp
             return res;
         }
 
-        public void addPushpin(GeoCoordinate geoCoordinate, String caption)
+        public void addRoutePushpin(GeoCoordinate geoCoordinate, String caption)
         {
             Pushpin pushpin = new Pushpin();
             var label = new TextBlock();
             label.Text = caption;
             pushpin.Content = label;
-            this.PushpinLayer.AddChild(pushpin, geoCoordinate);
+            this.RoutePushpinLayer.AddChild(pushpin, geoCoordinate);
         }
 
         public void setRoute(LocationCollection points)
@@ -227,8 +227,9 @@ namespace OpenStreetApp
             LocationRect initialRect = new LocationRect(north + diff, west - diff, south - diff, east + diff);
 
             this.OSM_Map.SetView(initialRect);
-            addPushpin(fullRoute.ElementAt(0), "Start");
-            addPushpin(fullRoute.ElementAt(fullRoute.Count - 1), "Goal");
+            this.RoutePushpinLayer.Children.Clear();
+            addRoutePushpin(fullRoute.ElementAt(0), "Start");
+            addRoutePushpin(fullRoute.ElementAt(fullRoute.Count - 1), "Goal");
             // this.setAndSimplifyRoute();
         }
 
@@ -348,6 +349,7 @@ namespace OpenStreetApp
         {
             this.fullRoute = null;
             this.RoutesLayer.Children.Clear();
+            this.RoutePushpinLayer.Children.Clear();
             this.PushpinLayer.Children.Clear();
         }
     }

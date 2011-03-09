@@ -8,11 +8,13 @@
     xmlns:my="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
     xmlns:mycore="clr-namespace:Microsoft.Phone.Controls.Maps.Core;assembly=Microsoft.Phone.Controls.Maps"
     mc:Ignorable="d"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     Loaded="Control_Loaded"
     d:DesignHeight="480" d:DesignWidth="480">
+    
 
     <Grid Background="{StaticResource PhoneChromeBrush}">
         
@@ -24,8 +26,9 @@
             </my:Map.Mode>
             <my:Map.Children>
                 <my:MapTileLayer x:Name="TileLayer"/>
-                <my:MapLayer x:Name="PushpinLayer"/>
                 <my:MapLayer x:Name="RoutesLayer"/>
+                <my:MapLayer x:Name="RoutePushpinLayer" />
+                <my:MapLayer x:Name="PushpinLayer"/>
             </my:Map.Children>
 
         </my:Map>
