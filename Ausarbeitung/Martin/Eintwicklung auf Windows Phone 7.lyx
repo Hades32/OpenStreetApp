@@ -123,7 +123,7 @@ OpenStreetApp
 \begin_inset Quotes erd
 \end_inset
 
- verweise ich auf XXXXX
+ wird auf XXXXX verwiesen.
 \end_layout
 
 \begin_layout Subsection
@@ -146,13 +146,12 @@ Für spezielle Microsoft Partner ist es auch noch möglich halb-native Anwendung
 \end_layout
 
 \begin_layout Enumerate
-Die Entwicklung auf Basis von Silverlight, wobei die Oberfläche in XAML
- geschrieben wird.
+Entwicklung auf Basis von Silverlight
 \end_layout
 
 \begin_layout Enumerate
-Das XNA Framework - eine gekapselte DirectX-Schnittstille - wird hauptsächlich
- für die Entwicklung von Spielen verwendet.
+Nutzung des XNA Framework - eine gekapselte DirectX-Schnittstille - welches
+ hauptsächlich für die Entwicklung von Spielen verwendet wird.
 \end_layout
 
 \begin_layout Standard
@@ -162,7 +161,44 @@ Diese Arbeit beschäftigt sich ausschließlich mit der Entwicklung mit Silverlig
 \end_layout
 
 \begin_layout Section
-Eine kurze Geschichte der
+Windows Phone 7
+\end_layout
+
+\begin_layout Standard
+Windows Phone 7 ist hinsichtlich der Benutzeroberfläche als auch der Anwendungsp
+lattform ein vollständige Neuentwicklung.
+ Der Kern des Betriebssystems hingegen ist eine veränderte Version von Windows
+ EC 7.0, dem Nachfolger von Windows CE 6, worauf Windows Mobile 6.5 beruht.
+\end_layout
+
+\begin_layout Standard
+Gründe nicht auf das bestehende Windows Mobile aufzusetzen waren [XXXX]
+\end_layout
+
+\begin_layout Itemize
+UI-Konzept zu stark Desktoporientiert 
+\end_layout
+
+\begin_layout Itemize
+Fehlende Multi-Touch Unterstützung
+\end_layout
+
+\begin_layout Itemize
+Entwicklung moderner Anwendungen schwierig
+\end_layout
+
+\begin_layout Standard
+WP7 begegnet diesen Problemen mit einer starken Unterstützung für Multi-Touch
+ in Silverlight und den integrierten Kontrollelementen, die es leicht machen
+ sollen, moderne Anwendungen zu schreiben, die sich in das UI Konzept einfügen.
+\end_layout
+
+\begin_layout Section
+
+\noun on
+Silverlight
+\noun default
+ und die
 \begin_inset Newline newline
 \end_inset
 
@@ -180,8 +216,11 @@ Foundation
 \end_layout
 
 \begin_layout Standard
-Das Framework auf WP7 Handys basiert auf dem - vom Desktop bekannten - Silverlig
-ht, welches selbst wieder auf der 
+Das Framework auf WP7 Handys basiert auf dem - vom Desktop bekannten - 
+\noun on
+Silverlight
+\noun default
+, welches wiederum auf der 
 \noun on
 Windows Presentation Foundation
 \noun default
@@ -226,7 +265,7 @@ Eine weitere große Neuerung ist die Abwendung von GDI(+) für das GUI-Rendering
  Mit WPF wird erstmals voll auf (hardwarebeschleunigtes) DirectX gesetzt.
  Das hat den Vorteil, dass komplexe Oberflächen gerendert, transformiert
  und mit Effekten versehen werden können, ohne dass die CPU zusätzlich belastet
- würde.
+ wird.
 \end_layout
 
 \begin_layout Subsection
@@ -247,8 +286,8 @@ Silverlight
 Presentation Foundation/Everywhere 
 \noun default
 (WPF/E) entwickelt) vor.
- Bei Silverlight handelt es sich grob gesagt um eine stark reduziert Version
- des .NET Framework und einer Untermenge
+ Silverlight ist, plakativ gesprochen, eine stark reduziert Version des
+ .NET Framework und eine Untermenge
 \begin_inset Foot
 status collapsed
 
@@ -269,8 +308,8 @@ Auch wenn Silverlight oft als Konkurenz zu Adobes Flash Player gesehen wird,
  wurde es hauptsächlich mit dem Ziel entwickelt so genannte Rich Internet
  Applications (RIAs) zu ermöglichen, die hauptsächlich im Geschäftsbereich
  ihren Einsatzzweck haben.
- Der einzige Bereich in dem Silverlight momentan ernsthaft in direkter Konkurren
-z zu Flash steht ist die Videowiedergabe.
+ Der einzige Bereich in dem Silverlight momentan tatsächlich in direkter
+ Konkurrenz zu Flash steht ist die Videowiedergabe.
  Sowohl 
 \noun on
 Smooth Streaming
@@ -288,6 +327,18 @@ Bei Smooth Streaming handelt es sich um eine Technik die Videomaterial dynamisch
 \noun default
  als auch hardwarebeschleunigte Videowiedergabe waren zuerst in Silverlight
  möglich.
+ Deshalb hat Microsoft einige prominente Unterstützter gefunden: U.a.
+ wurden die Olympischen Winterspiele von 2008 und einige amerikanische Sportgroß
+ereignisse exklusiv via Silverlight gestreamt; außerdem setzt das deutsche
+ Videoportal 
+\begin_inset Quotes eld
+\end_inset
+
+Maxdome
+\begin_inset Quotes erd
+\end_inset
+
+ auf Silverlight.
 \end_layout
 
 \begin_layout Standard
@@ -310,7 +361,11 @@ Moonlight
 \end_layout
 
 \begin_layout Subsection
-Unteschiede
+Unterschiede
+\end_layout
+
+\begin_layout Standard
+nochmal
 \end_layout
 
 \begin_layout Standard
@@ -328,16 +383,67 @@ Entwicklen mit Silverlight
 \end_layout
 
 \begin_layout Subsection
+Struktur einer Silverlight Anwendung
+\end_layout
+
+\begin_layout Standard
+Eine Silverlight Anwendung wird immer in Form einer in 
+\begin_inset Quotes eld
+\end_inset
+
+*.XAP
+\begin_inset Quotes erd
+\end_inset
+
+ umbenannten ZIP-Datei verteilt.
+ In dieser Datei sind die vier Bestandteile einer App untergebracht: 
+\end_layout
+
+\begin_layout Itemize
+Das Manifest (WMAppManifest.xml), welches die Fähigkeiten der App festlegt.
+\end_layout
+
+\begin_layout Itemize
+Das Anwendungsobjekt (App.cs und App.xaml), welches die zentrale Steuereinheit
+ bildet
+\end_layout
+
+\begin_layout Itemize
+Die Verschiedenen 
+\begin_inset Quotes eld
+\end_inset
+
+Seiten
+\begin_inset Quotes erd
+\end_inset
+
+ der App
+\end_layout
+
+\begin_layout Itemize
+Die Ressourcen (Bilder, Töne, etc.)
+\end_layout
+
+\begin_layout Standard
+xxxxxxx
+\end_layout
+
+\begin_layout Standard
+navigation
+\end_layout
+
+\begin_layout Subsection
 XAML
 \end_layout
 
 \begin_layout Standard
-XAML, bindings, MVVM etc
+XAML, bindings, MVVM etc namespaces
 \end_layout
 
 \begin_layout Standard
-XAML ist eine deklarative Sprache zur Beschreibung von Benutzeroberflächen
- in Silverlight und WPF.
+XAML ist eine deklarative Sprache zur Beschreibung von Datenstrukturen,
+ insbesondere Benutzeroberflächen, die in Silverlight und WPF verwendet
+ wird.
  Sie ist ein XML Dialekt, der um verschiedene Konzepte erweitert wurde:
 \end_layout
 
@@ -447,8 +553,28 @@ Beispiel für Komplexe Attributdefinitionen
 
 \end_layout
 
+\begin_layout Subsubsection
+Attached Properties
+\end_layout
+
+\begin_layout Subsubsection
+Markup Extensions
+\end_layout
+
 \begin_layout Subsection
-Datenverbindungen
+Datenbindung
+\end_layout
+
+\begin_layout Subsubsection
+Dependency Properties
+\end_layout
+
+\begin_layout Subsubsection
+Converters
+\end_layout
+
+\begin_layout Subsubsection
+MVVM?
 \end_layout
 
 \begin_layout Subsection
@@ -482,6 +608,14 @@ normalen
 
 \begin_layout Standard
 Beispiele im Vergleich WPF SL/WP7
+\end_layout
+
+\begin_layout Standard
+lazy loading
+\end_layout
+
+\begin_layout Standard
+ui virtualisierung
 \end_layout
 
 \begin_layout Subsubsection
@@ -602,6 +736,10 @@ Entwicklungsumgebung
 
 \begin_layout Section
 Fazit - Erfolgschancen von WP7
+\end_layout
+
+\begin_layout Standard
+noch-probleme
 \end_layout
 
 \begin_layout Bibliography
