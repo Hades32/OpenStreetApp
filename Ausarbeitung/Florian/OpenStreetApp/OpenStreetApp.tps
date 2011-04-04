@@ -28,11 +28,11 @@ cyCur=466
 cyMin=10
 
 [Frame0_Col0]
-cxCur=835
+cxCur=616
 cxMin=10
 
 [Frame0_View0,0]
-Cursor.row=16
-Cursor.column=85
-TopSubLine=0
+Cursor.row=36
+Cursor.column=546
+TopSubLine=48
 

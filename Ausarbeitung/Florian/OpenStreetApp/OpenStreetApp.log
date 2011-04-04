@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.3)  3 APR 2011 18:22
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.3)  4 APR 2011 15:00
 entering extended mode
 **D:/Projekte/Visual*Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/Op
 enStreetApp.tex
@@ -301,34 +301,39 @@ LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 33.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 35.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 34.
 
-<images/route.png, id=1, 298.11375pt x 548.0475pt>
-File: images/route.png Graphic file (type png)
- <use images/route.png>
+Overfull \hbox (2.95251pt too wide) in paragraph at lines 35--36
+\OT1/ppl/m/n/10 no-va-ti-ves Sy-stem auf den Markt ge-bracht wer-den. Um mit de
+n Bran-chenf[]uhrern
+ []
+
 [1
 
 {C:/Users/Florian/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-[2 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
-images/route.png>] [3]
+<images/route.png, id=9, 298.11375pt x 548.0475pt>
+File: images/route.png Graphic file (type png)
+ <use images/route.png>
+[2] [3 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreet
+App/images/route.png>] [4]
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.aux") ) 
 Here is how much of TeX's memory you used:
- 2252 strings out of 494019
- 29868 string characters out of 3143877
- 98270 words of memory out of 3000000
+ 2253 strings out of 494019
+ 29882 string characters out of 3143877
+ 100270 words of memory out of 3000000
  5536 multiletter control sequences out of 15000+200000
- 13815 words of font info for 35 fonts, out of 3000000 for 9000
+ 14880 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 31i,11n,43p,541b,272s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 31i,11n,43p,941b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/
 8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files 
 (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on OpenStreetApp.pdf (3 pages, 577874 bytes).
+Output written on OpenStreetApp.pdf (4 pages, 586719 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
+ 35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
