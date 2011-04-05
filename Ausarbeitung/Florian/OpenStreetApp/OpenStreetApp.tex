@@ -1,10 +1,10 @@
 \documentclass[german,a4paper]{llncs}
 
-\usepackage{german}
+\usepackage[ngerman]{babel}
 \usepackage{palatino}
 \usepackage[latin1]{inputenc}
 \usepackage{graphicx}
-
+\usepackage[urlbordercolor={1 1 1}, citebordercolor={1 1 1}]{hyperref}
 % Seitenränder
 \usepackage{geometry}
 \geometry{verbose,a4paper,tmargin=5.2cm,bmargin=5.2cm,lmargin=4.4cm,rmargin=4.4cm}
@@ -36,7 +36,7 @@ Im Herbst 2010 veröffentlichte die Firma Microsoft ihr eigenes Betriebssystem fü
 \subsection{Idee der Open Street App}
 Im Blickpunkt unserer Entwicklung stand nicht nur das reine Erstellen einer Applikation, sondern gerade auch die Verwendung der von Microsoft bereitgestellten Controls und Bibliotheken. Wir wollten herausfinden ob diese sich effektiv und schnell integrieren lassen. Zum Zeitpunkt des Seminarbeginns war für WP7 keine zufriedenstellendes Third-Party-Routing verfügbar. WP7 liefert von sich aus eine Karte/Routing-Applikation. Unsere Idee war es nun eine eigene Software zu schreiben, welche den Anforderungen der mitgelieferten \textit{Karten-App} genügt und falls möglich übertrifft, unter Verwendung der erwähnten Controls.
 \subsection{Aufbau dieser Arbeit}
-Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeitet wurde um Kartendaten und zugehörige Informationen zu erlangen und darzustellen. Das folgende Kapitel beschäftigt sich mit der Gestaltung der Applikation im WP7 typischen UI-Stil. Hierbei wurde besonderes Augenmerk gelegt auf ein konsistentes Look-and-Feel im Vergleich zu den native Applikationen für WP7. Kapitel vier berichtet exemplarisch von den Herausforderungen und Problemen die bei der Entwicklung aufgekommen sind. Kapitel fünf erklärt wie einmal entwickelte Applikationen ihren Weg auf den Markt finden. Hier wird auf den Marketplace und die Zukunft der Open Street App eingegangen. Im letzten Kapitel wollen wir einen Ausblick über die möglichen Entwicklungen von WP7 geben sowie ein Fazit zu der Entwicklung in diesem frühen Stadium ziehen.
+Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeitet wurde um Kartendaten und zugehörige Informationen zu erlangen und darzustellen. Das folgende Kapitel beschäftigt sich mit der Gestaltung der Applikation im WP7 typischen UI-Stil. Hierbei wurde besonderes Augenmerk gelegt auf ein konsistentes Look-and-Feel im Vergleich zu den native Applikationen für WP7. Kapitel vier berichtet exemplarisch von den Herausforderungen und Problemen die bei der Entwicklung aufgekommen sind. Kapitel fünf erklärt wie einmal entwickelte Applikationen ihren Weg auf den Markt finden. Hier wird auf den Marketplace und die Zukunft der Open Street App eingegangen. Im letzten Kapitel wollen wir einen Ausblick über die möglichen Entwicklungen von WP7 geben sowie ein Fazit zu der Entwicklung in diesem frühen Stadium ziehen.\cite{cloud} \cite{coding} \cite{launch} \cite{silverlight} \cite{apps} \cite{osm} \cite{yahoo} \cite{bing}
 
 \section{Open Street Map und Konsorten}
 
@@ -69,15 +69,7 @@ Text zu Routing
 \subsection{Fazit}
 Entwickeln toll. Schnelle Ergebnisse.
 
-% Literaturangaben
-\begin{thebibliography}{1}
-  \bibitem {1} Eine PDF zu Entwicklung
-  \bibitem {2} Eine PDF zu Entwicklung
-  \bibitem {3} Eine PDF zu Entwicklung
-  \bibitem {4} Eine PDF zu Entwicklung
-  \bibitem {5} Eine PDF zu Entwicklung
-  \bibitem {6} Verweis auf Trainings Projekte und Tutorials von MS
-  \bibitem {7} Die APIs (Cloudemade, Yahoo, Bing, Osm)
-\end{thebibliography}
+\bibliography{wp7seminar}
+\bibliographystyle{plain}
 
 \end{document}

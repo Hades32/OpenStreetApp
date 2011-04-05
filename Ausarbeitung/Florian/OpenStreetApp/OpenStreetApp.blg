@@ -1,4 +1,17 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\OpenStreetApp.aux
-I found no \bibdata command---while reading file D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\OpenStreetApp.aux
-I found no \bibstyle command---while reading file D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\OpenStreetApp.aux
-(There were 2 error messages)
+The style file: plain.bst
+Database file #1: wp7seminar.bib
+Warning--entry type for "cloud" isn't style-file defined
+--line 4 of file wp7seminar.bib
+Warning--entry type for "osm" isn't style-file defined
+--line 13 of file wp7seminar.bib
+Warning--entry type for "yahoo" isn't style-file defined
+--line 23 of file wp7seminar.bib
+Warning--entry type for "launch" isn't style-file defined
+--line 33 of file wp7seminar.bib
+Warning--entry type for "bing" isn't style-file defined
+--line 53 of file wp7seminar.bib
+Warning--entry type for "apps" isn't style-file defined
+--line 72 of file wp7seminar.bib
+Warning--can't use both author and editor fields in coding
+(There were 7 warnings)
