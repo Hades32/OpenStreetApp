@@ -1,0 +1,79 @@
+\documentclass[german,a4paper]{llncs}
+
+\usepackage{german}
+\usepackage{palatino}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+
+% Seitenränder
+\usepackage{geometry}
+\geometry{verbose,a4paper,tmargin=5.2cm,bmargin=5.2cm,lmargin=4.4cm,rmargin=4.4cm}
+
+% Kopf- und Fusszeile
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[EL]{\textsc{Florian Rapp}}																		% Hier bitte den/die Autor(en) angeben
+\fancyhead[OR]{\textsc{Entwicklung der Open-Street-Applikation für Windows Phone 7}}																				% Hier bitte den Dokumententitel angeben
+\fancyfoot[EC,OC]{}
+\begin{document}
+
+
+\title{Entwicklung der Open-Street-Applikation für Windows Phone 7}
+\author{Florian Rapp}
+\institute{Universität Ulm, Abt. DBIS\\
+\email{florian.rapp@uni-ulm.de}}
+\maketitle
+
+\begin{abstract}
+Diese Arbeit beschäftigt sich mit der Entwicklung einer Routing- und Navigationsapplikation, namentlich der \textit{Open Street App}, für das mobile Betriebssystem Windows Phone 7 (\textit{WP7}). Es wird aufgezeigt welche Schritte von der Idee dieser Applikation bis zur Fertigstellung umgesetzt, und welche Probleme und Herausforderungen überwunden werden mussten. Die Arbeit soll einen grundlegenden Eindruck der pratischen Entwicklung für WP7 vermitteln.
+\end{abstract}
+
+\section{Einleitung}
+\subsection{Rahmen der Arbeit}
+Im Herbst 2010 veröffentlichte die Firma Microsoft ihr eigenes Betriebssystem für Smartphones, Windows Phone 7 (\textit{WP7}). Basierend auf WinCE 7, allerdings mit einem komplett neuen und modernen User Interface, sollte ein flexibles, innovatives System auf den Markt gebracht werden. Um mit den Branchenführern \textit{Apple iOS} und \textit{Android} konkurrieren zu können, wurde insbesondere die einfache und schnelle Entwicklung von Applikationen für das neue System von Microsoft angepriesen. Im Rahmen des Seminars \textit{Entwicklung für Windows Phone 7} der Abteilung \textit{Datenbank- und Informationssysteme} der Universität Ulm, war es unser Ziel zu prüfen wie effektiv sich Programme für WP7 zum aktuellen Stand entwickeln lassen.
+\subsection{Idee der Open Street App}
+Im Blickpunkt unserer Entwicklung stand nicht nur das reine Erstellen einer Applikation, sondern gerade auch die Verwendung der von Microsoft bereitgestellten Controls und Bibliotheken. Wir wollten herausfinden ob diese sich effektiv und schnell integrieren lassen. Zum Zeitpunkt des Seminarbeginns war für WP7 keine zufriedenstellendes Third-Party-Routing verfügbar. WP7 liefert von sich aus eine Karte/Routing-Applikation. Unsere Idee war es nun eine eigene Software zu schreiben, welche den Anforderungen der mitgelieferten \textit{Karten-App} genügt und falls möglich übertrifft, unter Verwendung der erwähnten Controls.
+\subsection{Aufbau dieser Arbeit}
+Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeitet wurde um Kartendaten und zugehörige Informationen zu erlangen und darzustellen. Das folgende Kapitel beschäftigt sich mit der Gestaltung der Applikation im WP7 typischen UI-Stil. Hierbei wurde besonderes Augenmerk gelegt auf ein konsistentes Look-and-Feel im Vergleich zu den native Applikationen für WP7. Kapitel vier berichtet exemplarisch von den Herausforderungen und Problemen die bei der Entwicklung aufgekommen sind. Kapitel fünf erklärt wie einmal entwickelte Applikationen ihren Weg auf den Markt finden. Hier wird auf den Marketplace und die Zukunft der Open Street App eingegangen. Im letzten Kapitel wollen wir einen Ausblick über die möglichen Entwicklungen von WP7 geben sowie ein Fazit zu der Entwicklung in diesem frühen Stadium ziehen.
+
+\section{Open Street Map und Konsorten}
+
+\subsection{Umsetzung des Map-Controls}
+\subsection{Verwendung von Services}
+
+\section{Umsetzen der WP7 Designkonzepte}
+\subsection{WP7 Look and Feel}
+
+\section{Herausforderungen}
+\subsection{Probleme der gegebenen Controls}
+\subsection{Routing}
+Text zu Routing
+\begin{figure}
+\begin{center}
+\includegraphics[width=5.0cm,height=10.0cm]{images/route.png}
+\end{center}
+\caption{Vereinfachte Route}
+\end{figure}
+
+\section{Marketplace}
+\subsection{Struktur}
+\subsection{Entwicklung}
+\subsection{Zukunft der Open Street App}
+Überlegung ob kostenpflichtig oder nicht. Werbung. Veröffentlichung im April 2011. Wirklich.
+
+\section{Ausblick und Fazit}
+\subsection{Weiterentwicklung der Plattform}
+\subsection{Chancen für die Zukunft}
+\subsection{Fazit}
+Entwickeln toll. Schnelle Ergebnisse.
+
+% Literaturangaben
+\begin{thebibliography}{1}
+  \bibitem {1} Eine PDF zu Entwicklung
+  \bibitem {2} Verweis auf Trainings Projekte und Tutorials von MS
+  \bibitem {3} Die APIs (Cloudemade, Yahoo, Bing, Osm)
+\end{thebibliography}
+
+\end{document}
