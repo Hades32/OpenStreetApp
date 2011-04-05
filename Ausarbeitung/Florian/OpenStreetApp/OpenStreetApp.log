@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.3)  4 APR 2011 15:00
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.3)  5 APR 2011 16:43
 entering extended mode
 **D:/Projekte/Visual*Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/Op
 enStreetApp.tex
@@ -314,8 +314,11 @@ n Bran-chenf[]uhrern
 <images/route.png, id=9, 298.11375pt x 548.0475pt>
 File: images/route.png Graphic file (type png)
  <use images/route.png>
-[2] [3 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreet
-App/images/route.png>] [4]
+Underfull \vbox (badness 4595) has occurred while \output is active []
+
+ [2]
+[3 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
+images/route.png>] [4]
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.aux") ) 
 Here is how much of TeX's memory you used:
@@ -325,13 +328,13 @@ Here is how much of TeX's memory you used:
  5536 multiletter control sequences out of 15000+200000
  14880 words of font info for 37 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 31i,11n,43p,941b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 31i,11n,43p,950b,300s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/
 8r.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C
 :/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files 
 (x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on OpenStreetApp.pdf (4 pages, 586719 bytes).
+Output written on OpenStreetApp.pdf (4 pages, 587230 bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
