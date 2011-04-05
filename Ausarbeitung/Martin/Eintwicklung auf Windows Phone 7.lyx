@@ -409,7 +409,7 @@ Das Anwendungsobjekt (App.cs und App.xaml), welches die zentrale Steuereinheit
 \end_layout
 
 \begin_layout Itemize
-Die Verschiedenen 
+Die verschiedenen 
 \begin_inset Quotes eld
 \end_inset
 
@@ -425,7 +425,8 @@ Die Ressourcen (Bilder, Töne, etc.)
 \end_layout
 
 \begin_layout Standard
-xxxxxxx
+Wenn das Betriebssystem eine App startet, wird zuerst das Manifest eingelesen
+ und daraus ein xxxxxxx
 \end_layout
 
 \begin_layout Standard
@@ -437,13 +438,8 @@ XAML
 \end_layout
 
 \begin_layout Standard
-XAML, bindings, MVVM etc namespaces
-\end_layout
-
-\begin_layout Standard
-XAML ist eine deklarative Sprache zur Beschreibung von Datenstrukturen,
- insbesondere Benutzeroberflächen, die in Silverlight und WPF verwendet
- wird.
+XAML ist eine deklarative Sprache zur Beschreibung von Datenstrukturen die
+ insbesondere in Silverlight und WPF Benutzeroberflächen verwendet wird.
  Sie ist ein XML Dialekt, der um verschiedene Konzepte erweitert wurde:
 \end_layout
 
@@ -482,13 +478,13 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset listings
-lstparams "language=HTML,tabsize=4"
+lstparams "language=XML,tabsize=4"
 inline false
 status open
 
 \begin_layout Plain Layout
 
-<Grid x:Name="LayoutRoot" Background="Transparent"/>
+<Grid Background="Transparent"/>
 \end_layout
 
 \begin_layout Plain Layout
@@ -498,7 +494,7 @@ status open
 
 \begin_layout Plain Layout
 
-<Grid x:Name="LayoutRoot">
+<Grid>
 \end_layout
 
 \begin_layout Plain Layout
@@ -557,32 +553,684 @@ Beispiel für Komplexe Attributdefinitionen
 Attached Properties
 \end_layout
 
+\begin_layout Standard
+Insbesondere bei der Beschreibung von Benutzeroberflächen steht man oft
+ vor dem Problem, dass Elemente eine Eigenschaft besitzen, die nur innerhalb
+ eines bestimmten Kontext sinnvoll sind.
+ 
+\end_layout
+
+\begin_layout Standard
+Z.B.
+ hat ein Button der in einem Canvas angeordnet ist eine X und eine Y Koordinate.
+ Wird er aber außerhalb eines Canvas eingesetzt sind die Eigenschaften u.U.
+ ohne Bedeutung.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=XML,tabsize=4"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<Canvas>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<Button Canvas.Top="100">
+\end_layout
+
+\begin_layout Plain Layout
+
+		<Canvas.Left>25</Canvas.Left>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<TextBlock Text="Ein Knopf"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+	</Button>
+\end_layout
+
+\begin_layout Plain Layout
+
+</Canvas>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Bsp-Attached-Property"
+
+\end_inset
+
+Beispiel für ein Attached Property
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+XAML bietet für dieses Problem eine einfache Lösung: Genau wie bei den komplexen
+ Attributdefinitionen wird der Name des übergeordneten Elements verwendet
+ um die Herkunft des Attributs zu qualifizieren.
+ Der Wert des Attributs wird dabei in einem statischen Attribut der Klasse
+ des übergeordneten Elements gespeichert.
+\end_layout
+
 \begin_layout Subsubsection
 Markup Extensions
+\end_layout
+
+\begin_layout Standard
+Markup Extensions sind ein Konzept, dass es ermöglicht den XAML Parser in
+ begrenztem Umfang zu erweitern, so dass die Verwendung komplexer Attributdefini
+tionen entfallen kann.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=XML"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<TextBlock Text="{StaticResource AppName}" />
+\end_layout
+
+\begin_layout Plain Layout
+
+<!-- oder -->
+\end_layout
+
+\begin_layout Plain Layout
+
+<TextBlock Text="{StaticResource ResourceKey=AppName}" />
+\end_layout
+
+\begin_layout Plain Layout
+
+<!-- vs.
+ -->
+\end_layout
+
+\begin_layout Plain Layout
+
+<TextBlock>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<TextBlock.Text>
+\end_layout
+
+\begin_layout Plain Layout
+
+		<StaticResource ResourceKey="AppName" />
+\end_layout
+
+\begin_layout Plain Layout
+
+	</TextBlock.Text>
+\end_layout
+
+\begin_layout Plain Layout
+
+</TextBlock>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Bsp-Markup-Extension"
+
+\end_inset
+
+Beispiel für eine Markup Extension
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Markup Extensions werden durch führende und endende geschweifte Klammern
+ gekennzeichnet.
+ Das erste Wort in den Klammern gibt die Klasse der zu verwendenden Extension
+ an.
+ Parameter werden nach dem Klassennamen gelistet und werden in der Form
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Parameter=Wert
+\begin_inset Quotes erd
+\end_inset
+
+ angegeben.
+ Einzige Ausnahme ist der Standardparameter, der ohne Angabe seines Namens
+ verwendet werden kann.
+ Im Beispiel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Bsp-Markup-Extension"
+
+\end_inset
+
+ ist der Standardparameter 
+\begin_inset Quotes eld
+\end_inset
+
+ResourceKey
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Silverlight bietet - in der aktuellen Version - keine Möglichkeit eigene
+ Markup Extensions zu definieren.
+ Es sind nur die folgenden drei vordefiniert: Binding, StaticResource, DynamicRe
+source.
+ Auf deren Bedeutung wird im folgenden Abschnitt eingegangen.
 \end_layout
 
 \begin_layout Subsection
 Datenbindung
 \end_layout
 
+\begin_layout Standard
+Ein der größten Stärken von Silverlight ist die Möglichkeit Eigenschaften
+ von Elementen auf einfache Weise an Attribute von Datenobjekten oder an
+ Eigenschaften anderer GUI Elemente zu binden.
+ Somit muss keine Code geschrieben werden um die Benutzeroberfläche bei
+ Änderungen an den Daten aktuell zu halten.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<TextBox Text="{Binding Path=Vorname, Mode=TwoWay, Converter={StaticResource
+ conv1}}"/>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Bsp-Binding"
+
+\end_inset
+
+Beispiel für eine Datenbindung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+xxxx Diese Eigenschaft enthält den aktuellen Kontext für Datenbindungen.
+ In Beispiel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Bsp-Binding"
+
+\end_inset
+
+ kann man sehen wie die Definition einer Datenbindung mit Hilfe der {Binding}
+ Markup Extension aussieht.
+ Dabei bezieht sich die Datenbindung auf das Objekt das der aktuelle Datenkontex
+t ist, da nichts anderes angegeben wurde.
+ Dieser Kontext ergibt sich aus dem Element innerhalb dessen das Binding
+ definiert wurde.
+ Jedes GUI-Element
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Genauer, jede von 
+\noun on
+FrameworkElement
+\noun default
+ erbende Klasse.
+\end_layout
+
+\end_inset
+
+ hat eine 
+\noun on
+DataContext
+\noun default
+ Eigenschaft, die es an eventuell vorhandene Kind-Elemente weitervererbt.
+ 
+\end_layout
+
 \begin_layout Subsubsection
 Dependency Properties
+\end_layout
+
+\begin_layout Standard
+Ein Problem vieler Datenbindungs-Ansätze ist, dass sie Reflection
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Reflection bezeichnet die Möglichkeit Objekte einer statisch getypten Sprache
+ zur Laufzeit dynamisch zu untersuchen und zu verändern.
+ Hierfür sind meistens aufwendige Aufrufe an die zu Grunde liegende Plattform
+ zu richten.
+\end_layout
+
+\end_inset
+
+ verwenden, da die Eigenschaften oft als String angegeben werden.
+ Außerdem muss jede Klasse typischerweise ein Interface implementieren,
+ dass die eventuellen Ziele einer Datenbindung benachrichtigt.
+ 
+\end_layout
+
+\begin_layout Standard
+In Silverlight wird dieses Problem mit so genannten Depenency Properties
+ (DPs) gelöst.
+ Im Grunde sind DPs Dictionaries die als statische Eigenschaften in der
+ Klasse definiert werden.
+ Dieses weißt dann einem Objekt einen Wert zu.
+\end_layout
+
+\begin_layout Standard
+Der große Vorteil von DPs ist, dass sich beliebige Objekt registrieren können,
+ um benachrichtigt zu werden, wenn sich der Wert einer Eigenschaft eines
+ bestimmten Objekts ändert; und zwar mit statisch getypten Vorher-Nachher-Werten.
+\end_layout
+
+\begin_layout Standard
+Außerdem lassen sich einfach Standardwerte definieren und automatisches
+ Vererben von Werten auf Kind-Objekte realisieren.
 \end_layout
 
 \begin_layout Subsubsection
 Converters
 \end_layout
 
-\begin_layout Subsubsection
-MVVM?
+\begin_layout Standard
+Es ist oft wünschenswert zwei Eigenschaften miteinander zu verbinden, die
+ nicht den gleichen Datentyp haben.
+ Das typische Beispiel hierfür ist die Text Eigenschaft eines Textblocks
+ und ein Zahlwert eines Objekts.
+ Im Gegensatz zu diesem einfachen Beispiel, bei dem die Konvertierung natürlich
+ automatisch passiert, ist es oft komplizierter.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[Sharp]C},tabsize=3"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+public class VisibilityConverter : IValueConverter
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	public Object Convert(Object value, 
+\end_layout
+
+\begin_layout Plain Layout
+
+						Type targetType, 
+\end_layout
+
+\begin_layout Plain Layout
+
+						Object parameter, 
+\end_layout
+
+\begin_layout Plain Layout
+
+						System.Globalization.CultureInfo culture)
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		return (bool)value == true ? 
+\end_layout
+
+\begin_layout Plain Layout
+
+				System.Windows.Visibility.Visible 
+\end_layout
+
+\begin_layout Plain Layout
+
+				: System.Windows.Visibility.Collapsed;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	public Object ConvertBack(Object value, 
+\end_layout
+
+\begin_layout Plain Layout
+
+							Type targetType, 
+\end_layout
+
+\begin_layout Plain Layout
+
+							Object parameter,
+\end_layout
+
+\begin_layout Plain Layout
+
+							System.Globalization.CultureInfo culture)
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		return (System.Windows.Visibility)value 
+\end_layout
+
+\begin_layout Plain Layout
+
+			== System.Windows.Visibility.Visible;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Bsp-Converter"
+
+\end_inset
+
+Beispiel für einen Converter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Lösung dieses Problems sind so genannte Converter, die beliebige Typen
+ in einander konvertieren können.
+ Converter sind Klassen, die das IValueConverter Interface implementieren.
+ Im Beispiel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Bsp-Converter"
+
+\end_inset
+
+ kann man exemplarisch sehen, wie ein Wahrheitswert in einen Aufzählungstyp
+ - und umgekehrt - umgewandelt werden kann.
+ Mit Hilfe der Convert und ConvertBack Methoden kann beliebig komplexer
+ Code dazu verwendet werden Werte umzuwandeln.
+ 
 \end_layout
 
 \begin_layout Subsection
-Reactive Extensions (Rx)
+Resourcen
+\end_layout
+
+\begin_layout Standard
+In jedem Projekt tauchen Teile auf, die an vielen Stellen wieder verwendet
+ werden.
+ Z.B.
+ Bilder, Texte oder Vorlagen für bestimmte Stile.
+ Ähnlich dem Konzept der Datenbindungen können in Silverlight Ressourcen
+ einfach definiert und verwendet werden.
+\end_layout
+
+\begin_layout Standard
+Jedes Steuerelement in Silverlight kann eine List von Ressourcen für sich
+ und seine Kindelemente definieren.
+ Außerdem können Anwendungsweite Ressourcen definiert werden - siehe Beispiel
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Bsp-Resourcendefinition"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<Application.Resources>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<System:String x:Key="AppTitle">Open Street App</System:String>
+\end_layout
+
+\begin_layout Plain Layout
+
+</Application.Resources>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:Bsp-Resourcendefinition"
+
+\end_inset
+
+Beispiel Resourcendefinition
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Beispiel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Bsp-Binding"
+
+\end_inset
+
+ kann man sehen, wie auf eine Resource innerhalb einer Datenbindungs-Definition
+ verwiesen wird.
+ Bei der Auflösung des Namens einer Ressource wird der Elementbaum von unten
+ nach oben durchsucht, bis schlussendlich noch die anwendungsweiten Ressourcen
+ durchsucht werden.
+\end_layout
+
+\begin_layout Standard
+In den bisherigen Beispielen erfolgte der Verweise auf eine Ressource immer
+ mittels {StaticResource}.
+ Erwartungsgemäß existiert auch eine {DynamicResource}.
+ Der Unterschied besteht im Ladeverhalten:
+\end_layout
+
+\begin_layout Standard
+Statische Ressourcen werden nur ein mal beim Initialisieren des Elements
+ geladen.
+ Sollte sich also das worauf sich die Ressource bezieht verändern, würde
+ das die Bindung nicht wiederspiegeln.
+ Ein dynamischer Ressourcenverweis hingegen funktioniert genau wie eine
+ Datenbindung.
 \end_layout
 
 \begin_layout Subsection
 Besonderheiten auf dem Handy
+\end_layout
+
+\begin_layout Standard
+Die Entwicklung auf Mobilgeräten unterliegt zum Teil gänzlich anderen Anforderun
+gen, als die Entwicklung für den Desktopbereich.
+ Diese Unterschiede sind größtenteils nicht WP7 spezifisch, müssen hier
+ aber dennoch erwähnt werden, da WP7 einige individuelle Lösungsansätze
+ bietet.
 \end_layout
 
 \begin_layout Subsubsection
@@ -590,8 +1238,6 @@ Performance
 \end_layout
 
 \begin_layout Standard
-Die Entwicklung auf Mobilgeräten unterliegt zum Teil gänzlich anderen Anforderun
-gen, als die Entwicklung für den Desktopbereich.
  Während auf 
 \begin_inset Quotes eld
 \end_inset
@@ -703,35 +1349,12 @@ Ein weiterer Aspekt, auf den hier aber nicht näher eingegangen werden soll,
  Multi-Touch-Screens, Beschleunigungs- und Lagesensoren)
 \end_layout
 
-\begin_layout Section
-Das Microsoft-Ökosystem
-\end_layout
-
-\begin_layout Subsection
-Marketplace (aka App-Store™
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Apple hat 
-\begin_inset Quotes eld
-\end_inset
-
-App-Store
-\begin_inset Quotes erd
-\end_inset
-
- als Markenzeichen eintragen lassen, wogegen Microsoft gerade Einspruch
- erhoben hat.
-\end_layout
-
-\end_inset
-
-)
-\end_layout
-
 \begin_layout Subsection
 Entwicklungsumgebung
+\end_layout
+
+\begin_layout Standard
+Visual Studio
 \end_layout
 
 \begin_layout Section
