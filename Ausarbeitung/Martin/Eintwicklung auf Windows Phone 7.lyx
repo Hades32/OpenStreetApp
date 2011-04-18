@@ -1,11 +1,12 @@
-#LyX 2.0.0beta3 created this file. For more info see http://www.lyx.org/
-\lyxformat 410
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
 \begin_document
 \begin_header
 \textclass article
 \use_default_options true
 \maintain_unincluded_children false
 \language ngerman
+\language_package default
 \inputencoding auto
 \fontencoding global
 \font_roman Cambria
@@ -66,6 +67,7 @@
 \tracking_changes false
 \output_changes false
 \html_math_output 0
+\html_css_as_file 0
 \html_be_strict false
 \end_header
 
@@ -926,6 +928,14 @@ Außerdem lassen sich einfach Standardwerte definieren und automatisches
 \end_layout
 
 \begin_layout Subsubsection
+Data Templates
+\end_layout
+
+\begin_layout Standard
+xxxxx
+\end_layout
+
+\begin_layout Subsubsection
 Converters
 \end_layout
 
@@ -1198,7 +1208,7 @@ reference "alg:Bsp-Binding"
 
 \end_inset
 
- kann man sehen, wie auf eine Resource innerhalb einer Datenbindungs-Definition
+ kann man sehen, wie auf eine Ressource innerhalb einer Datenbindungs-Definition
  verwiesen wird.
  Bei der Auflösung des Namens einer Ressource wird der Elementbaum von unten
  nach oben durchsucht, bis schlussendlich noch die anwendungsweiten Ressourcen
@@ -1216,7 +1226,7 @@ In den bisherigen Beispielen erfolgte der Verweise auf eine Ressource immer
 Statische Ressourcen werden nur ein mal beim Initialisieren des Elements
  geladen.
  Sollte sich also das worauf sich die Ressource bezieht verändern, würde
- das die Bindung nicht wiederspiegeln.
+ das die Bindung nicht widerspiegeln.
  Ein dynamischer Ressourcenverweis hingegen funktioniert genau wie eine
  Datenbindung.
 \end_layout
@@ -1238,7 +1248,7 @@ Performance
 \end_layout
 
 \begin_layout Standard
- Während auf 
+Während auf 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1246,22 +1256,83 @@ normalen
 \begin_inset Quotes erd
 \end_inset
 
- PCs sowohl Rechenleistung als auch Arbeitsspeicher im Übermaß vorhanden
+ PCs sowohl Rechenleistung als auch Arbeitsspeicher im Überfluss vorhanden
  ist, müssen sich Entwickler im mobilen Bereich über diese Aspekte wieder
  Gedanken machen.
  Nur dann kann eine ausreichende Performance auf dem Gerät zu erzielt werden.
 \end_layout
 
 \begin_layout Standard
-Beispiele im Vergleich WPF SL/WP7
+Dieses Ziel lässt sich auf zwei verschiedene Weise erreichen: Entweder schränkt
+ man sich soweit ein, dass die Performance des Gerätes ausreicht oder man
+ beeinflusst die wahrgenommene Performance.
+ Letzteres beschreibt die Tatsache, dass einem Anwender eine App die ihn
+ warten lässt, bis alle Daten geladen sind sehr viel langsamer vorkommt,
+ als eine App die ihm wären des Ladevorgangs zumindest schon einzelne Daten
+ anzeigt.
+ Und das obwohl diese meistens insgesamt sogar länger braucht als erstere.
+ Um die wahrgenommene Performance zu verbessern gibt es abhängig von der
+ Situation verschiedene Möglichkeiten:
 \end_layout
 
 \begin_layout Standard
-lazy loading
+Wenn eine lange Liste an Daten über eine langsame Handy Verbindung übertragen
+ werden soll bietet es sich an, die Daten in kleinen Blöcken zu laden, und
+ erst dann den nächsten Block zu laden, wenn der Benutzer an das Ende der
+ List gescrollt hat.
 \end_layout
 
 \begin_layout Standard
-ui virtualisierung
+Sobald man die lange List im Speicher hat steht man allerdings vor dem Problem,
+ dass die Scroll-Performance stark leidet - besonders bei komplexen Daten
+ Templates.
+ Silverlight hat für dieses Problem bereits eine eingebaute Lösung (falls
+ man die normale ListBox verwendet) mit Namen 
+\begin_inset Quotes eld
+\end_inset
+
+UI Virtualisierung
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Dabei werden die Daten-Container, die aus dem sichtbaren Bereich heraus-gescrol
+lt werden wiederverwendet für die nachfolgenden Daten.
+ Somit wird aufwendiges Zuweisen von neuem Speicher vermieden, und es müssen
+ keine Container für alle Daten-Elemente erzeugt werden.
+\end_layout
+
+\begin_layout Standard
+Falls dieser Trick nicht ausreicht um ein flüssiges Scrollen zu ermöglichen,
+ weil die Daten Templates zu komplex sind, gibt es ein auch dafür eine Lösung
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Das benötigte Steuerelement ist nicht Teil der Standardbibliothek und kann
+ hier gefunden werden: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://goo.gl/14H2U
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ In einem erweiterten ListBox Steuerelement ist es möglich ein alternatives,
+ vereinfachtes Data Template anzugeben, das verwendet wird, während der
+ Benutzer scrollt.
+ So kann z.B.
+ während des Scrollens nur der Name eines Films angezeigt werden und sobald
+ die Liste angehalten wird, auch ein Bild und weitere Informationen.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1334,7 +1405,7 @@ Wenn eine Anwendung oder eine Seite keinen inhärenten Zustand hat, ist die
 \end_layout
 
 \begin_layout Subsubsection
-Design
+UI Design
 \end_layout
 
 \begin_layout Standard
