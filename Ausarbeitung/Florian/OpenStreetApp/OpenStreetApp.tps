@@ -3,7 +3,7 @@ Type=TeXnicCenterProjectSessionInformation
 Version=2
 
 [SessionInfo]
-ActiveTab=0
+ActiveTab=2
 FrameCount=1
 ActiveFrame=0
 
@@ -18,21 +18,21 @@ MaxPos.x=-8
 MaxPos.y=-30
 NormalPos.left=0
 NormalPos.top=0
-NormalPos.right=803
-NormalPos.bottom=293
+NormalPos.right=474
+NormalPos.bottom=409
 Class=CLatexEdit
 Document=OpenStreetApp.tex
 
 [Frame0_Row0]
-cyCur=466
+cyCur=490
 cyMin=10
 
 [Frame0_Col0]
-cxCur=616
+cxCur=631
 cxMin=10
 
 [Frame0_View0,0]
-Cursor.row=36
-Cursor.column=546
-TopSubLine=48
+Cursor.row=0
+Cursor.column=0
+TopSubLine=81
 

@@ -1,13 +1,32 @@
 \documentclass[german,a4paper]{llncs}
 
-\usepackage{german}
+\usepackage[ngerman]{babel}
 \usepackage{palatino}
 \usepackage[latin1]{inputenc}
 \usepackage{graphicx}
-
+\usepackage[urlbordercolor={1 1 1}, citebordercolor={1 1 1}]{hyperref}
 % Seitenränder
 \usepackage{geometry}
 \geometry{verbose,a4paper,tmargin=5.2cm,bmargin=5.2cm,lmargin=4.4cm,rmargin=4.4cm}
+
+%Quellcode-Listing Einstellungen
+\usepackage{color,listings}
+\lstset{language=[Sharp]C, captionpos=b, frame=lines,
+basicstyle=\ttfamily,
+keywordstyle=\color{blue},
+commentstyle=\color{green},
+stringstyle=\color{red},
+numbers=left,
+numberstyle=\tiny, 
+numbersep=5pt,
+breaklines=true,
+showstringspaces=false,
+emph={double,bool,int,unsigned,char,true,false,void},
+emphstyle=\color{blue},
+emph={Assert,Test},
+emphstyle=\color{red},
+emph={[2]\using,\#define,\#ifdef,\#endif}, emphstyle={[2]\color{blue}}
+}
 
 % Kopf- und Fusszeile
 \usepackage{fancyhdr}
@@ -36,24 +55,54 @@ Im Herbst 2010 veröffentlichte die Firma Microsoft ihr eigenes Betriebssystem fü
 \subsection{Idee der Open Street App}
 Im Blickpunkt unserer Entwicklung stand nicht nur das reine Erstellen einer Applikation, sondern gerade auch die Verwendung der von Microsoft bereitgestellten Controls und Bibliotheken. Wir wollten herausfinden ob diese sich effektiv und schnell integrieren lassen. Zum Zeitpunkt des Seminarbeginns war für WP7 keine zufriedenstellendes Third-Party-Routing verfügbar. WP7 liefert von sich aus eine Karte/Routing-Applikation. Unsere Idee war es nun eine eigene Software zu schreiben, welche den Anforderungen der mitgelieferten \textit{Karten-App} genügt und falls möglich übertrifft, unter Verwendung der erwähnten Controls.
 \subsection{Aufbau dieser Arbeit}
-Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeitet wurde um Kartendaten und zugehörige Informationen zu erlangen und darzustellen. Das folgende Kapitel beschäftigt sich mit der Gestaltung der Applikation im WP7 typischen UI-Stil. Hierbei wurde besonderes Augenmerk gelegt auf ein konsistentes Look-and-Feel im Vergleich zu den native Applikationen für WP7. Kapitel vier berichtet exemplarisch von den Herausforderungen und Problemen die bei der Entwicklung aufgekommen sind. Kapitel fünf erklärt wie einmal entwickelte Applikationen ihren Weg auf den Markt finden. Hier wird auf den Marketplace und die Zukunft der Open Street App eingegangen. Im letzten Kapitel wollen wir einen Ausblick über die möglichen Entwicklungen von WP7 geben sowie ein Fazit zu der Entwicklung in diesem frühen Stadium ziehen.
+Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeitet wurde um Kartendaten und zugehörige Informationen zu erlangen und darzustellen. Das folgende Kapitel beschäftigt sich mit der Gestaltung der Applikation im WP7 typischen UI-Stil. Hierbei wurde besonderes Augenmerk gelegt auf ein konsistentes Look-and-Feel im Vergleich zu den native Applikationen für WP7. Kapitel vier berichtet exemplarisch von den Herausforderungen und Problemen die bei der Entwicklung aufgekommen sind. Kapitel fünf erklärt wie einmal entwickelte Applikationen ihren Weg auf den Markt finden. Hier wird auf den Marketplace und die Zukunft der Open Street App eingegangen. Im letzten Kapitel wollen wir einen Ausblick über die möglichen Entwicklungen von WP7 geben sowie ein Fazit zu der Entwicklung in diesem frühen Stadium ziehen.\cite{cloud} \cite{coding} \cite{launch} \cite{silverlight} \cite{apps} \cite{osm} \cite{yahoo} \cite{bing}
 
 \section{Open Street Map und Konsorten}
 
 \subsection{Umsetzung des Map-Controls}
+\begin{center}
+\includegraphics[height=4.1cm]{images/tiles.png}
+\end{center}
+\begin{figure}
+\caption{Verschiedene Tiles: Cloudemade, VE Areal, VE Maps, OpenStreetMap}
+\end{figure}
 \subsection{Verwendung von Services}
+Serviceaufruf
+\begin{lstlisting}
+Uri adress = new Uri("http://where.yahooapis.com/geocode?q=" + 48.421997 + ",+" + 9.956117 + "&gflags=R&locale=" + System.Globalization.CultureInfo.CurrentCulture.Name + "&appid=12345");
+
+System.Net.WebClient wc = new System.Net.WebClient();
+wc.DownloadStringAsync(adress);
+\end{lstlisting}
+Response (Ausschnitt)
+\begin{lstlisting}
+<Result>
+ <latitude>48.421997</latitude>
+ <longitude>9.956117</longitude>
+ <line1>James-Franck-Ring</line1>
+ <line2>89081 Ulm</line2>
+ <line4>Germany</line4>
+ <statecode>BW</statecode>
+</Result>
+\end{lstlisting}
 
 \section{Umsetzen der WP7 Designkonzepte}
 \subsection{WP7 Look and Feel}
+\begin{center}
+\includegraphics[width=5.0cm,height=10.0cm]{images/pref.png}
+\end{center}
+\begin{figure}
+\caption{WP7 typische UI controls}
+\end{figure}
 
 \section{Herausforderungen}
 \subsection{Probleme der gegebenen Controls}
 \subsection{Routing}
 Text zu Routing
-\begin{figure}
 \begin{center}
 \includegraphics[width=5.0cm,height=10.0cm]{images/route.png}
 \end{center}
+\begin{figure}
 \caption{Vereinfachte Route}
 \end{figure}
 
@@ -69,11 +118,7 @@ Text zu Routing
 \subsection{Fazit}
 Entwickeln toll. Schnelle Ergebnisse.
 
-% Literaturangaben
-\begin{thebibliography}{1}
-  \bibitem {1} Eine PDF zu Entwicklung
-  \bibitem {2} Verweis auf Trainings Projekte und Tutorials von MS
-  \bibitem {3} Die APIs (Cloudemade, Yahoo, Bing, Osm)
-\end{thebibliography}
+\bibliography{wp7seminar}
+\bibliographystyle{plain}
 
 \end{document}

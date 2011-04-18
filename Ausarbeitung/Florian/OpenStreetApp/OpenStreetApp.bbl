@@ -1,0 +1,53 @@
+\begin{thebibliography}{1}
+
+\bibitem{cloud}
+CloudMade.
+\newblock Geocoding and geosearch.
+\newblock
+  \url{http://developers.cloudmade.com/wiki/geocoding-http-api/Documentation}.
+\newblock Zugegriffen am 05.04.2011.
+
+\bibitem{osm}
+OpenStreetApp Community.
+\newblock Osm api v0.6.
+\newblock \url{http://wiki.openstreetmap.org/wiki/API_v0.6}.
+\newblock Zugegriffen am 05.04.2011.
+
+\bibitem{yahoo}
+Yahoo! Inc.
+\newblock Yahoo! placefinder guide.
+\newblock \url{http://developer.yahoo.com/geo/placefinder/guide/}.
+\newblock Zugegriffen am 05.04.2011.
+
+\bibitem{launch}
+Jan Kluczniok.
+\newblock Wp7: Alle smartphones mit microsofts neuem handy-os im Überblick.
+\newblock
+  \url{http://www.netzwelt.de/news/84335-wp7-smartphones-microsofts-neuem-handy-os-ueberblick.html}.
+\newblock Zugegriffen am 05.04.2011.
+
+\bibitem{bing}
+Microsoft.
+\newblock Bing maps api.
+\newblock \url{http://msdn.microsoft.com/en-us/library/dd877180.aspx}.
+\newblock Zugegriffen am 05.04.2011.
+
+\bibitem{coding}
+Microsoft.
+\newblock {\em Programming Windows Phone 7}.
+\newblock Microsoft Press, 2010.
+
+\bibitem{silverlight}
+Puja Pramudya.
+\newblock {\em Silverlight for Windows Phone - learn \& practice}.
+\newblock Microsoft Innovation Center, 2010.
+
+\bibitem{apps}
+Jacob Schulman.
+\newblock Windows phone 7 marketplace hits 10,000 apps, microsoft wp7 updates
+  still way outnumbered.
+\newblock
+  \url{http://www.engadget.com/2011/03/11/windows-phone-7-marketplace-hits-10-000-apps-wp7-updates-still/}.
+\newblock Zugegriffen am 11.03.2011.
+
+\end{thebibliography}
