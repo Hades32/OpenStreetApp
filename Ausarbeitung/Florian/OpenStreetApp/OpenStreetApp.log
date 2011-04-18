@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.5)  5 APR 2011 20:26
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.18)  18 APR 2011 11:52
 entering extended mode
 **D:/Projekte/Visual*Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/Op
 enStreetApp.tex
@@ -350,6 +350,42 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@dimlist=\toks21
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(C:\Users\Florian\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
+\lst@mode=\count130
+\lst@gtempboxa=\box54
+\lst@token=\toks22
+\lst@length=\count131
+\lst@currlwidth=\dimen138
+\lst@column=\count132
+\lst@pos=\count133
+\lst@lostspace=\dimen139
+\lst@width=\dimen140
+\lst@newlines=\count134
+\lst@lineno=\count135
+\lst@maxwidth=\dimen141
+
+(C:\Users\Florian\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count136
+\lst@skipnumbers=\count137
+\lst@framebox=\box55
+)
+(C:\Users\Florian\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(C:\Users\Florian\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
 (C:\Users\Florian\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
 \fancy@headwidth=\skip46
 \f@ncyO@elh=\skip47
@@ -363,38 +399,38 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 )
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Try loading font information for OT1+ppl on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Try loading font information for OT1+ppl on input line 39.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ppl.fd"
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 ) (C:\Users\Florian\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count130
-\scratchdimen=\dimen138
-\scratchbox=\box54
-\nofMPsegments=\count131
-\nofMParguments=\count132
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count133
-\MPscratchDim=\dimen139
-\MPnumerator=\count134
-\everyMPtoPDFconversion=\toks23
+\scratchcounter=\count138
+\scratchdimen=\dimen142
+\scratchbox=\box56
+\nofMPsegments=\count139
+\nofMParguments=\count140
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen143
+\MPnumerator=\count142
+\everyMPtoPDFconversion=\toks24
 )
-\AtBeginShipoutBox=\box55
-Package hyperref Info: Link coloring OFF on input line 20.
+\AtBeginShipoutBox=\box57
+Package hyperref Info: Link coloring OFF on input line 39.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
@@ -404,11 +440,11 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2009/12/18 v1.3 Cleanup title references (HO)
 )
-\c@section@level=\count135
+\c@section@level=\count143
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 39.
+LaTeX Info: Redefining \pageref on input line 39.
+LaTeX Info: Redefining \nameref on input line 39.
 
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.out")
@@ -450,13 +486,14 @@ enStreetApp.out")
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+\c@lstlisting=\count144
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 28.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 47.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 28.
+(Font)              <7> on input line 47.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 28.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 28.
+(Font)              <5> on input line 47.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 47.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
@@ -467,19 +504,19 @@ Package hyperref Warning: bookmark level for unknown title defaults to 0.
 Package hyperref Warning: bookmark level for unknown author defaults to 0.
 
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 29.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 48.
 
-Overfull \hbox (12.08815pt too wide) in paragraph at lines 30--31
+Overfull \hbox (12.08815pt too wide) in paragraph at lines 49--50
 \OT1/ppl/m/n/9 lung um-ge-setzt, und wel-che Pro-ble-me und Her-aus-for-de-run-
 gen []uberwunden
  []
 
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 33.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 52.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 34.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 53.
 
-Overfull \hbox (2.95251pt too wide) in paragraph at lines 35--36
+Overfull \hbox (2.95251pt too wide) in paragraph at lines 54--55
 \OT1/ppl/m/n/10 no-va-ti-ves Sys-tem auf den Markt ge-bracht wer-den. Um mit de
 n Bran-chenf[]uhrern
  []
@@ -487,15 +524,28 @@ n Bran-chenf[]uhrern
 [1
 
 {C:/Users/Florian/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-<images/route.png, id=38, 298.11375pt x 548.0475pt>
+<images/tiles.png, id=38, 505.89pt x 144.54pt>
+File: images/tiles.png Graphic file (type png)
+ <use images/tiles.png>
+Overfull \hbox (61.17027pt too wide) in paragraph at lines 64--65
+ [] 
+ []
+
+[2 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
+images/tiles.png>] <images/pref.png, id=60, 289.83281pt x 539.76656pt>
+File: images/pref.png Graphic file (type png)
+
+<use images/pref.png> [3 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/
+Florian/OpenStreetApp/images/pref.png>]
+<images/route.png, id=80, 298.11375pt x 548.0475pt>
 File: images/route.png Graphic file (type png)
  <use images/route.png>
-Underfull \vbox (badness 4595) has occurred while \output is active []
+Underfull \vbox (badness 1383) has occurred while \output is active []
 
- [2]
+ [4 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp
+/images/route.png>]
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
-enStreetApp.bbl" [3 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Flori
-an/OpenStreetApp/images/route.png>]
+enStreetApp.bbl"
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 7.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -525,36 +575,32 @@ Overfull \hbox (12.07562pt too wide) in paragraph at lines 46--52
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
- [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 124.
+ [5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 124.
 
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 124.
 Package rerunfilecheck Info: File `OpenStreetApp.out' has not changed.
 (rerunfilecheck)             Checksum: 41E36D8C18C7C9FC6A49D88BF8C1B2F6;146.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 6167 strings out of 494019
- 91191 string characters out of 3143877
- 186152 words of memory out of 3000000
- 9309 multiletter control sequences out of 15000+200000
- 16703 words of font info for 43 fonts, out of 3000000 for 9000
+ 8022 strings out of 494019
+ 115585 string characters out of 3143876
+ 268438 words of memory out of 3000000
+ 11123 multiletter control sequences out of 15000+200000
+ 18320 words of font info for 47 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 31i,11n,43p,1058b,395s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 32i,12n,43p,1058b,1169s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (
 x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on OpenStreetApp.pdf (4 pages, 604726 bytes).
+Output written on OpenStreetApp.pdf (5 pages, 1106347 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 500000)
- 22 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 145 PDF objects out of 1000 (max. 8388607)
+ 53 named destinations out of 1000 (max. 500000)
+ 32 words of extra memory for PDF output out of 10000 (max. 10000000)
 
