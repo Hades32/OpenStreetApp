@@ -130,5 +130,10 @@ namespace OpenStreetApp
             this.State.setOrAdd("currentposition", false);
             updateGuiState();
         }
+
+        private void favBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -28,13 +28,13 @@
             <TextBlock x:Name="PageTitle" Text="Preferences" Margin="9,-7,0,0" 
                        Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" >
+        <StackPanel Grid.Row="1" Margin="12,0,0,0">
             <TextBlock Margin="12,5,0,0" FontSize="{StaticResource PhoneFontSizeLarge}">Map Type</TextBlock>
             <toolkit:ListPicker Margin="15,5,10,5"
                      ItemsSource="{Binding Path=AvailableTileSources}"
                      SelectedIndex="{Binding Path=SelectedTileSourceSetting, Mode=TwoWay}"/>
         </StackPanel>
-        <StackPanel x:Name="preferences" Grid.Row="2" Margin="12,15,0,28">
+        <StackPanel x:Name="preferences" Grid.Row="2" Margin="26,15,0,28">
             <TextBlock FontSize="{StaticResource PhoneFontSizeLarge}">View On Startup</TextBlock>
             <toolkit:ToggleSwitch FontSize="{StaticResource PhoneFontSizeMedium}" 
                                   Height="100" Width="419"

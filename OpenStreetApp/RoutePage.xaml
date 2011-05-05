@@ -27,19 +27,30 @@
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock Text="Start" Margin="10,10,0,0" FontSize="{StaticResource PhoneFontSizeLarge}"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
-            <Button Name="startBtn" Click="startBtn_Click">
-                <TextBlock Text="Select Start" Name="startBtnTB" TextWrapping="Wrap"/>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="startBtn" Width="360" Click="startBtn_Click">
+                    <TextBlock Text="Select Start" Name="startBtnTB" TextWrapping="Wrap"/>
+                </Button>
+                <Button Name="favBtn" BorderThickness="0" Click="favBtn_Click" Background="Transparent">
+                    <Image Source="Images/ringfav.png" Height="40" Margin="-10,0,0,0"/>
+                </Button>
+            </StackPanel>
+           
             <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
                 <TextBlock Text="use current position"/>
             </CheckBox>
 
             <TextBlock Text="Target" Margin="10,10,0,0" FontSize="{StaticResource PhoneFontSizeLarge}"
                        Style="{StaticResource PhoneTextNormalStyle}"/>
-            <Button Name="targetBtn" Click="targetBtn_Click">
-                <TextBlock Text="Select Target" Name="targetBtnTB" TextWrapping="Wrap"/>
-            </Button>
-            
+            <StackPanel Orientation="Horizontal">
+                <Button Name="targetBtn" Width="360" Click="targetBtn_Click">
+                    <TextBlock Text="Select Target" Name="targetBtnTB" TextWrapping="Wrap"/>
+                 </Button>
+                <Button Name="favBtn2" BorderThickness="0" Click="favBtn_Click" Background="Transparent">
+                    <Image Source="Images/ringfav.png" Height="40" Margin="-10,0,0,0"/>
+                </Button>
+            </StackPanel>
+
             <Button Margin="0,50,0,0" Name="routeBtn" IsEnabled="False" Click="routeBtn_Click">
                 <TextBlock Text="Calculate Route" FontSize="30"
                     Style="{StaticResource PhoneTextAccentStyle}"/>
