@@ -3,6 +3,11 @@
 \begin_document
 \begin_header
 \textclass article
+\begin_preamble
+\clubpenalty = 10000 
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language ngerman
@@ -32,12 +37,12 @@
 \pdf_author "Martin Rauscher"
 \pdf_keywords "Windows Phone 7, WP7, XAML, Silverlight, Microsoft"
 \pdf_bookmarks true
-\pdf_bookmarksnumbered false
+\pdf_bookmarksnumbered true
 \pdf_bookmarksopen true
-\pdf_bookmarksopenlevel 1
+\pdf_bookmarksopenlevel 2
 \pdf_breaklinks true
 \pdf_pdfborder true
-\pdf_colorlinks true
+\pdf_colorlinks false
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
@@ -115,13 +120,13 @@ Mit
 \noun on
 Windows Phone 7
 \noun default
- (WP7) hat Microsoft sein Betriebssystem für Mobilsysteme komplett überarbeitet,
+ (WP7) hat Microsoft sein Betriebssystem für Mobilgeräte komplett überarbeitet,
  um der Herausforderung durch Android und iOS gewachsen zu sein.
 \end_layout
 
 \begin_layout Standard
-Mit dem neuen Betriebssystem wird auch ein neues Entwicklungsmodell eingeführt,
- das hauptsächlich auf Microsofts 
+Mit diesem neuen Betriebssystem wird ein neues Entwicklungsmodell eingeführt
+ welches hauptsächlich auf Microsofts 
 \noun on
 Silverlight
 \noun default
@@ -145,8 +150,8 @@ Im Rahmen dieser Arbeit wurde eine Anwendung erstellt, die das Betrachten
 OpenStreetMap
 \noun default
  (und anderen Anbietern) ermöglicht.
- Sie erlaubt die Steuerung durch die üblichen Multi-Touch-Gesten, das suchen
- nach Orten und das Verwalten Favoriten.
+ Sie erlaubt die Steuerung durch die üblichen Multi-Touch-Gesten, das Suchen
+ nach Orten und das Verwalten von Favoriten.
  Des Weiteren können Routen geplant werden.
 \end_layout
 
@@ -186,36 +191,33 @@ Für spezielle Microsoft Partner ist es auch noch möglich halb-native Anwendung
 
 \end_inset
 
-:
-\end_layout
-
-\begin_layout Enumerate
-Apps auf Basis von 
-\noun on
-Silverlight
-\end_layout
-
-\begin_layout Enumerate
-oder auf Basis des XNA Frameworks - eine gekapselte DirectX-Schnittstille,
- welche hauptsächlich für die Entwicklung von Spielen verwendet wird.
+: Zum einen Apps auf Basis von Silverlight und zum anderen Apps auf Basis
+ des XNA Frameworks - einer gekapselte DirectX-Schnittstelle, welche hauptsächli
+ch für die Entwicklung von Spielen verwendet wird
 \end_layout
 
 \begin_layout Standard
-Diese Arbeit beschäftigt sich ausschließlich mit der Entwicklung mit 
+Diese Arbeit beschäftigt sich ausschließlich mit der Entwicklung von 
 \noun on
 Silverlight
 \noun default
-, da das Entwicklungsmodell mit XNA gänzlich anders ist und es nur in seltenen
- Fällen Sinn macht mit XNA nicht-Spiele zu entwickeln.
+ Apps, da es nur in seltenen Fällen Sinn macht mit XNA Nicht-Spiele zu entwickel
+n und das Entwicklungsmodell von XNA gänzlich anders ist .
 \end_layout
 
 \begin_layout Section
+
+\noun on
 Windows Phone 7
 \end_layout
 
 \begin_layout Standard
-Windows Phone 7 ist hinsichtlich der Benutzeroberfläche als auch der Anwendungsp
-lattform ein vollständige Neuentwicklung.
+
+\noun on
+Windows Phone 7
+\noun default
+ ist hinsichtlich der Benutzeroberfläche als auch der Anwendungsplattform
+ eine vollständige Neuentwicklung.
  Der Kern des Betriebssystems hingegen ist eine veränderte Version von Windows
  EC 7.0, dem Nachfolger von Windows CE 6, worauf Windows Mobile 6.5 beruht.
 \begin_inset CommandInset citation
@@ -228,11 +230,11 @@ key "WinCE"
 \end_layout
 
 \begin_layout Standard
-Gründe nicht auf das bestehende Windows Mobile aufzusetzen waren
+Gründe nicht auf das bestehende Windows Mobile aufzusetzen waren:
 \end_layout
 
 \begin_layout Itemize
-UI-Konzept zu stark Desktoporientiert 
+UI-Konzept zu stark desktop-orientiert 
 \end_layout
 
 \begin_layout Itemize
@@ -240,7 +242,7 @@ Fehlende Multi-Touch Unterstützung
 \end_layout
 
 \begin_layout Itemize
-Entwicklung moderner Anwendungen schwierig
+Aufwendig, modernes Look-and-Feel zu erreichen
 \end_layout
 
 \begin_layout Standard
@@ -249,8 +251,8 @@ WP7 begegnet diesen Problemen mit einer starken Multi-Touch-Unterstützung
 \noun on
 Silverlight
 \noun default
- und vordefinierten Kontrollelementen, die es leicht machen sollen moderne
- Anwendungen zu schreiben, die sich in das UI Konzept einfügen.
+ und vordefinierten Kontrollelementen, welche es vereinfachen sollen moderne
+ Anwendungen zu schreiben die sich in das UI-Konzept einfügen.
 \end_layout
 
 \begin_layout Section
@@ -287,7 +289,7 @@ Windows Presentation Foundation
 \noun default
  basiert.
  In den folgen Abschnitten soll kurz aufgezeigt werden, wie die beiden Framework
-s entstanden sind und was die groben Unterschiede sind.
+s entstanden sind und worin die groben Unterschiede bestehen.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "ScottSilver"
@@ -300,19 +302,27 @@ key "ScottSilver"
 \begin_layout Subsection
 
 \noun on
-Windows Presentation Foundation (WPF)
+Windows
+\begin_inset space ~
+\end_inset
+
+Presentation
+\begin_inset space ~
+\end_inset
+
+Foundation (WPF)
 \end_layout
 
 \begin_layout Standard
-Ende 2006 stellte Microsoft die finale Version 3.0 des .NET Framwork vor.
- Mit diesem wurde zum ersten mal die, bis dahin unter dem Codenamen Avalon
- entwickelte, 
+Ende 2006 stellte Microsoft die finale Version 3.0 des .NET Framework vor.
+ Mit diesem wurde die, bis dahin unter dem Codenamen Avalon entwickelte,
+ 
 \noun on
 Windows Presentation Foundation (WPF)
 \noun default
  der Öffentlichkeit zugänglich gemacht.
- Microsoft hoffte das Entwickler, insbesondere für das nur zwei Monate später
- erscheinende Windows Vista, nun hauptsächlich mit .NET und WPF entwickeln
+ Microsoft hoffte, dass Entwickler, insbesondere für das nur zwei Monate
+ später erscheinende Windows Vista, nun hauptsächlich mit .NET und WPF entwickeln
  würden.
  Bis heute ist allerdings die Akzeptanz von WPF im Consumerbereich eher
  gering.
@@ -329,8 +339,9 @@ Mit WPF führte Microsoft erstmals ein deklaratives Modell zur Gestaltung
 \end_layout
 
 \begin_layout Standard
-Eine weitere große Neuerung ist die Abwendung von GDI(+) für das GUI-Rendering.
- Mit WPF wird erstmals voll auf (hardwarebeschleunigtes) DirectX gesetzt.
+Eine weitere große Neuerung ist die Abkehr von GDI für das GUI-Rendering.
+ Mit WPF wird erstmals vollständig auf (hardwarebeschleunigtes) DirectX
+ gesetzt.
  Das hat den Vorteil, dass komplexe Oberflächen gerendert, transformiert
  und mit Effekten versehen werden können, ohne dass die CPU zusätzlich belastet
  wird.
@@ -349,24 +360,24 @@ Silverlight
 \noun on
 Silverlight
 \noun default
- vor, welches, plakativ gesprochen, eine stark reduziert Version des .NET
- Framework und eine Untermenge
+ vor, welches plakativ gesprochen, eine stark reduzierte Version des .NET
+ Frameworks und eine Untermenge
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-Aufgrund von unterschiedlichen Releasezyklen hat die aktuelle WPF einige
- Klassen nicht, die in 
+Aufgrund von unterschiedlichen Releasezyklen fehlen der aktuellen WPF aber
+ einige Klassen, die bereits in 
 \noun on
 Silverlight
 \noun default
  enthalten sind.
- Dies wurden aber über ein Silverlight Toolkit nachgereicht.
+ Diese wurden aber über ein Silverlight Toolkit nachgereicht.
 \end_layout
 
 \end_inset
 
- der WPF ist.
+ der WPF darstellt.
  
 \end_layout
 
@@ -375,15 +386,15 @@ Auch wenn
 \noun on
 Silverlight
 \noun default
- oft als Konkurenz zu Adobes Flash Player gesehen wird, wurde es hauptsächlich
- mit dem Ziel entwickelt so genannte Rich Internet Applications (RIAs) zu
- ermöglichen, die hauptsächlich im Geschäftsbereich ihren Einsatzzweck haben.
+ oft als Konkurrenz zu Adobes Flash Player gesehen wird, wurde es hauptsächlich
+ mit dem Ziel entwickelt, sogenannte Rich Internet Applications (RIAs) zu
+ ermöglichen, welche hauptsächlich im Geschäftsbereich eine Rolle spielen.
  Der einzige Bereich in dem 
 \noun on
 Silverlight
 \noun default
- momentan tatsächlich in direkter Konkurrenz zu Flash steht ist die Videowiederg
-abe.
+ momentan tatsächlich in direkter Konkurrenz zu Flash steht, ist die Videowieder
+gabe.
  Sowohl 
 \noun on
 Smooth Streaming
@@ -404,13 +415,13 @@ Bei Smooth Streaming handelt es sich um eine Technik die Videomaterial dynamisch
 Silverlight
 \noun default
  möglich.
- Deshalb hat Microsoft einige prominente Unterstützter gefunden: U.a.
- wurden die Olympischen Winterspiele von 2008 und einige amerikanische Sportgroß
-ereignisse exklusiv via 
+ Deshalb hat Microsoft einige prominente Unterstützter gefunden: Unter anderem
+ wurden die Olympischen Winterspiele 2008 und einige amerikanische Sportgroßerei
+gnisse exklusiv via 
 \noun on
 Silverlight
 \noun default
- gestreamt; außerdem setzt das deutsche Videoportal 
+ gestreamt; des weiteren setzt auch das deutsche Videoportal 
 \begin_inset Quotes eld
 \end_inset
 
@@ -430,13 +441,13 @@ Silverlight
 \noun on
 Silverlight
 \noun default
- wurde vom Grund auf Plattformunabhängig konzipiert.
+ wurde von Grund auf plattformunabhängig konzipiert.
  Microsoft stellt es für die meisten Windows Versionen sowie für Mac OS
  X zur Verfügung.
- Desweiteren ist ein Großteil der Spezifikationen und einige Teile des Codes
- öffentlich zugänglich.
- Darauf aufbauend entwickelt das Mono Projekt unter Leitung von Novell einen
- Linux Port.
+ Des Weiteren sind ein Großteil der Spezifikationen und einige Teile des
+ Codes öffentlich zugänglich.
+ Darauf aufbauend entwickelt das Mono Projekt unter Leitung von Novell eine
+ Linux Portierung.
  
 \begin_inset Quotes eld
 \end_inset
@@ -445,7 +456,7 @@ Moonlight
 \begin_inset Quotes erd
 \end_inset
 
- ist momentan Kompatibel mit 
+ ist momentan kompatibel mit 
 \noun on
 Silverlight
 \noun default
@@ -464,36 +475,75 @@ Unterschiede
 \end_layout
 
 \begin_layout Standard
-nochmal
-\end_layout
-
-\begin_layout Standard
-Mit dem Ziel der Plattformunabhängigkeit gingen natürlich auch höhere Ansprüche
- an einen geringen Ressourcenverbrauch einher.
- Das hatte zur Folge, dass einige Funktionen - z.B.
- Hardwarebeschleunigung und einige Controls - erst in späteren Versionen
- zur Verfügung standen.
- Bis jetzt sind noch einige Konzepte, wie z.B.
- Trigger und implizite Styles, noch immer nur in WPF verfügbar.
+Trotz der Ankündigung von Microsoft die Unterschiede zwischen WPF und Silverligh
+t im Laufe der Zeit zu verringern, sind diese momentan noch stark sichtbar,
+ da auf WP7 nur SL3 bzw.
+ ab Herbst SL4 verfügbar ist
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-Mit der kürzlich vorgestellten Version 5 werden einige dieser Konzepte auch
- in 
-\noun on
-Silverlight
-\noun default
- nachgezogen.
+SL5 wird viele der aufgezählten Unterschiede ausgleichen.
 \end_layout
 
 \end_inset
 
+.
+ 
+\end_layout
 
+\begin_layout Standard
+Ein beliebtes Feature in WPF, zur Trennung von GUIs vom Verhalten, sind
+ so genannte 
+\emph on
+Commands
+\emph default
+.
+ Diese können an viele Elemente gebunden werden um bei Aktivierung des Elements
+ eine bestimmte Aktion auszulösen und um zu signalisieren ob diese Aktion
+ im Moment möglich ist.
+ Dieses Feature ist ab SL4 verfügbar.
+\end_layout
+
+\begin_layout Standard
+Ein ebenfalls erst ab SL4 verfügbares Feature, sind 
+\emph on
+Markup Extensions
+\emph default
+.
+ Auf dieses Thema wird noch genauer in Kapitel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Markup-Extensions"
+
+\end_inset
+
+ eingegangen.
+ 
+\end_layout
+
+\begin_layout Standard
+Die beiden größten Unterschied in der GUI-Entwicklung sind zum einen das
+ Fehlen von Triggern, die z.B.
+ Animation bei bestimmten Ereignissen auslösen können, und zum anderen das
+ Styles grundsätzlich explizit gesetzt werden müssen und nicht automatisch
+ aus den gegebenen Typen ermittelt werden können.
+\end_layout
+
+\begin_layout Standard
+Diese Auflistung enthält nur die wichtigsten Unterschiede.
+ Für eine detaillierte und vollständige Liste wird auf 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "SLvsWPF"
+
+\end_inset
+
+ verwiesen.
 \end_layout
 
 \begin_layout Section
-Entwicklen mit 
+Entwickeln mit 
 \noun on
 Silverlight
 \end_layout
@@ -511,20 +561,13 @@ Eine
 \noun on
 Silverlight
 \noun default
- Anwendung wird immer in Form einer in 
-\begin_inset Quotes eld
-\end_inset
-
-*.XAP
-\begin_inset Quotes erd
-\end_inset
-
- umbenannten ZIP-Datei verteilt.
+ Anwendung wird immer in Form einer ZIP-Datei mit der Endung \SpecialChar \@.
+XAP verteilt.
  In dieser Datei sind die vier Bestandteile einer App untergebracht: 
 \end_layout
 
 \begin_layout Itemize
-Das Manifest (WMAppManifest.xml), welches die Fähigkeiten der App festlegt.
+Das Manifest (WMAppManifest.xml), welches die Fähigkeiten der App festlegt
 \end_layout
 
 \begin_layout Itemize
@@ -541,7 +584,7 @@ Seiten
 \begin_inset Quotes erd
 \end_inset
 
- der App
+ der App als <PageName>.xaml Dateien
 \end_layout
 
 \begin_layout Itemize
@@ -549,12 +592,24 @@ Die Ressourcen (Bilder, Töne, etc.)
 \end_layout
 
 \begin_layout Standard
-Wenn das Betriebssystem eine App startet, wird zuerst das Manifest eingelesen
- und daraus ein xxxxxxx
+Beim Start der App durch das Betriebssystem, lädt dieses das Manifest und
+ registriert die darin vermerkten Fähigkeiten.
+ Selbige beschränken z.B.
+ den Zugriff auf den GPS-Sensor, oder die Bilder des Nutzers und werden
+ ihm vor der Installation der App angezeigt.
 \end_layout
 
 \begin_layout Standard
-navigation
+Danach wird das Programm initialisiert und die Startseite der App geladen,
+ welche ebenfalls im Manifest vermerkt ist.
+\end_layout
+
+\begin_layout Standard
+Ab diesem Zeitpunkt kann der Entwickler mit dem Navigationsservice zu anderen
+ Seiten navigieren.
+ Die Navigation sollte dabei immer linear sein, damit der Benutzer beim
+ Drücken des - in jedem WP7 Gerät verbauten - Zurück-Knopfs keine unlogischen
+ Sprünge verursacht.
 \end_layout
 
 \begin_layout Subsection
@@ -579,7 +634,7 @@ Komplexe Attributdefinitionen
 In XML können Attributen nur Strings, Zahlen und Referenzen zugewiesen werden,
  während der Inhalt von Element beliebig komplex sein kann.
  In XAML können Attribute durch eine simple Erweiterung der Semantik von
- Elementnamen, ebenfalls beschrieben werden.
+ Elementnamen ebenfalls mit beliebigem Code beschrieben werden.
  Im Beispiel 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -690,9 +745,16 @@ Insbesondere bei der Beschreibung von Benutzeroberflächen steht man oft
 
 \begin_layout Standard
 Z.B.
- hat ein Button der in einem Canvas angeordnet ist eine X und eine Y Koordinate.
- Wird er aber außerhalb eines Canvas eingesetzt sind diese Eigenschaften
- u.U.
+ hat ein Button der in einem 
+\emph on
+Canvas
+\emph default
+ angeordnet ist eine X und eine Y Koordinate.
+ Wird er aber außerhalb eines 
+\emph on
+Canvas
+\emph default
+ eingesetzt sind diese Eigenschaften u.U.
  nicht sinnvoll.
 \end_layout
 
@@ -767,9 +829,9 @@ Beispiel für ein Attached Property
 \end_layout
 
 \begin_layout Standard
-XAML bietet für dieses Problem eine einfache Lösung: Genau wie bei den komplexen
- Attributdefinitionen wird der Name des Attributbesitzers verwendet um die
- Herkunft des Attributs zu qualifizieren.
+XAML bietet für dieses Problem eine einfache Lösung: Genau wie bei komplexen
+ Attributdefinitionen wird hier der Name des Attributbesitzers verwendet
+ um die Herkunft des Attributs zu qualifizieren.
  Der Wert des Attributs wird dabei in einer statischen Eigenschaft der entsprech
 enden Klasse gespeichert.
  
@@ -783,8 +845,15 @@ key "HS-WPF-SL"
 \end_layout
 
 \begin_layout Standard
-Attached Properties sind eine Spezialform von Depency Properties (siehe
- 
+Die so genannten 
+\emph on
+Attached Properties
+\emph default
+ sind eine Spezialform von 
+\emph on
+Dependency Properties
+\emph default
+ (siehe 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sub:Dependency-Properties"
@@ -796,12 +865,23 @@ reference "sub:Dependency-Properties"
 
 \begin_layout Subsubsection
 Markup Extensions
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Markup-Extensions"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Markup Extensions sind ein Konzept, dass es ermöglicht den XAML Parser in
- begrenztem Umfang zu erweitern, so dass die Verwendung komplexer Attributdefini
-tionen entfallen kann.
+
+\emph on
+Markup Extensions
+\emph default
+ sind ein Konzept, dass es ermöglicht den XAML Parser in begrenztem Umfang
+ zu erweitern, so dass die Verwendung von Code oder komplexen Attributdefinition
+en entfallen kann.
 \end_layout
 
 \begin_layout Standard
@@ -839,27 +919,7 @@ status open
 
 \begin_layout Plain Layout
 
-<TextBlock>
-\end_layout
-
-\begin_layout Plain Layout
-
-	<TextBlock.Text>
-\end_layout
-
-\begin_layout Plain Layout
-
-		<StaticResource ResourceKey="AppName" />
-\end_layout
-
-\begin_layout Plain Layout
-
-	</TextBlock.Text>
-\end_layout
-
-\begin_layout Plain Layout
-
-</TextBlock>
+this.textblock.Text = (string)this.Resources["AppName"];
 \end_layout
 
 \end_inset
@@ -895,8 +955,11 @@ Beispiel für eine Markup Extension
 \end_layout
 
 \begin_layout Standard
-Markup Extensions werden durch führende und endende geschweifte Klammern
- gekennzeichnet.
+
+\emph on
+Markup Extensions
+\emph default
+ werden durch führende und endende geschweifte Klammern gekennzeichnet.
  Das erste Wort in den Klammern gibt die Klasse der zu verwendenden Extension
  an.
  Parameter werden nach dem Klassennamen gelistet und werden in der Form
@@ -930,11 +993,20 @@ ResourceKey
 \end_layout
 
 \begin_layout Standard
+Bei jeder Verwendung wird eine neue Instanz der entsprechenden Klasse erzeugt,
+ die Parameter als Eigenschaften gesetzt und eine Methode aufgerufen, die
+ mit beliebigem Code einen Wert für das zu belegende Attribut erzeugt.
+\end_layout
+
+\begin_layout Standard
 
 \noun on
 Silverlight
 \noun default
- bietet - in der aktuellen Version - keine Möglichkeit eigene Markup Extensions
+ bietet in der aktuellen Version keine Möglichkeit eigene 
+\emph on
+Markup Extensions
+\emph default
  zu definieren
 \begin_inset Foot
 status collapsed
@@ -946,7 +1018,7 @@ Auch diese Funktion ist für SL5 angekündigt.
 \end_inset
 
 .
- Es stehen nur die folgenden drei Vordefinierten zur verfügung: 
+ Es stehen nur die folgenden Vordefinierten zur Verfügung: 
 \emph on
 Binding
 \emph default
@@ -954,12 +1026,13 @@ Binding
 \emph on
 StaticResource
 \emph default
-, 
+ (und 
 \emph on
 DynamicResource
 \emph default
-.
- Auf deren Bedeutung wird im folgenden Abschnitt eingegangen.
+).
+ Auf deren Bedeutung wird im folgenden Abschnitt eingegangen; außerdem wird
+ aufgezeigt, dass sie beliebig geschachtelt werden können.
 \end_layout
 
 \begin_layout Subsection
@@ -973,8 +1046,8 @@ Silverlight
 \noun default
  ist die Möglichkeit Eigenschaften von Elementen auf einfache Weise an Attribute
  von Datenobjekten oder an Eigenschaften anderer GUI Elemente zu binden.
- Somit muss keine Code geschrieben werden um die Benutzeroberfläche bei
- Änderungen an den Daten aktuell zu halten.
+ Somit muss kein Code geschrieben werden um die Benutzeroberfläche bei Änderunge
+n an den Daten aktuell zu halten.
 \end_layout
 
 \begin_layout Standard
@@ -1040,10 +1113,13 @@ reference "alg:Bsp-Binding"
 
 \end_inset
 
- kann man sehen wie die Definition einer Datenbindung mit Hilfe der {Binding}
- Markup Extension aussieht.
- Dabei bezieht sich die Datenbindung auf das Objekt das der aktuelle Datenkontex
-t ist, da nichts anderes angegeben wurde.
+ kann man sehen wie die Definition einer Datenbindung mit Hilfe der {
+\emph on
+Binding
+\emph default
+} Markup Extension aussieht.
+ Dabei bezieht sich die Datenbindung auf den aktuellen Datenkontext, da
+ keine andere Quelle angegeben wurde.
  Dieser Kontext ergibt sich aus dem Element innerhalb dessen das Binding
  definiert wurde.
  Jedes GUI-Element
@@ -1066,6 +1142,27 @@ DataContext
 \noun default
  Eigenschaft, die es an seine Kind-Elemente weitervererbt, von ihnen aber
  auch überschrieben werden kann.
+\end_layout
+
+\begin_layout Standard
+Der 
+\family typewriter
+Mode
+\family default
+ Parameter im Beispiel beschreibt dabei die Richtung der Bindung.
+ Es können beide Seiten den Wert ändern (
+\family typewriter
+TwoWay
+\family default
+) oder nur die Quelle (
+\family typewriter
+OneWay
+\family default
+) oder auch das Ziel (
+\family typewriter
+OneWayToSource
+\family default
+).
 \end_layout
 
 \begin_layout Subsubsection
@@ -1104,21 +1201,23 @@ In
 \noun on
 Silverlight
 \noun default
- wird dieses Problem mit so genannten Depenency Properties (DPs) gelöst.
- Im Grunde sind DPs Dictionaries die als statische Eigenschaften in der
+ wird dieses Problem mit so genannten Dependency Properties (DPs) gelöst.
+ Im Grunde sind DPs Dictionaries, die als statische Eigenschaften in der
  Klasse definiert werden.
- Dieses weißt dann einem Objekt einen Wert zu.
+ Dieses weißt dann einer Instanz einen bestimmten Wert zu.
 \end_layout
 
 \begin_layout Standard
-Der große Vorteil von DPs ist, dass sich beliebige Objekt registrieren können,
- um benachrichtigt zu werden, wenn sich der Wert einer Eigenschaft eines
- bestimmten Objekts ändert; und zwar mit statisch getypten Vorher-Nachher-Werten.
+Der große Vorteil von DPs ist, dass sich beliebige Objekte registrieren
+ können, um benachrichtigt zu werden, wenn sich der Wert einer Eigenschaft
+ eines bestimmten Objekts ändert; und zwar mit statisch getypten Vorher-Nachher-
+Werten.
 \end_layout
 
 \begin_layout Standard
 Außerdem lassen sich bei der Definition von DPs Standardwerte festlegen
- und automatisches Vererben von Werten auf Kind-Objekte aktivieren.
+ und automatisches Vererben von Werten auf Kind-Objekte in der UI-Hierarchie
+ aktivieren.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1130,8 +1229,8 @@ Es ist oft wünschenswert zwei Eigenschaften miteinander zu verbinden, die
  nicht den gleichen Datentyp haben.
  Das typische Beispiel hierfür ist die Text Eigenschaft eines Textblocks
  und ein Zahlwert eines Objekts.
- Im Gegensatz zu diesem einfachen Beispiel, bei dem die Konvertierung natürlich
- automatisch passiert, ist es oft komplizierter.
+ Im Gegensatz zu diesem einfachen Beispiel, bei welchem die Konvertierung
+ natürlich automatisch passiert, ist es oft komplizierter.
  
 \end_layout
 
@@ -1284,9 +1383,13 @@ Beispiel für einen Converter
 \end_layout
 
 \begin_layout Standard
-Die Lösung dieses Problems sind so genannte Konverter, die beliebige Typen
- in einander konvertieren können.
- Konverter sind Klassen, die das IValueConverter Interface implementieren.
+Dieses Problem wird mit so genannte Konvertern, die beliebige Typen in einander
+ konvertieren können, gelöst.
+ Konverter sind Klassen, welche das 
+\emph on
+IValueConverter
+\emph default
+ Interface implementieren.
  Im Beispiel 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1296,9 +1399,28 @@ reference "alg:Bsp-Converter"
 
  kann man exemplarisch sehen, wie ein Wahrheitswert in einen Aufzählungstyp
  - und umgekehrt - umgewandelt werden kann.
- Mit Hilfe der Convert und ConvertBack Methoden kann beliebig komplexer
- Code dazu verwendet werden Werte umzuwandeln.
+ Mit Hilfe der 
+\emph on
+Convert
+\emph default
+ und 
+\emph on
+ConvertBack
+\emph default
+ Methoden kann beliebig komplexer Code dazu verwendet werden Werte umzuwandeln.
  
+\end_layout
+
+\begin_layout Standard
+In Beispiel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:Bsp-Binding"
+
+\end_inset
+
+ wurde bereits gezeigt, wie Konverter verwendet werden.
+ Üblicherweise müssen selbige dafür als eine Ressource definiert werden.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1314,8 +1436,8 @@ se nicht aus.
 Silverlight
 \noun default
  Daten Templates an.
- Das sind Schablonen mit deren Hilfe beliebige Objekte durch (mehrere) UI
- Komponenten angezeigt werden können.
+ Dies sind Schablonen mit deren Hilfe beliebige Objekte durch (mehrere)
+ UI Komponenten angezeigt werden können.
 \end_layout
 
 \begin_layout Standard
@@ -1393,26 +1515,33 @@ Beispiel für ein Daten Template
 \end_layout
 
 \begin_layout Standard
-Wie im Beispiel 
+Wird das im Beispiel 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "alg:Bsp-DataTemplate"
 
 \end_inset
 
- bereits angedeutet, können diese Templates beliebig komplex sein.
+ definierte Template in einer ListBox verwendet, dessen ItemsSource auf
+ eine Sammlung von passenden Objekten gesetzt ist, dann wird für jedes Objekt
+ ein Daten-Container erstellt, dessen Inhalt durch das Template vorgegeben
+ ist.
+\end_layout
+
+\begin_layout Standard
+Wie im Beispiel bereits angedeutet, können diese Templates beliebig komplex
+ sein.
  Der Kontext von Datenbindungen innerhalb dieser Templates, ist dabei das
- Objekt für das das Template instanziiert wurde.
+ Objekt für welches das Template instanziiert wurde.
 \end_layout
 
 \begin_layout Subsection
-Resourcen
+Ressourcen
 \end_layout
 
 \begin_layout Standard
 In jedem Projekt tauchen Teile auf, die an vielen Stellen wieder verwendet
- werden.
- Z.B.
+ werden, z.B.
  Bilder, Texte oder Vorlagen für bestimmte Stile.
  Ähnlich dem Konzept der Datenbindungen können in 
 \noun on
@@ -1426,8 +1555,8 @@ Jedes Steuerelement in
 \noun on
 Silverlight
 \noun default
- kann eine List von Ressourcen für sich und seine Kind-Elemente definieren.
- Außerdem können Anwendungsweite Ressourcen definiert werden - siehe Beispiel
+ kann eine Liste von Ressourcen für sich und seine Kind-Elemente definieren.
+ Außerdem können anwendungsweite Ressourcen definiert werden - siehe Beispiel
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1494,7 +1623,7 @@ name "alg:Bsp-Resourcendefinition"
 
 \end_inset
 
-Beispiel Resourcendefinition
+Beispiel Ressourcendefinition
 \end_layout
 
 \end_inset
@@ -1515,30 +1644,30 @@ reference "alg:Bsp-Binding"
 
 \end_inset
 
- kann man sehen, wie auf eine Ressource innerhalb einer Datenbindungs-Definition
- verwiesen wird.
+ wurde bereits aufgezeigt, wie auf eine Ressource innerhalb einer Datenbindungs-
+Definition verwiesen wird.
  Bei der Auflösung des Namens einer Ressource wird der Elementbaum von unten
- nach oben durchsucht, bis schlussendlich noch die anwendungsweiten Ressourcen
+ nach oben durchsucht, bis schlussendlich die anwendungsweiten Ressourcen
  durchsucht werden.
 \end_layout
 
 \begin_layout Standard
-In den bisherigen Beispielen erfolgte der Verweise auf eine Ressource immer
+In den bisherigen Beispielen erfolgte der Verweis auf eine Ressource immer
  mittels {
 \emph on
 StaticResource
 \emph default
 }.
- Erwartungsgemäß existiert auch eine {
+ Wie bereits erwähnt existiert erwartungsgemäß auch eine {
 \emph on
 DynamicResource
 \emph default
-}.
+}, die aber erst mit SL4 verfügbar sein wird.
  Der Unterschied besteht im Ladeverhalten:
 \end_layout
 
 \begin_layout Standard
-Statische Ressourcen werden nur ein mal beim Initialisieren des Elements
+Statische Ressourcen werden nur einmal beim Initialisieren des Elements
  geladen.
  Sollte sich also das worauf sich die Ressource bezieht verändern, würde
  das die Bindung nicht widerspiegeln.
@@ -1572,9 +1701,9 @@ normalen
 \end_inset
 
  PCs sowohl Rechenleistung als auch Arbeitsspeicher im Überfluss vorhanden
- ist, müssen sich Entwickler im mobilen Bereich über diese Aspekte wieder
+ sind, müssen sich Entwickler im mobilen Bereich über diese Aspekte wieder
  Gedanken machen.
- Nur dann kann eine ausreichende Performance auf dem Gerät zu erzielt werden.
+ Nur dann kann eine ausreichende Performance auf dem Gerät erzielt werden.
 \end_layout
 
 \begin_layout Standard
@@ -1582,24 +1711,24 @@ Dieses Ziel lässt sich auf zwei verschiedene Arten erreichen: Entweder schränk
  man sich soweit ein, dass die Performance des Gerätes ausreicht oder man
  beeinflusst die wahrgenommene Performance.
  Letzteres beschreibt den Effekt, dass einem Anwender eine App die ihn warten
- lässt, bis alle Daten geladen sind sehr viel langsamer vorkommt, als eine
- App die ihm wären des Ladevorgangs zumindest schon einzelne Daten anzeigt.
- Und das obwohl diese meistens insgesamt sogar länger braucht als erstere.
- Um die wahrgenommene Performance zu verbessern gibt es abhängig von der
+ lässt, bis alle Daten geladen sind, sehr viel langsamer vorkommt, als eine
+ App, die ihm während des Ladevorgangs zumindest schon einzelne Daten anzeigt.
+ Und das obwohl diese meistens insgesamt sogar mehr Zeit benötigt als erstere.
+ Um die wahrgenommene Performance zu verbessern, gibt es abhängig von der
  Situation verschiedene Möglichkeiten:
 \end_layout
 
 \begin_layout Standard
-Wenn eine lange Liste an Daten über eine langsame Handy Verbindung übertragen
- werden soll bietet es sich an, die Daten in kleinen Blöcken zu laden, und
- erst dann den nächsten Block zu laden, wenn der Benutzer an das Ende der
- List gescrollt hat.
+Wenn eine größere Datenmenge über eine langsame Handy-Verbindung übertragen
+ werden soll, bietet es sich an, die Daten in kleinen Blöcken zu laden,
+ und erst wenn der Benutzer an das Ende der Liste gescrollt hat den Ladevorgang
+ fortzusetzen.
 \end_layout
 
 \begin_layout Standard
-Sobald man die lange List im Speicher hat steht man allerdings vor dem Problem,
- dass die Scroll-Performance stark leidet - besonders bei komplexen Daten
- Templates.
+Sobald sich die Daten im Speicher befinden steht man allerdings vor dem
+ Problem, dass die Scroll-Performance stark leidet - besonders bei komplexen
+ Daten-Templates.
  
 \noun on
 Silverlight
@@ -1613,16 +1742,21 @@ UI Virtualisierung
 \end_inset
 
 .
- Dabei werden die Daten-Container, die aus dem sichtbaren Bereich heraus-gescrol
-lt werden wiederverwendet für die nachfolgenden Daten.
- Somit wird aufwendiges Zuweisen von neuem Speicher vermieden, und es müssen
- keine Container für alle Daten-Elemente erzeugt werden.
+ Dabei werden die Daten-Container der Templates, die aus dem sichtbaren
+ Bereich heraus-gescrollt wurden, wiederverwendet.
+ Somit wird aufwendiges Zuweisen von neuem Speicher vermieden und es müssen
+ nicht Container für alle Daten-Elemente erzeugt werden.
 \end_layout
 
 \begin_layout Standard
 Falls diese Technik nicht ausreicht um ein flüssiges Scrollen zu ermöglichen,
- weil die Daten Templates zu komplex sind, gibt es ein auch dafür eine Lösung.
- In einem erweiterten ListBox Steuerelement
+ z.B.
+ aufgrund zu komplexer Daten-Templates, existiert auch dafür eine Lösung.
+ In einem erweiterten 
+\emph on
+ListBox
+\emph default
+ Steuerelement
 \begin_inset Foot
 status collapsed
 
@@ -1644,11 +1778,11 @@ http://goo.gl/14H2U
 
 \end_inset
 
- ist es möglich ein alternatives, vereinfachtes Data Template anzugeben,
+ ist es möglich ein alternatives, vereinfachtes Data-Template anzugeben,
  das verwendet wird, während der Benutzer scrollt.
  So kann z.B.
  während des Scrollens nur der Name eines Films angezeigt werden und sobald
- die Liste angehalten wird, auch ein Bild und weitere Informationen.
+ die Liste anhält, zusätzlich ein Bild und weitere Informationen.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1685,13 +1819,13 @@ Dies geschieht an zwei Stellen:
 \end_layout
 
 \begin_layout Standard
-Zum einen kann jede Page lokale Daten halten.
- Da Pages bei jedem Aufruf neu erstellt werden, müssen diese Daten, für
+Zum einen kann jede Seite lokale Daten halten.
+ Da Seiten bei jedem Aufruf neu erstellt werden, müssen diese Daten, für
  eine eventuell später ausgeführte 
 \begin_inset Quotes eld
 \end_inset
 
-zurück
+Zurück
 \begin_inset Quotes erd
 \end_inset
 
@@ -1700,25 +1834,25 @@ zurück
 \noun on
 State
 \noun default
- Dictionaries, auf das der Navigationsservice Zugriff hat, welcher die Daten
+ Dictionaries, auf welches der Navigationsservice Zugriff hat, der die Daten
  dann serialisiert.
  
 \end_layout
 
 \begin_layout Standard
-Zum Anderen kann die 
-\noun on
+Zum anderen kann die 
+\emph on
 App
-\noun default
+\emph default
  Klasse globale Daten halten.
- Diese können entweder auch mit einer Dictionary basierten Methode gespeichert
- werden, oder manuell auf dem normalen Dateisystem.
+ Diese können entweder mit einer Dictionary basierten Methode gespeichert
+ werden oder manuell auf dem normalen Dateisystem.
 \end_layout
 
 \begin_layout Standard
-Wenn eine Anwendung oder eine Seite keinen inhärenten Zustand hat, ist die
- Verwendung dieser Methoden aber nicht verpflichtend.
- Sie werden dann einfach neu erstellt, wie beim ersten Aufruf.
+Wenn eine Anwendung oder eine Seite keinen inhärenten Zustand besitzt, ist
+ die Verwendung dieser Methoden aber nicht verpflichtend.
+ Sie werden dann einfach neu erstellt, wie bei ihrem ersten Aufruf.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1730,7 +1864,7 @@ Ein weiterer Aspekt, auf den hier aber nicht näher eingegangen werden soll,
  ist die Bauform.
  Durch sie bedingt steht sehr viel weniger Bildschirmfläche zur Verfügung,
  was u.U.
- ein Komplett unterschiedliches Design nötig machen kann.
+ ein komplett unterschiedliches Design nötig machen kann.
  Außerdem sind in diesem Bereich Eingabemethoden üblich, die auf dem Desktop
  oft gar nicht zur Verfügung stehen.
  (Z.B.
@@ -1742,9 +1876,24 @@ Entwicklungsumgebung
 \end_layout
 
 \begin_layout Standard
-Microsoft stellt sowohl Visual Studio 2010 als auch Expression Blend in
- einer speziellen Version für WP7 kostenlos zur Verfügung.
- Visual Studio richtet sich dabei an die Entwickler und Blend an die Designer.
+Microsoft stellt sowohl 
+\noun on
+Visual Studio 2010
+\noun default
+ als auch 
+\noun on
+Expression Blend
+\noun default
+ in einer speziellen Version für WP7 kostenlos zur Verfügung.
+ 
+\noun on
+Visual Studio
+\noun default
+ richtet sich dabei an Entwickler und 
+\noun on
+Blend
+\noun default
+ an Designer.
  Aber prinzipiell könnte man beide Tools für die gesamte Entwicklung verwenden.
  
 \end_layout
@@ -1766,7 +1915,21 @@ Der Emulator der im WP7 SDK mitgeliefert wird, verhält sich nicht 100%ig
 \end_layout
 
 \begin_layout Standard
-Grundsätzlich ist es immer das beste auf dem Gerät zu testen.
+Ein weiterer Punkt, der nirgends dokumentiert ist, und somit im Rahmen dieser
+ Arbeit erstmals aufgedeckt wurde, ist ein Unterschied in den SSL Zertifikaten.
+ Während auf dem Gerät alle üblichen Zertifikate installiert sind, fehlt
+ auf dem Emulator zumindest das von 
+\noun on
+DigiCert
+\noun default
+.
+ Das verursacht Verbindungsabbrüche an HTTPS-Verbindungen, die auch ohne
+ wie auch immer geartete, hilfreiche Fehlermeldung eine Ausnahme werfen,
+ falls ein entsprechendes Zertifikat verwendet wird.
+\end_layout
+
+\begin_layout Standard
+Deshalb ist es grundsätzlich das Beste auf der Zielhardware zu testen.
  Nach Möglichkeit auf mehr als nur einem.
 \end_layout
 
@@ -1783,11 +1946,14 @@ key "wp7stats"
 
 \end_inset
 
- Seid einem Monat rollt Microsoft das erste große Update für WP7 aus.
- Dieses enthält Kopieren&Einfügen als auch viele Performance\SpecialChar \nobreakdash-
+ Seit einem Monat rollt Microsoft das erste große Update für WP7 aus.
+ Dieses enthält 
+\emph on
+Copy&Paste
+\emph default
+ als auch viele Performance\SpecialChar \nobreakdash-
  und Stabilitäts\SpecialChar \nobreakdash-
-Verb
-esserungen.
+Verbesserungen.
  Außerdem wurde das 
 \begin_inset Quotes eld
 \end_inset
@@ -1796,8 +1962,9 @@ Mango
 \begin_inset Quotes erd
 \end_inset
 
- Update vorgestellt, dass im Herbst für alle WP7 Geräte kommen soll und
- endgültig mit Android und iOS in Sachen Funktionsumfang gleichziehen soll.
+ Update vorgestellt, dass im Herbst für alle WP7 Geräte zur Verfügung stehen
+ soll und endgültig mit Android und iOS in Sachen Funktionsumfang gleichziehen
+ soll.
 \end_layout
 
 \begin_layout Standard
@@ -1814,12 +1981,12 @@ Auch wenn Microsoft bis heute keine offiziellen Zahlen vorgelegt hat, wie
 Geräte
 \emph default
  tatsächlich verkauft wurden, sind diese Fakten ein starker Beleg dafür,
- dass WP7 nicht so bald wieder vom Markt verschwinden wird.
+ dass sich WP7 noch lange am Markt halten wird.
 \end_layout
 
 \begin_layout Standard
-Die größte Schwäche von WP7 ist im Moment noch, dass im Gegensatz zu Windows
- Mobile 6.5 (heute 
+Noch ist die größte Schwäche von WP7, dass im Gegensatz zu Windows Mobile
+ 6.5 (heute 
 \begin_inset Quotes eld
 \end_inset
 
