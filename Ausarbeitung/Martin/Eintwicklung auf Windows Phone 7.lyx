@@ -122,10 +122,7 @@ Windows Phone 7
 \noun default
  (WP7) hat Microsoft sein Betriebssystem für Mobilgeräte komplett überarbeitet,
  um der Herausforderung durch Android und iOS gewachsen zu sein.
-\end_layout
-
-\begin_layout Standard
-Mit diesem neuen Betriebssystem wird ein neues Entwicklungsmodell eingeführt
+ Mit diesem neuen Betriebssystem wird ein neues Entwicklungsmodell eingeführt,
  welches hauptsächlich auf Microsofts 
 \noun on
 Silverlight
@@ -144,8 +141,8 @@ Vorstellung der Beispielanwendung
 \end_layout
 
 \begin_layout Standard
-Im Rahmen dieser Arbeit wurde eine Anwendung erstellt, die das Betrachten
- von Karten von 
+Um die Konzepte der Entwicklung für WP7 zu testen, wurde eine Anwendung
+ erstellt, die das Betrachten von Karten von 
 \noun on
 OpenStreetMap
 \noun default
@@ -193,7 +190,7 @@ Für spezielle Microsoft Partner ist es auch noch möglich halb-native Anwendung
 
 : Zum einen Apps auf Basis von Silverlight und zum anderen Apps auf Basis
  des XNA Frameworks - einer gekapselte DirectX-Schnittstelle, welche hauptsächli
-ch für die Entwicklung von Spielen verwendet wird
+ch für die Entwicklung von Spielen verwendet wird.
 \end_layout
 
 \begin_layout Standard
@@ -201,8 +198,8 @@ Diese Arbeit beschäftigt sich ausschließlich mit der Entwicklung von
 \noun on
 Silverlight
 \noun default
- Apps, da es nur in seltenen Fällen Sinn macht mit XNA Nicht-Spiele zu entwickel
-n und das Entwicklungsmodell von XNA gänzlich anders ist .
+ Apps, da es nur in seltenen Fällen Sinn macht, mit XNA Nicht-Spiele zu
+ entwickeln und das Entwicklungsmodell von XNA gänzlich anders ist.
 \end_layout
 
 \begin_layout Section
@@ -252,7 +249,7 @@ WP7 begegnet diesen Problemen mit einer starken Multi-Touch-Unterstützung
 Silverlight
 \noun default
  und vordefinierten Kontrollelementen, welche es vereinfachen sollen moderne
- Anwendungen zu schreiben die sich in das UI-Konzept einfügen.
+ Anwendungen zu schreiben, die sich in das UI-Konzept einfügen.
 \end_layout
 
 \begin_layout Section
@@ -475,8 +472,8 @@ Unterschiede
 \end_layout
 
 \begin_layout Standard
-Trotz der Ankündigung von Microsoft die Unterschiede zwischen WPF und Silverligh
-t im Laufe der Zeit zu verringern, sind diese momentan noch stark sichtbar,
+Trotz der Ankündigung von Microsoft, die Unterschiede zwischen WPF und Silverlig
+ht im Laufe der Zeit zu verringern, sind diese momentan noch stark sichtbar,
  da auf WP7 nur SL3 bzw.
  ab Herbst SL4 verfügbar ist
 \begin_inset Foot
@@ -500,7 +497,7 @@ Commands
 \emph default
 .
  Diese können an viele Elemente gebunden werden um bei Aktivierung des Elements
- eine bestimmte Aktion auszulösen und um zu signalisieren ob diese Aktion
+ eine bestimmte Aktion auszulösen und um zu signalisieren, ob diese Aktion
  im Moment möglich ist.
  Dieses Feature ist ab SL4 verfügbar.
 \end_layout
@@ -525,8 +522,8 @@ reference "sub:Markup-Extensions"
 \begin_layout Standard
 Die beiden größten Unterschied in der GUI-Entwicklung sind zum einen das
  Fehlen von Triggern, die z.B.
- Animation bei bestimmten Ereignissen auslösen können, und zum anderen das
- Styles grundsätzlich explizit gesetzt werden müssen und nicht automatisch
+ Animation bei bestimmten Ereignissen auslösen können, und zum anderen,
+ dass Styles grundsätzlich explizit gesetzt werden müssen und nicht automatisch
  aus den gegebenen Typen ermittelt werden können.
 \end_layout
 
@@ -592,11 +589,11 @@ Die Ressourcen (Bilder, Töne, etc.)
 \end_layout
 
 \begin_layout Standard
-Beim Start der App durch das Betriebssystem, lädt dieses das Manifest und
+Beim Start der App durch das Betriebssystem lädt dieses das Manifest und
  registriert die darin vermerkten Fähigkeiten.
  Selbige beschränken z.B.
- den Zugriff auf den GPS-Sensor, oder die Bilder des Nutzers und werden
- ihm vor der Installation der App angezeigt.
+ den Zugriff auf den GPS-Sensor oder die Bilder des Nutzers und werden ihm
+ vor der Installation der App angezeigt.
 \end_layout
 
 \begin_layout Standard
@@ -617,8 +614,8 @@ XAML
 \end_layout
 
 \begin_layout Standard
-XAML ist eine deklarative Sprache zur Beschreibung von Datenstrukturen die
- insbesondere für 
+XAML ist eine deklarative Sprache zur Beschreibung von Datenstrukturen,
+ die insbesondere für 
 \noun on
 Silverlight-
 \noun default
@@ -739,7 +736,7 @@ Attached Properties
 \begin_layout Standard
 Insbesondere bei der Beschreibung von Benutzeroberflächen steht man oft
  vor dem Problem, dass Elemente eine Eigenschaft besitzen, die nur innerhalb
- eines bestimmten Kontext sinnvoll sind.
+ eines bestimmten Kontextes sinnvoll sind.
  
 \end_layout
 
@@ -754,7 +751,7 @@ Canvas
 \emph on
 Canvas
 \emph default
- eingesetzt sind diese Eigenschaften u.U.
+ eingesetzt, sind diese Eigenschaften u.U.
  nicht sinnvoll.
 \end_layout
 
@@ -845,7 +842,7 @@ key "HS-WPF-SL"
 \end_layout
 
 \begin_layout Standard
-Die so genannten 
+Die sogenannten 
 \emph on
 Attached Properties
 \emph default
@@ -879,7 +876,7 @@ name "sub:Markup-Extensions"
 \emph on
 Markup Extensions
 \emph default
- sind ein Konzept, dass es ermöglicht den XAML Parser in begrenztem Umfang
+ sind ein Konzept, das es ermöglicht den XAML Parser in begrenztem Umfang
  zu erweitern, so dass die Verwendung von Code oder komplexen Attributdefinition
 en entfallen kann.
 \end_layout
@@ -1044,10 +1041,11 @@ Eine der größten Stärken von
 \noun on
 Silverlight
 \noun default
- ist die Möglichkeit Eigenschaften von Elementen auf einfache Weise an Attribute
- von Datenobjekten oder an Eigenschaften anderer GUI Elemente zu binden.
- Somit muss kein Code geschrieben werden um die Benutzeroberfläche bei Änderunge
-n an den Daten aktuell zu halten.
+ ist die Möglichkeit, Eigenschaften von Elementen auf einfache Weise an
+ Attribute von Datenobjekten oder an Eigenschaften anderer GUI Elemente
+ zu binden.
+ Somit muss kein Code geschrieben werden, um die Benutzeroberfläche bei
+ Änderungen an den Daten aktuell zu halten.
 \end_layout
 
 \begin_layout Standard
@@ -1113,7 +1111,7 @@ reference "alg:Bsp-Binding"
 
 \end_inset
 
- kann man sehen wie die Definition einer Datenbindung mit Hilfe der {
+ kann man sehen, wie die Definition einer Datenbindung mit Hilfe der {
 \emph on
 Binding
 \emph default
@@ -1192,7 +1190,7 @@ Reflection bezeichnet die Möglichkeit Objekte einer statisch getypten Sprache
 
  verwenden, da die Eigenschaften als String angegeben werden.
  Außerdem muss jede Klasse typischerweise ein Interface implementieren,
- dass die eventuellen Ziele einer Datenbindung benachrichtigt.
+ das die eventuellen Ziele einer Datenbindung benachrichtigt.
  
 \end_layout
 
@@ -1384,7 +1382,7 @@ Beispiel für einen Converter
 
 \begin_layout Standard
 Dieses Problem wird mit so genannte Konvertern, die beliebige Typen in einander
- konvertieren können, gelöst.
+ umwandeln können, gelöst.
  Konverter sind Klassen, welche das 
 \emph on
 IValueConverter
@@ -1532,7 +1530,7 @@ reference "alg:Bsp-DataTemplate"
 Wie im Beispiel bereits angedeutet, können diese Templates beliebig komplex
  sein.
  Der Kontext von Datenbindungen innerhalb dieser Templates, ist dabei das
- Objekt für welches das Template instanziiert wurde.
+ Objekt, für welches das Template instanziiert wurde.
 \end_layout
 
 \begin_layout Subsection
@@ -1648,7 +1646,7 @@ reference "alg:Bsp-Binding"
 Definition verwiesen wird.
  Bei der Auflösung des Namens einer Ressource wird der Elementbaum von unten
  nach oben durchsucht, bis schlussendlich die anwendungsweiten Ressourcen
- durchsucht werden.
+ verwendet werden.
 \end_layout
 
 \begin_layout Standard
@@ -1669,7 +1667,7 @@ DynamicResource
 \begin_layout Standard
 Statische Ressourcen werden nur einmal beim Initialisieren des Elements
  geladen.
- Sollte sich also das worauf sich die Ressource bezieht verändern, würde
+ Sollte sich also das, worauf sich die Ressource bezieht, verändern, würde
  das die Bindung nicht widerspiegeln.
  Ein dynamischer Ressourcenverweis hingegen funktioniert genau wie eine
  Datenbindung.
@@ -1711,8 +1709,9 @@ Dieses Ziel lässt sich auf zwei verschiedene Arten erreichen: Entweder schränk
  man sich soweit ein, dass die Performance des Gerätes ausreicht oder man
  beeinflusst die wahrgenommene Performance.
  Letzteres beschreibt den Effekt, dass einem Anwender eine App die ihn warten
- lässt, bis alle Daten geladen sind, sehr viel langsamer vorkommt, als eine
- App, die ihm während des Ladevorgangs zumindest schon einzelne Daten anzeigt.
+ lässt, bis alle Daten geladen sind, sehr viel langsamer erscheint, als
+ eine App, die ihm während des Ladevorgangs zumindest schon einzelne Daten
+ anzeigt.
  Und das obwohl diese meistens insgesamt sogar mehr Zeit benötigt als erstere.
  Um die wahrgenommene Performance zu verbessern, gibt es abhängig von der
  Situation verschiedene Möglichkeiten:
@@ -1721,7 +1720,7 @@ Dieses Ziel lässt sich auf zwei verschiedene Arten erreichen: Entweder schränk
 \begin_layout Standard
 Wenn eine größere Datenmenge über eine langsame Handy-Verbindung übertragen
  werden soll, bietet es sich an, die Daten in kleinen Blöcken zu laden,
- und erst wenn der Benutzer an das Ende der Liste gescrollt hat den Ladevorgang
+ und erst wenn der Benutzer an das Ende der Liste gescrollt hat, den Ladevorgang
  fortzusetzen.
 \end_layout
 
@@ -1809,7 +1808,7 @@ Das OS selbst unterstützt Multitasking und ein zukünftiges Update soll es
 \end_inset
 
 , wie man es auf dem Desktop gewöhnt ist.
- Stattdessen wird ein Programm sobald es inaktiv wird aus dem RAM entfernt.
+ Stattdessen wird ein Programm, sobald es inaktiv wird, aus dem RAM entfernt.
  Bevor dies geschieht wird der App zuvor die Möglichkeit gegeben ihren Zustand
  zu sichern.
 \end_layout
@@ -1929,8 +1928,8 @@ DigiCert
 \end_layout
 
 \begin_layout Standard
-Deshalb ist es grundsätzlich das Beste auf der Zielhardware zu testen.
- Nach Möglichkeit auf mehr als nur einem.
+Aus diesem Grund sollte man stets auf der Zielhardware testen - wobei möglichst
+ mehr als nur ein Gerät verwendet werden sollte.
 \end_layout
 
 \begin_layout Section
@@ -1968,7 +1967,7 @@ Mango
 \end_layout
 
 \begin_layout Standard
-Ein weiterer Faktor der die Zukunft von WP7 mit Sicherheit entscheidend
+Ein weiterer Faktor, der die Zukunft von WP7 mit Sicherheit entscheidend
  beeinflussen wird, ist die Allianz mit Nokia, die diesen Monat endgültig
  beschlossen wurde.
  
@@ -1985,7 +1984,7 @@ Geräte
 \end_layout
 
 \begin_layout Standard
-Noch ist die größte Schwäche von WP7, dass im Gegensatz zu Windows Mobile
+Noch ist die größte Schwäche von WP7, dass es im Gegensatz zu Windows Mobile
  6.5 (heute 
 \begin_inset Quotes eld
 \end_inset
@@ -1994,7 +1993,7 @@ Windows Phone Classic
 \begin_inset Quotes erd
 \end_inset
 
-) es noch nicht für Geschäftskunden tauglich ist.
+) noch nicht für Geschäftskunden tauglich ist.
  Da der Business-Sektor traditionell Microsofts stärkster Geschäftsbereich
  ist, muss dieses Manko so schnell wie möglich beseitigt werden.
  Dann steht dem Erfolg von 
