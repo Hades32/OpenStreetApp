@@ -11,7 +11,9 @@ Warning--entry type for "launch" isn't style-file defined
 --line 33 of file wp7seminar.bib
 Warning--entry type for "bing" isn't style-file defined
 --line 53 of file wp7seminar.bib
+Warning--entry type for "adds" isn't style-file defined
+--line 63 of file wp7seminar.bib
 Warning--entry type for "apps" isn't style-file defined
---line 72 of file wp7seminar.bib
+--line 81 of file wp7seminar.bib
 Warning--can't use both author and editor fields in coding
-(There were 7 warnings)
+(There were 8 warnings)

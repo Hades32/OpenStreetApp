@@ -60,6 +60,7 @@ Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbe
 \section{Open Street Map und Konsorten}
 
 \subsection{Umsetzung des Map-Controls}
+Der Kernaspekt der Open Street App ist die Kartenansicht. Die Karten bilden sowohl die Grundlage für alle Operationen im Routing- und Naviagtionsbereich, als auch den Dateninput. Es war also unserer Erste Aufgaben passende Karten auf dem Gerät darstellen zu können. Dies wird von Microsoft durch das MapControl und durch verwendung einer MultiTileSource ermöglicht. Die MuliTileSource ist eine Komponente die eine Quelle für Tiles erhält. Ein Tile bezeichnet einen bestimmten Kartenausschnitt, definiert durch Zoomstufe sowie horizontale und vertikale Start- bzw. Endkoordinaten. Die MultiTileSource setzt bei uns dann immer aus vier Tiles unsere aktuelle Karte zusammen die dann im MapControl angezeigt wird. Beim Scrollen oder Zoomen der Karte werden die neuen Tiles vom Quell-Server angefragt und das MapControl entsprechend aktualisiert.
 \begin{center}
 \includegraphics[height=4.1cm]{images/tiles.png}
 \end{center}
@@ -97,6 +98,7 @@ Response (Ausschnitt)
 
 \section{Herausforderungen}
 \subsection{Probleme der gegebenen Controls}
+Die von WP7 gegebenen Controls erlauben es sehr schnell zu Ergebnissen zu kommen.
 \subsection{Routing}
 Text zu Routing
 \begin{center}
@@ -110,7 +112,16 @@ Text zu Routing
 \subsection{Struktur}
 \subsection{Entwicklung}
 \subsection{Zukunft der Open Street App}
-Überlegung ob kostenpflichtig oder nicht. Werbung. Veröffentlichung im April 2011. Wirklich.
+Die Open Street App wurde im Mai 2011 fertiggestellt und steht nun vor der Veröffentlichung im Marketplace. Grundsätzlich bestand für uns die Auswahl aus drei Konzepten für unserer Applikation:
+
+\begin{itemize}
+\item kostenpflichtige App für die im Vorraus bezahlt werden muss
+\item kostenfreie App mit (eventuell drittanbieter-) Werbung
+\item werbe- und kostenfreie Gratisapp
+\end{itemize}
+
+Da wir die Ergebnisse unserer Arbeit allen WP7 Nutzern zur Verfügung stellen wollten war die Variante der kostenpflichtigen Applikation nicht relevant für unserere Veröffentlichung. Die Möglichkeit unser Programm durch Werbung anzureichern war lange Zeit das Konzept unserer Wahl. Applikationen die vom Kaufsystem auf eine Werbefinanzierung umgestiegen sind haben in den letzten Monaten einen großen Anteilszuwachs zu verzeichnen. Gerade der Spielebereich hat sich durch den hohen Wiederspielwert als profitabel für Werbeeinblendungen gezeigt. \cite{adds}
+Schlussendlich haben wir uns dafür entschieden die App frei von Kosten und Werbung in den Store zu bringen. Eine dauerhafte Werbeeinblendung ist bei der Bedienung einer Karte störend und würde die Usability und damit die Zufriedenheit der Benutzer einschränken. 
 
 \section{Ausblick und Fazit}
 \subsection{Weiterentwicklung der Plattform}
