@@ -60,7 +60,8 @@ Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbe
 \section{Open Street Map und Konsorten}
 
 \subsection{Umsetzung des Map-Controls}
-Der Kernaspekt der Open Street App ist die Kartenansicht. Die Karten bilden sowohl die Grundlage für alle Operationen im Routing- und Naviagtionsbereich, als auch den Dateninput. Es war also unserer Erste Aufgaben passende Karten auf dem Gerät darstellen zu können. Dies wird von Microsoft durch das MapControl und durch verwendung einer MultiTileSource ermöglicht. Die MuliTileSource ist eine Komponente die eine Quelle für Tiles erhält. Ein Tile bezeichnet einen bestimmten Kartenausschnitt, definiert durch Zoomstufe sowie horizontale und vertikale Start- bzw. Endkoordinaten. Die MultiTileSource setzt bei uns dann immer aus vier Tiles unsere aktuelle Karte zusammen die dann im MapControl angezeigt wird. Beim Scrollen oder Zoomen der Karte werden die neuen Tiles vom Quell-Server angefragt und das MapControl entsprechend aktualisiert.
+Der Kernaspekt der Open Street App ist die Kartenansicht. Die Karten bilden sowohl die Grundlage für alle Operationen im Routing- und Naviagtionsbereich, als auch den Dateninput. Es war also unserer erste Aufgabe passende Karten auf dem Gerät darstellen zu können. Dies wird von Microsoft durch das MapControl und durch verwendung einer MultiTileSource ermöglicht. Die MuliTileSource ist eine Komponente die eine Quelle für Tiles erhält. Ein Tile bezeichnet einen bestimmten Kartenausschnitt, definiert durch Zoomstufe sowie horizontale und vertikale Start- bzw. Endkoordinaten. Die MultiTileSource setzt bei uns dann immer aus vier Tiles unsere aktuelle Karte zusammen die dann im MapControl angezeigt wird. Beim Scrollen oder Zoomen der Karte werden die neuen Tiles vom Quell-Server angefragt und das MapControl entsprechend aktualisiert.\\
+
 \begin{center}
 \includegraphics[height=4.1cm]{images/tiles.png}
 \end{center}
