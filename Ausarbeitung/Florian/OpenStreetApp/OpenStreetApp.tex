@@ -46,7 +46,7 @@ emph={[2]\using,\#define,\#ifdef,\#endif}, emphstyle={[2]\color{blue}}
 \maketitle
 
 \begin{abstract}
-Diese Arbeit beschäftigt sich mit der Entwicklung einer Routing- und Navigationsapplikation, namentlich der \textit{Open Street App}, für das mobile Betriebssystem Windows Phone 7 (\textit{WP7}). Es wird aufgezeigt welche Schritte von der Idee dieser Applikation bis zur Fertigstellung umgesetzt, und welche Probleme und Herausforderungen überwunden werden mussten. Die Arbeit soll einen grundlegenden Eindruck der pratischen Entwicklung für WP7 vermitteln.
+Diese Arbeit beschäftigt sich mit der Entwicklung einer Routing- und Navigationsapplikation, namentlich der \textit{Open Street App}, für das mobile Betriebssystem Windows Phone 7 (\textit{WP7}). Es wird aufgezeigt welche Schritte von der Idee dieser Applikation bis zur Fertigstellung umgesetzt, und welche Probleme und Herausforderungen überwunden werden mussten. Die Arbeit soll einen grundlegenden Eindruck der pratischen Entwicklung für WP7 vermitteln. Es soll ebenfalls gezeigt werden zu welchen Schlüssen für die Weiterentwicklung der Applikation die bisherige Entwicklung geführt hat.
 \end{abstract}
 
 \section{Einleitung}
@@ -55,7 +55,7 @@ Im Herbst 2010 veröffentlichte die Firma Microsoft ihr eigenes Betriebssystem fü
 \subsection{Idee der Open Street App}
 Im Blickpunkt unserer Entwicklung stand nicht nur das reine Erstellen einer Applikation, sondern gerade auch die Verwendung der von Microsoft bereitgestellten Controls und Bibliotheken. Wir wollten herausfinden ob diese sich effektiv und schnell integrieren lassen. Zum Zeitpunkt des Seminarbeginns war für WP7 keine zufriedenstellendes Third-Party-Routing verfügbar. WP7 liefert von sich aus eine Karte/Routing-Applikation. Unsere Idee war es nun eine eigene Software zu schreiben, welche den Anforderungen der mitgelieferten \textit{Karten-App} genügt und falls möglich übertrifft, unter Verwendung der erwähnten Controls.
 \subsection{Aufbau dieser Arbeit}
-Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeitet wurde um Kartendaten und zugehörige Informationen zu erlangen und darzustellen. Das folgende Kapitel beschäftigt sich mit der Gestaltung der Applikation im WP7 typischen UI-Stil. Hierbei wurde besonderes Augenmerk gelegt auf ein konsistentes Look-and-Feel im Vergleich zu den native Applikationen für WP7. Kapitel vier berichtet exemplarisch von den Herausforderungen und Problemen die bei der Entwicklung aufgekommen sind. Kapitel fünf erklärt wie einmal entwickelte Applikationen ihren Weg auf den Markt finden. Hier wird auf den Marketplace und die Zukunft der Open Street App eingegangen. Im letzten Kapitel wollen wir einen Ausblick über die möglichen Entwicklungen von WP7 geben sowie ein Fazit zu der Entwicklung in diesem frühen Stadium ziehen.\cite{cloud} \cite{coding} \cite{launch} \cite{silverlight} \cite{apps} \cite{osm} \cite{yahoo} \cite{bing}
+Im zweiten Kapitel wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeitet wurde um Kartendaten und zugehörige Informationen zu erlangen und darzustellen. Das folgende Kapitel beschäftigt sich mit der Gestaltung der Applikation im WP7 typischen UI-Stil. Hierbei wurde besonderes Augenmerk gelegt auf ein konsistentes Look-and-Feel im Vergleich zu den native Applikationen für WP7. Kapitel vier berichtet exemplarisch von den Herausforderungen und Problemen die bei der Entwicklung aufgekommen sind. Kapitel fünf erklärt wie einmal entwickelte Applikationen ihren Weg auf den Markt finden. Hier wird auf den Marketplace und die Zukunft der Open Street App eingegangen. Im letzten Kapitel wollen wir einen Ausblick über die möglichen Entwicklungen von WP7 geben sowie ein Fazit zu der Entwicklung in diesem frühen Stadium ziehen.
 
 \section{Open Street Map und Konsorten}
 
@@ -66,15 +66,15 @@ Der Kernaspekt der Open Street App ist die Kartenansicht. Die Karten bilden sowo
 \includegraphics[height=4.1cm]{images/tiles.png}
 \end{center}
 \begin{figure}
-\caption{Verschiedene Tiles: Cloudemade, VE Areal, VE Maps, OpenStreetMap}
+\caption{Verschiedene Tiles: Cloudemade \cite{cloud}, VE Areal \cite{bing}, VE Maps \cite{bing}, OpenStreetMap \cite{osm} }
 \end{figure}
 \subsection{Verwendung von Services}
 Im Vergleich zu Applikationen die bei Start bereits vollständig auf dem Gerät vorhanden sind, zeichnet sich eine Routing-App vor allem durch Informationen die jederzeit abgefragt werden können aus. Dem Benutzer müssen zur jeder Zeit und an jedem Ort an dem eine Mobilfunkverbindung aufgebaut werden kann, alle Dienste die man zum Navigieren auf Grundlage einer Karte braucht, bereitgestellt werden. Fast alle diese Daten werden über bestimmte Services angefragt und dann entsprechend auf dem Handy präsentiert. Open Street App verwendet mehrere dieser Services. Grundlegend lassen sich die Anfragen in verschiedene Gruppen einteilen:\\
 \subsubsection{Geocoding}
-Der Begriff Geocoding oder auch Geotagging bezeichnet die Anreicherung eines (Address)Datensatzes um raumbezogene Information. In unserem Fall verstehn wir darunter die Anreicherung einer Addresse oder eines bestimmten Ortes um eine Koordinate. Dem Benutzer wird über eine Suchmaske die Möglichkeit geboten einen Suchbegriff einzugeben. Dieser Suchbegriff wird URL-Encoded und dann Teil einer Anfrage an einen REST orientierten Webservice, wie er von Firmen wie Yahoo, Google und Microsoft bereitgestellt wird. Open Street App arbeitet in seiner ersten Version mit mehreren Verschiedenen Webservices um die Suchergebnisse zu optimieren. 
+Der Begriff Geocoding oder auch Geotagging bezeichnet die Anreicherung eines (Address)Datensatzes um raumbezogene Information. In unserem Fall verstehen wir darunter die Anreicherung einer Addresse oder eines bestimmten Ortes um eine Koordinate. Dem Benutzer wird über eine Suchmaske die Möglichkeit geboten einen Suchbegriff einzugeben. Dieser Suchbegriff wird URL-Encoded und dann Teil einer Anfrage an einen REST orientierten Webservice, wie er von Firmen wie Yahoo, Google und Microsoft bereitgestellt wird. Als Antwort werden im Erfolgsfall die Koordinaten des gesuchten Ortes zurückgesendet. Open Street App arbeitet in seiner ersten Version mit mehreren Verschiedenen Webservices um die Suchergebnisse zu optimieren. D
 \subsubsection{Reverse Geocoding}
-Unter Reverse Geocoding versteht man die Rücktransformierung einer Koordinate in eine lesbare Adresse. Dies ist eine Grundfunktionalität die von allen Applikationen die zur Orientierung dienen verwendet wird. Über ein GPS Signal liegen der App die aktuellen Koordianten des Benutzers vor.
-Abbildung 2 Zeigt einen beispielhaften Aufruf des Yahoo Placefinder Service. Es werden die Koordinaten des Gebäudes O28 der Universität Ulm übergeben.
+Unter Reverse Geocoding versteht man die Umwandlung einer Koordinate in eine lesbare Adresse. Dies ist eine Grundfunktionalität die von allen Applikationen, die zur Orientierung dienen, verwendet wird. Über ein GPS Signal liegen der App die aktuellen Koordianten des Benutzers vor.
+Abbildung 2 Zeigt einen beispielhaften Aufruf des Yahoo Placefinder Service \cite{yahoo}. Es werden die Koordinaten des Gebäudes O28 der Universität Ulm übergeben.
 \begin{figure}
 \begin{lstlisting}
 Uri adress = new Uri("http://where.yahooapis.com/geocode?q=" + 48.421997 + ",+" + 9.956117 + "&gflags=R&locale=" + System.Globalization.CultureInfo.CurrentCulture.Name + "&appid=12345");
@@ -84,8 +84,9 @@ wc.DownloadStringAsync(adress);
 \end{lstlisting}
 \caption{Reverse Geodocing Anfrage für die Universität Ulm}
 \end{figure}
-\begin{figure}
-Das Ergebnis eines solchen Aufrufes kann in verschiedenen Formaten angefordert werden. Üblich sind das JSON (JavaScript Object Notation) und das XML Format. Abbildung 3 zeigt einen Ausschnitt des responses zu der Anfrage aus Abbildung 2 im XML Format. Die Koordinaten wurden in eine Adresse transformiert. Je nach Anforderung können diese responses, über entsprechende Optionen der Anfrage, mehr oder weniger Details enthalten. 
+
+Das Ergebnis eines solchen Aufrufes kann in verschiedenen Formaten angefordert werden. Üblich sind das JSON (JavaScript Object Notation) und das XML Format. Abbildung 3 zeigt einen Ausschnitt des responses zu der Anfrage aus Abbildung 2 im XML Format. Die Koordinaten wurden in eine Adresse transformiert. Je nach Anforderung können diese responses, über entsprechende Optionen der Anfrage, mehr oder weniger Details enthalten.
+\begin{figure} 
 \begin{lstlisting}
 <Result>
  <latitude>48.421997</latitude>
@@ -97,12 +98,17 @@ Das Ergebnis eines solchen Aufrufes kann in verschiedenen Formaten angefordert w
 </Result>
 \end{lstlisting}
 \caption{Response für die Geolocation Anfrage(Ausschnitt)}
-\end{figure}\subsubsection{Point of Interest}
+\end{figure}
+\subsubsection{Point of Interest}
+Ein weiterer Service den die Open Street App verwendet ist der "`Point of Interest"' Service. Hierbei handelt es sich um das gleiche Prinzip wie beim Reverse Geocoding. Dem Server werden Koordinaten übergeben. Jedoch statt diese Koordinaten in eine Adresse umzuwandeln, werden nach speziellen Punkten in der Umgebung des angegebenen Punktes gesucht. Spezielle query-strings ermöglichen es einen Radius sowie bestimmte Suchkriterien anzugeben. In ihrer ersten Version beschränkt sich die Open Street App auf das Anzeigen der naheliegendsten Points of Interest, auf eine Anzahl von maximal zehn begrenzt. Angezeigt werden priorisiert Tankstellen und Gastronomie. Die Grundlage für einen solchen Webservice kann nur gegeben sein wenn die entsprechenden Addressen nicht nur mit Geoinformationen, sondern auch mit einer entsprechenden Kennzeichnung als Ort des öffentlichen Interesses getaggt und auf dem Server des Servicebetreiber bereitgestellt werden.
 \subsubsection{Routing}
-
+Eine weitere Hauptfunktionalität ist das Routing. Der Benutzer kann über eine Maske Start- und Zielort eingeben. Diese Eingaben werden per Webservice-Aufruf in Koordinaten umgewandelt. Ein weiterer Aufruf an den Routing Service von Bing \cite{bing} liefert eine Liste von Wegpunkten zurück, welche die Route charakterisieren. Das Microsoft MapControl bietet für Routen einen eigenen Layer, welcher mit der erhaltenen Liste von Wegpunkten initialisiert werden kann. Die Karte zeichnet dann eine Route vom Startpunkt zum Ziel.
 
 \section{Umsetzen der WP7 Designkonzepte}
 \subsection{WP7 Look and Feel}
+Unter dem Banner der Innovation hat sich Microsoft mit seinem mobilen Betriebssystem Windows Phone 7 von allen Altlasten, in Form von Windows Mobile, getrennt. Was dem Benutzer jedoch vordergründig ins Auge springt, ist die neue "`Metro-UI"'. Diese Oberfläche zeichnet sich durch ein einfaches und vor allem in sich konsistentes Bedienverhalten aus. Das Phänomen Smartphone gründet sich hauptsächlich auf einem Sachverhalt: Alles ist durch Berührung auf dem Bildschirm steuerbar. Keine Knöpfe müssen mehr gedrückt werden. Dieses Konzept wollten wir ebenfalls für unser App umsetzen. Wichtig war uns hiebei, das die Grundkompenente, die Karte, völlig frei und direkt gesteuert werden kann. Oftmals sind in Applikationen für Smartphones Softwareknöpfe umgesetzt, so dass der Benutzer zwar über Touch steuern kann, jedoch im Prinzip auch nur einen Knopf drückt. Die Kartenansicht der Open Street App verzichtet völlig auf Knöpfe für Zoom/Unzoom oder für das Verschieben der Karte. Jede Bewegung des Fingers wird direkt weitergegeben.\\
+\newline
+Zusatzfunktionen wie die Suche, Routing oder die Einstellung sind über die Application Bar verfügbar, wie sie in Abbildung 5 zu sehen ist. Die Kontextmenüs der Open Street App orientieren sich an den nativen Applikationen von Windows Phone 7. Abbildung 4 zeigt den "`Preferences"'-Dialog der Applikation. Die verwendeten Controls sowie auch das Layout der Seite selbst orientieren sich an den nativen Einstellungsdialogen von WP7. Der Gedanke hierbei war es, dem Benutzer keine neuen Konzepte und Funktionen aufzuzwängen, sondern über Wohlbekanntes eine schnelle Bedienung zu ermöglichen. So ist es ebenfalls möglich über den allzeit vorhandenen Zurück-Button innerhalb der Applikation zu navigieren. 
 \begin{center}
 \includegraphics[width=5.0cm,height=10.0cm]{images/pref.png}
 \end{center}
@@ -112,9 +118,13 @@ Das Ergebnis eines solchen Aufrufes kann in verschiedenen Formaten angefordert w
 
 \section{Herausforderungen}
 \subsection{Probleme der gegebenen Controls}
-Die von WP7 gegebenen Controls erlauben es sehr schnell zu Ergebnissen zu kommen.
+Die von WP7 gegebenen Controls  erlauben es sehr schnell zu Ergebnissen zu kommen. \cite{coding} Da sie jedoch als Basis für alle Entwickler dienen, sind einige Aspekte natürlich nicht optimal für spezielle Anwendungen. In unserem Fall war das MapControl, welches für die Kartendarstellung eine hervoragende Grundlage bietet, nicht völlig ohne Anpassung verwendbar. Die Methoden die die Berührungen des Touchscreens verarbeiten und weitergeben waren uns nicht direkt genug. Um dieses Problem zu umgehen haben wir einen eigenen Layer geschrieben, welcher die Touchevents auffängt, nach unseren Vorstellungen skaliert und dann erst an die verarbeitenden Methoden weiterreicht. So war es uns möglich die Steuerung noch schneller und direkter umzusetzen.
+\subsection{Services}
+Wie in Abschnitt 2.2 beschrieben, werden viele Services verwendet um an die benögtigten Daten zu kommen. Die meisten dieser Services sind für Entwickler kostenfrei. Jedoch ist es meist erforderlich sogenannte "`Credentials"' zu besitzen, normalerweise eine Authentifizierungsnummer, welche durch Onlineregistrierung erworben, und bei Programmstart an die jeweiligen Serviceprovider übermittelt wird. Diese mehrfachen Anmeldungen bei Programmstart sorgen, auch abhängig von Reaktionszeiten der Server, für verzögerungen im Ladevorgang. Es war deshalb notwendig mit verschiedenen Anbietern zu experimentieren und die für uns optimalen auszuwählen. Diese Auswahl richtete sich jedoch nicht alleine nach der Geschwidigkeit. Wie bereits im Vorraus vermutet, liefern verschiedene Anbieter auch verschieden Ergebnisse für die einzelnen Serviceanfragen, sowohl was Qualität als auch Detaillierungsgrad betrifft. Nicht alle Services ließen sich entsprechend lokalisieren und waren daher für uns nicht verwendbar. Die weitere Entwicklung der Open Street App sieht es vor, alle verwendeten Services auf die API von Bing \cite{bing} umzustellen, um eine einheitliche Grundlage zu schaffen.
+\subsection{Tombstoning}
+Eine Eigenschaft mit denen moderene mobile Betriebssysteme werben ist das Multitasking. In der vorliegenden Version von WP7 ist dieses weit von einer perfekten Umsetzung entfernt. Jedoch ist die Grundlage des Multitasking die schnelle Wiederaufnahme einer App. Diese Grundlage muss von Entwicklern umgesetzt werden. Tombstoning nennt sich der Prozess in dem eine App ihre Daten und ihren Kontext sichern kann bevor sie endgültig unterbrochen wird, durch eine andere App oder das OS. Wichtig war für uns herauszufinden in wie weit sich ein Neustart einer App von einer Wiederaufnahme unterscheidet. Speziell welche Methoden aufgerufen werden und welche Daten noch vorhanden sind. Es war notwendig eigene Sicherungsroutienen zu implementieren, welche dann dafür sorgen das der Benutzer die Karte mit allen eventuell angezeigten Informationen nach Wiedereinstieg genauso vorfindet wie beim Verlassen der App.
 \subsection{Routing}
-Text zu Routing
+Ein weiteres Problem bezüglich der Performance stellte sich beim Implementieren des Routings. Eine Route wird, wie oben beschrieben, durch eine Menge von Wegpunkten beschrieben und dann von unserem MapControl durch Zeichnen von Punkten und die Verbindung dieser durch Linien dargestellt. Da es sich bei diversen Routen jedoch um einige tausend Punkte handeln kann, welche entsprechend der Zoomstufe ganz oder zum Großteil angezeigt werden, waren enorme Verluste in der Performance die Folge. Insbesondere das Neuzeichnen der Route nach dem Zoomen oder verschieben der Karte war problematisch und verschlang enorme Ressourcen. Die Lösung war eine Vereinfachung der Route. Für jede Zoomstufe werden nicht alle Wegpunkte, sondern ein Maximum von 400 Punkten angezeigt. Die Ursprüngliche Menge von Punkten wird hierbei für jede Zoomstufe schrittweise um die Punkte verringert, die den geringsten Unterschied in der resultierenden Route bedeuteten. Das Ergebnis war eine fast genau so detaillierte Route wie unter Verwendung aller Wegpunkte, jedoch ein sehr viel flüssigeres Verhalten.
 \begin{center}
 \includegraphics[width=5.0cm,height=10.0cm]{images/route.png}
 \end{center}
@@ -124,7 +134,9 @@ Text zu Routing
 
 \section{Marketplace}
 \subsection{Struktur}
+Die Struktur des Marketplace orientiert sich an den Branchenkonkurrenten. Ein Entwickleraccount ermöglicht es, eigene Applikationen einzureichen. Diese werden durch Microsoft geprüft und dann im Marketplace veröffentlicht. Ein normaler Account kostet 99 Dollar im Jahr, für Studenten ist das erste Jahr kostenlos.
 \subsection{Entwicklung}
+Die Entwicklung des Marketplace ist ebenfalls vergleichbar mit denen der Konkurrenz. Die Zuwachsrate entsprach im ersten halben Jahr in etwa der des Appstores bei Einführung des iPhone 1. Mittlerweile gibt es über zehntausend Apps. \cite{apps} Davon sind viele eine Portierung bekannter Apps aus anderen Stores. Firmen die sich auf die Entwicklung mobiler Applikationen spezialisiert haben können so ein noch breiteres Publikum ansprechen, bei vergleichbar geringem Mehraufwand den eine solche Portierung darstellt.
 \subsection{Zukunft der Open Street App}
 Die Open Street App wurde im Sommer 2011 fertiggestellt und steht nun vor der Veröffentlichung im Marketplace. Grundsätzlich bestand für uns die Auswahl aus drei Konzepten für unserer Applikation:
 
@@ -139,10 +151,11 @@ Schlussendlich haben wir uns dafür entschieden die App frei von Kosten und Werbu
 
 \section{Ausblick und Fazit}
 \subsection{Weiterentwicklung der Plattform}
+Mit Windows Phone 7 hat Microsoft einen großen Schritt in die richtige Richtung getan und sich auf eine neues, zukunftsorientiertes Design eingelassen. WP7 ist jedoch noch nicht "`fertig"' und leidet wie die meisten Systeme der ersten Generation noch an Kinderkrankheiten. Das fehlen von Copy und Paste, sowie eine vernünftige Suchfunktion waren zwei der Hauptkritikpunkte, sind jedoch mittlerweile behoben. Im Laufe des Jahres 2011 sind noch größere Updates geplant, die das System unter anderem um einen HTML5 fähigen Browser, Hardwarebeschleunigung und Multitasking erweitern. 
 \subsection{Chancen für die Zukunft}
+Zum Zeitpunkt des Open Street App Entwicklungsstartes waren neun verschiedene WP7 Geräte verfügbar. \cite{launch} Durch die Partnerschaft zwischen Nokia und Microsoft wird diese Pallette stetig ausgebaut werden. Der Marketplace wird in Zukunft gerade durch die portierten sowie neuentwickelten Apps kein Negativkriterium bei der Wahl eines Smartphones sein. Die Metro-UI-Oberfläche wird durch die Einbindung im kommenden Betriebssystem Windows 8 von einem breiten Publikum verwendet werden. Somit kann die Lücke zwischen Desktop Computern und Mobilen Geräten ein Stück weit geschlossen und ein einheitliches Bedienkonzept etabliert werden.
 \subsection{Fazit}
-Entwickeln toll. Schnelle Ergebnisse.
-
+Die Entwicklung für WP7 war, gerade im frühen Stadium, erstaunlich entgegenkommend. Durch die verwendung von Silverlight besteht für C\# erprobte Entwickler kaum ein unterschied zur Entwicklung auf dem PC. Durch die bereitstellung der Controls durch Microsoft lassen sich schnell Ergebnisse erzielen, welche effizient im Emulator getestet werden können. Eine vielzahl von bereitgestellten Hilfen, Tutorials und Beispielprojekten \cite{silverlight} ermöglichen einen einfachen Einstieg in die Entwicklung. Unabhängig von Preferenzen in Bezug auf das persönlich verwendete mobile Betriebssystem, kann WP7 von uns als Einstieg in die mobile Entwicklung nur empfohlen werden.
 \bibliography{wp7seminar}
 \bibliographystyle{plain}
 

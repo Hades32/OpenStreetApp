@@ -24,7 +24,7 @@ Class=CLatexEdit
 Document=OpenStreetApp.tex
 
 [Frame0_Row0]
-cyCur=483
+cyCur=494
 cyMin=10
 
 [Frame0_Col0]
@@ -32,7 +32,7 @@ cxCur=631
 cxMin=10
 
 [Frame0_View0,0]
-Cursor.row=49
-Cursor.column=14
-TopSubLine=36
+Cursor.row=102
+Cursor.column=449
+TopSubLine=175
 
