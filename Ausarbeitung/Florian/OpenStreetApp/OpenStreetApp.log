@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.18)  7 JUN 2011 21:30
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.18)  24 AUG 2011 16:12
 entering extended mode
 **D:/Projekte/Visual*Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/Op
 enStreetApp.tex
@@ -524,26 +524,40 @@ n Bran-chenf[]uhrern
 [1
 
 {C:/Users/Florian/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 63--64
+
+ []
+
 <images/tiles.png, id=38, 505.89pt x 144.54pt>
 File: images/tiles.png Graphic file (type png)
  <use images/tiles.png>
-Overfull \hbox (61.17027pt too wide) in paragraph at lines 65--66
+Overfull \hbox (61.17027pt too wide) in paragraph at lines 66--67
  [] 
  []
 
-[2 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
-images/tiles.png>] <images/pref.png, id=56, 289.83281pt x 539.76656pt>
-File: images/pref.png Graphic file (type png)
 
-<use images/pref.png>
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 72--73
+
+ []
+
+[2 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
+images/tiles.png>]
+Overfull \hbox (29.70177pt too wide) in paragraph at lines 76--100
+ []\OT1/ppl/b/n/10 Reverse Geo-co-ding[] \OT1/ppl/m/n/10 Un-ter Re-ver-se Geo-c
+o-ding ver-steht man die R[]ucktransformierung
+ []
+
+<images/pref.png, id=56, 289.83281pt x 539.76656pt>
+File: images/pref.png Graphic file (type png)
+ <use images/pref.png>
+Underfull \vbox (badness 1609) has occurred while \output is active []
 
  [3]
-<images/route.png, id=77, 298.11375pt x 548.0475pt>
+[4] <images/route.png, id=87, 298.11375pt x 548.0475pt>
 File: images/route.png Graphic file (type png)
  <use images/route.png>
-[4 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
-images/pref.png>] [5 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Flor
+[5 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
+images/pref.png>] [6 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Flor
 ian/OpenStreetApp/images/route.png>]
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.bbl"
@@ -576,32 +590,32 @@ Overfull \hbox (12.07562pt too wide) in paragraph at lines 52--58
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
+ [7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
 
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 149.
 Package rerunfilecheck Info: File `OpenStreetApp.out' has not changed.
 (rerunfilecheck)             Checksum: 41E36D8C18C7C9FC6A49D88BF8C1B2F6;146.
  ) 
 Here is how much of TeX's memory you used:
- 8025 strings out of 494019
- 115606 string characters out of 3143876
- 299438 words of memory out of 3000000
- 11124 multiletter control sequences out of 15000+200000
- 18320 words of font info for 47 fonts, out of 3000000 for 9000
+ 8030 strings out of 494019
+ 115652 string characters out of 3143876
+ 301438 words of memory out of 3000000
+ 11123 multiletter control sequences out of 15000+200000
+ 17805 words of font info for 45 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 35i,12n,43p,1058b,1888s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 31i,12n,43p,1058b,1281s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (
 x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on OpenStreetApp.pdf (6 pages, 1110653 bytes).
+Output written on OpenStreetApp.pdf (7 pages, 1114872 bytes).
 PDF statistics:
- 155 PDF objects out of 1000 (max. 8388607)
- 55 named destinations out of 1000 (max. 500000)
+ 168 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 500000)
  32 words of extra memory for PDF output out of 10000 (max. 10000000)
 

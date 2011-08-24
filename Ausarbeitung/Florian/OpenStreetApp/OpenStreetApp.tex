@@ -69,14 +69,23 @@ Der Kernaspekt der Open Street App ist die Kartenansicht. Die Karten bilden sowo
 \caption{Verschiedene Tiles: Cloudemade, VE Areal, VE Maps, OpenStreetMap}
 \end{figure}
 \subsection{Verwendung von Services}
-Serviceaufruf
+Im Vergleich zu Applikationen die bei Start bereits vollständig auf dem Gerät vorhanden sind, zeichnet sich eine Routing-App vor allem durch Informationen die jederzeit abgefragt werden können aus. Dem Benutzer müssen zur jeder Zeit und an jedem Ort an dem eine Mobilfunkverbindung aufgebaut werden kann, alle Dienste die man zum Navigieren auf Grundlage einer Karte braucht, bereitgestellt werden. Fast alle diese Daten werden über bestimmte Services angefragt und dann entsprechend auf dem Handy präsentiert. Open Street App verwendet mehrere dieser Services. Grundlegend lassen sich die Anfragen in verschiedene Gruppen einteilen:\\
+\subsubsection{Geocoding}
+Der Begriff Geocoding oder auch Geotagging bezeichnet die Anreicherung eines (Address)Datensatzes um raumbezogene Information. In unserem Fall verstehn wir darunter die Anreicherung einer Addresse oder eines bestimmten Ortes um eine Koordinate. Dem Benutzer wird über eine Suchmaske die Möglichkeit geboten einen Suchbegriff einzugeben. Dieser Suchbegriff wird URL-Encoded und dann Teil einer Anfrage an einen REST orientierten Webservice, wie er von Firmen wie Yahoo, Google und Microsoft bereitgestellt wird. Open Street App arbeitet in seiner ersten Version mit mehreren Verschiedenen Webservices um die Suchergebnisse zu optimieren. 
+\subsubsection{Reverse Geocoding}
+Unter Reverse Geocoding versteht man die Rücktransformierung einer Koordinate in eine lesbare Adresse. Dies ist eine Grundfunktionalität die von allen Applikationen die zur Orientierung dienen verwendet wird. Über ein GPS Signal liegen der App die aktuellen Koordianten des Benutzers vor.
+Abbildung 2 Zeigt einen beispielhaften Aufruf des Yahoo Placefinder Service. Es werden die Koordinaten des Gebäudes O28 der Universität Ulm übergeben.
+\begin{figure}
 \begin{lstlisting}
 Uri adress = new Uri("http://where.yahooapis.com/geocode?q=" + 48.421997 + ",+" + 9.956117 + "&gflags=R&locale=" + System.Globalization.CultureInfo.CurrentCulture.Name + "&appid=12345");
 
 System.Net.WebClient wc = new System.Net.WebClient();
 wc.DownloadStringAsync(adress);
 \end{lstlisting}
-Response (Ausschnitt)
+\caption{Reverse Geodocing Anfrage für die Universität Ulm}
+\end{figure}
+\begin{figure}
+Das Ergebnis eines solchen Aufrufes kann in verschiedenen Formaten angefordert werden. Üblich sind das JSON (JavaScript Object Notation) und das XML Format. Abbildung 3 zeigt einen Ausschnitt des responses zu der Anfrage aus Abbildung 2 im XML Format. Die Koordinaten wurden in eine Adresse transformiert. Je nach Anforderung können diese responses, über entsprechende Optionen der Anfrage, mehr oder weniger Details enthalten. 
 \begin{lstlisting}
 <Result>
  <latitude>48.421997</latitude>
@@ -87,6 +96,10 @@ Response (Ausschnitt)
  <statecode>BW</statecode>
 </Result>
 \end{lstlisting}
+\caption{Response für die Geolocation Anfrage(Ausschnitt)}
+\end{figure}\subsubsection{Point of Interest}
+\subsubsection{Routing}
+
 
 \section{Umsetzen der WP7 Designkonzepte}
 \subsection{WP7 Look and Feel}
@@ -113,7 +126,7 @@ Text zu Routing
 \subsection{Struktur}
 \subsection{Entwicklung}
 \subsection{Zukunft der Open Street App}
-Die Open Street App wurde im Mai 2011 fertiggestellt und steht nun vor der Veröffentlichung im Marketplace. Grundsätzlich bestand für uns die Auswahl aus drei Konzepten für unserer Applikation:
+Die Open Street App wurde im Sommer 2011 fertiggestellt und steht nun vor der Veröffentlichung im Marketplace. Grundsätzlich bestand für uns die Auswahl aus drei Konzepten für unserer Applikation:
 
 \begin{itemize}
 \item kostenpflichtige App für die im Vorraus bezahlt werden muss
