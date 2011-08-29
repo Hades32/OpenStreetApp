@@ -60,14 +60,16 @@ In Kapitel Zwei wird erklärt mit welchen Quellen und Umsetzungsmitteln gearbeite
 \section{Open Street Map und Konsorten}
 
 \subsection{Umsetzung des Map-Controls}
-Der Kernaspekt der Open Street App ist die Kartenansicht. Die Karten bilden sowohl die Grundlage für alle Operationen im Routing- und Naviagtionsbereich, als auch den Dateninput. Es war also unsere erste Aufgabe, passende Karten auf dem Gerät darstellen zu können. Dies wird von Microsoft durch das \textit{MapControl} und durch verwendung einer \textit{MultiTileSource} ermöglicht. Die \textit{MuliTileSource} ist eine Komponente die eine Quelle für Tiles erhält. Ein Tile bezeichnet einen bestimmten Kartenausschnitt, definiert durch Zoomstufe sowie horizontale und vertikale Start- bzw. Endkoordinaten. Die \textit{MultiTileSource} setzt bei uns dann immer aus vier Tiles unsere aktuelle Karte zusammen die dann im \textit{MapControl} angezeigt wird. Beim Scrollen oder Zoomen der Karte werden die neuen Tiles vom Quell-Server angefragt und das \textit{MapControl} entsprechend aktualisiert.\\
+Der Kernaspekt der Open Street App ist die Kartenansicht. Die Karten bilden sowohl die Grundlage für alle Operationen im Routing- und Naviagtionsbereich, als auch den Dateninput. Es war also unsere erste Aufgabe, passende Karten auf dem Gerät darstellen zu können. Dies wird von Microsoft durch das \textit{MapControl} und durch verwendung einer \textit{MultiTileSource} ermöglicht. 
+Die \textit{MuliTileSource} ist eine Komponente die eine Quelle für Tiles erhält. Ein Tile bezeichnet einen bestimmten Kartenausschnitt, definiert durch Zoomstufe sowie horizontale und vertikale Start- bzw. Endkoordinaten. Die \textit{MultiTileSource} setzt bei uns dann immer aus vier Tiles unsere aktuelle Karte zusammen die dann im \textit{MapControl} angezeigt wird. Beim Scrollen oder Zoomen der Karte werden die neuen Tiles vom Quell-Server angefragt und das \textit{MapControl} entsprechend aktualisiert.\\
 
 \begin{center}
-\includegraphics[height=4.1cm]{images/tiles.png}
+\includegraphics[height=2.5cm]{images/tiles.png}
 \end{center}
 \begin{figure}
 \caption{Tilesources: Cloudemade \cite{cloud}, VE Areal \cite{bing}, VE Maps \cite{bing}, OSM \cite{osm} }
 \end{figure}
+
 \subsection{Verwendung von Services}
 Im Vergleich zu Applikationen, die bei Start bereits vollständig auf dem Gerät vorhanden sind, zeichnet sich eine Routing-App vor allem durch Informationen, die jederzeit abgefragt werden können, aus. Dem Benutzer müssen zur jeder Zeit und an jedem Ort an dem eine Mobilfunkverbindung aufgebaut werden kann, alle Dienste die man zum Navigieren auf Grundlage einer Karte braucht, bereitgestellt werden. Fast alle diese Daten werden über bestimmte Services angefragt und dann entsprechend auf dem Handy präsentiert. Open Street App verwendet mehrere dieser Services. Grundlegend lassen sich die Anfragen in verschiedene Gruppen einteilen:\\
 \subsubsection{Geocoding}
