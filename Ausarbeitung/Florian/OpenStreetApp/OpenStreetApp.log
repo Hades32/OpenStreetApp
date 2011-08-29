@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.18)  24 AUG 2011 19:34
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.4.18)  29 AUG 2011 14:50
 entering extended mode
 **D:/Projekte/Visual*Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/Op
 enStreetApp.tex
@@ -548,7 +548,12 @@ a-ben wer-den per Webservice-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 109--112
+Underfull \hbox (badness 10000) in paragraph at lines 109--111
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--111
 
  []
 
@@ -556,18 +561,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 109--112
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4]
-<images/pref.png, id=86, 289.83281pt x 539.76656pt>
+<images/peoplehub.png, id=86, 308.352pt x 173.448pt>
+File: images/peoplehub.png Graphic file (type png)
+
+<use images/peoplehub.png>
+Overfull \hbox (5.69482pt too wide) in paragraph at lines 113--114
+ [] 
+ []
+
+[5 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
+images/peoplehub.png (PNG copy)>]
+<images/pref.png, id=94, 289.83281pt x 539.76656pt>
 File: images/pref.png Graphic file (type png)
  <use images/pref.png>
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]
 [6 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp/
-images/pref.png>] [7] <images/route.png, id=114, 298.11375pt x 548.0475pt>
+images/pref.png>] [7] <images/route.png, id=116, 298.11375pt x 548.0475pt>
 File: images/route.png Graphic file (type png)
 
-<use images/route.png> [8 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung
-/Florian/OpenStreetApp/images/route.png>] [9]
+<use images/route.png>
+Underfull \vbox (badness 2221) has occurred while \output is active []
+
+ [8 <D:/Projekte/Visual Studio/OpenStreetApp/Ausarbeitung/Florian/OpenStreetApp
+/images/route.png>] [9]
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.bbl"
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -592,39 +607,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--28
 berblick .
  []
 
-
+[10]
 Overfull \hbox (12.07562pt too wide) in paragraph at lines 52--58
 \OT1/pcr/m/n/9 windows-[]phone-[]7-[]marketplace-[]hits-[]10-[]000-[]apps-[]wp7
 -[]updates-[]still/$[]\OT1/ppl/m/n/9 .
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 162.
- [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 162.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
+ [11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
 
 ("D:\Projekte\Visual Studio\OpenStreetApp\Ausarbeitung\Florian\OpenStreetApp\Op
 enStreetApp.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 162.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
 Package rerunfilecheck Info: File `OpenStreetApp.out' has not changed.
 (rerunfilecheck)             Checksum: 41E36D8C18C7C9FC6A49D88BF8C1B2F6;146.
  ) 
 Here is how much of TeX's memory you used:
- 8038 strings out of 494019
- 115739 string characters out of 3143876
- 306438 words of memory out of 3000000
- 11126 multiletter control sequences out of 15000+200000
+ 8045 strings out of 494019
+ 115868 string characters out of 3143876
+ 305438 words of memory out of 3000000
+ 11130 multiletter control sequences out of 15000+200000
  17805 words of font info for 45 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 31i,12n,43p,1294b,1281s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 31i,12n,43p,1295b,1281s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (
 x86)/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files (x86)/MiK
 TeX 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on OpenStreetApp.pdf (10 pages, 1128169 bytes).
+Output written on OpenStreetApp.pdf (11 pages, 1597215 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
- 67 named destinations out of 1000 (max. 500000)
- 32 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 203 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 37 words of extra memory for PDF output out of 10000 (max. 10000000)
 
